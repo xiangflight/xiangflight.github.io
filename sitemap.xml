@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/mybatis/</loc>
+    <lastmod>2019-11-04T20:49:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/mybatis-base-1/</loc>
+    <lastmod>2019-11-04T20:49:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/post/</loc>
+    <lastmod>2019-11-04T20:49:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/</loc>
+    <lastmod>2019-11-04T20:49:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/gson/</loc>
+    <lastmod>2019-11-02T09:41:33+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/gson-resolve-error/</loc>
+    <lastmod>2019-11-02T09:41:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/java/</loc>
+    <lastmod>2019-11-02T09:41:33+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/mysql/</loc>
+    <lastmod>2019-11-01T07:37:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/how-mysql-run-sql/</loc>
+    <lastmod>2019-11-01T07:37:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2019-11-01T07:37:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/structure-of-mysql/</loc>
+    <lastmod>2019-11-01T07:37:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/</loc>
+    <lastmod>2019-10-31T09:25:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/about/</loc>
+    <lastmod>2019-10-31T09:25:18+08:00</lastmod>
+  </url>
+  
+</urlset>

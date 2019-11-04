@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gson on Zone Of Xiang</title>
+    <link>https://xiangflight.github.io/tags/gson/</link>
+    <description>Recent content in Gson on Zone Of Xiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 02 Nov 2019 09:41:33 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiangflight.github.io/tags/gson/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gson 解析错误</title>
+      <link>https://xiangflight.github.io/gson-resolve-error/</link>
+      <pubDate>Sat, 02 Nov 2019 09:41:33 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/gson-resolve-error/</guid>
+      <description>问 在一次创建 Oracle 的快照库时出现创建超时的情况，进入 Tomcat 的日志中查看，发现报了如下的错误：
+ 错误日志   答 初探 从日志中可以很明显地看到错误原因是：
+IllegalStateException: Expected BEGIN_OBJECT but was STRING
+从字面上看，是 Gson 解析的内容不符合格式，期望的是一个开始对象，结果解析时发现是一个字符串。
+寻觅 那么，现在最重要的是找到 Gson 解析哪块内容时出错。
+发现 Gson 解析的正是 content 的内容，如下图所示：
+ content 内容   Gson 能解析的数据格式是应该被 &amp;ldquo;{}&amp;rdquo; 包裹的，而 content 中包含的内容不符合，因而报了这么一个错误。
+解决 找到错误地方之后，就需要解决它。</description>
+    </item>
+    
+  </channel>
+</rss>

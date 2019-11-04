@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on Zone Of Xiang</title>
+    <link>https://xiangflight.github.io/tags/mysql/</link>
+    <description>Recent content in MySQL on Zone Of Xiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 01 Nov 2019 07:07:07 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiangflight.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQL 语句在 MySQL 中的运行过程</title>
+      <link>https://xiangflight.github.io/how-mysql-run-sql/</link>
+      <pubDate>Fri, 01 Nov 2019 07:07:07 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/how-mysql-run-sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL 逻辑架构</title>
+      <link>https://xiangflight.github.io/structure-of-mysql/</link>
+      <pubDate>Wed, 30 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiangflight.github.io/structure-of-mysql/</guid>
+      <description>问 日常生活中比较常用的 RDBMS 是 MySQL，那你知道 MySQL 的内部结构吗？
+答 整体结构 需要强调的是，MySQL 与其他 RDBMS 最重要的区别是它的存储引擎架构。
+ MySQL 架构设计是将 查询处理及其他系统任务 和 数据的存储/提取 相分离。
+ MySQL 的逻辑架构大体上分为 Server 层和 存储引擎 两个部分，如下图：
+ MySQL 逻辑架构图   Server 层  连接器、查询缓存、分析器、优化器和执行器等，大多数的核心服务功能 所有的内置函数 (日期、时间、数学和加密函数) 所有跨存储引擎的功能，如存储过程、触发器和视图等  存储引擎层  负责数据等存储和提取，服务器通过 API 与存储引擎通信 架构模式是插件式的，支持 InnoDB、MyISAM、Memory 等多个存储引擎 5.5 版本开始，默认使用的是 InnoDB 引擎  具体组件 连接器 管理连接，权限验证。
+每个客户端连接都会在服务器进程中拥有一个线程，这个连接的查询只会在该线程中执行。
+当客户端连接到 MySQL 服务器时，服务器需要对其进行认证，基于用户名、原始主机信息和密码，如下：
+mysql -h$ip -P$port -u$user -p   如果接下来输入的密码不对，则会收到 “Access denied for user” 的错误。</description>
+    </item>
+    
+  </channel>
+</rss>
