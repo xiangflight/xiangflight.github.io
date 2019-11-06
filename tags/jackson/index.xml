@@ -17,7 +17,11 @@
       <pubDate>Tue, 05 Nov 2019 22:18:58 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/jackson-resolve-pitfall/</guid>
-      <description></description>
+      <description>问 继解决了 Gson 解析的错误问题之后，发现日志里又出现了诡异的现象。
+首先看 ShellResult 类：
+@Data public class ShellResult { private int retCode; private String stderr; private String stdout; private String command; public String getExecutionLog() { StringBuilder sb = new StringBuilder(); sb.append(String.format(&amp;quot;%n shell command[%s]&amp;quot;, command)); sb.append(String.format(&amp;quot;%n ret code: %s&amp;quot;, retCode)); sb.append(String.format(&amp;quot;%n stderr: %s&amp;quot;, stderr)); sb.append(String.format(&amp;quot;%n stdout: %s&amp;quot;, stdout)); return sb.toString(); } }   @Data 是 lombok 支持的注解，可以自动生成一系列 JavaBean 的方法。
+ 其次，看日志：
+ 错误日志   注意，诡异的现象发生了：executionLog 字段从哪来的？</description>
     </item>
     
   </channel>

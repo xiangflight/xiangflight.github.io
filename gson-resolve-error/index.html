@@ -285,8 +285,8 @@
 
 
 <figure role="group" aria-describedby="caption-256aefe3fdbf8838e3daceb523b7ceae">
-  <a href="https://xiangflight.github.io/gson-resolve-error/gson_resolve_error.png" class="img-link">
-    <img src="https://xiangflight.github.io/gson-resolve-error/gson_resolve_error_huc12e9a411ae713c0a6a3ab4538ace5e5_518408_700x0_resize_box_2.png">
+  <a href="https://xiangflight.github.io/gson-resolve-error/gson-resolve-error-1.png" class="img-link">
+    <img src="https://xiangflight.github.io/gson-resolve-error/gson-resolve-error-1_huc12e9a411ae713c0a6a3ab4538ace5e5_518408_700x0_resize_box_2.png">
   </a>
   <figcaption id="caption-256aefe3fdbf8838e3daceb523b7ceae">
     错误日志
@@ -302,7 +302,9 @@
 
 <p><strong>IllegalStateException: Expected BEGIN_OBJECT but was STRING</strong></p>
 
-<p>从字面上看，是 Gson 解析的内容不符合格式，期望的是一个开始对象，结果解析时发现是一个字符串。</p>
+<p>从字面上看</p>
+
+<p>是 Gson 解析的内容不符合格式，期望的是一个开始对象，结果解析时发现是一个字符串。</p>
 
 <h3 id="寻觅">寻觅</h3>
 
@@ -323,8 +325,8 @@
 
 
 <figure role="group" aria-describedby="caption-d4803a5b4227786589225caab271e427">
-  <a href="https://xiangflight.github.io/gson-resolve-error/gson_resolve_error_2.png" class="img-link">
-    <img src="https://xiangflight.github.io/gson-resolve-error/gson_resolve_error_2_huf9100c9a67c094070c0e96211ee77546_48628_700x0_resize_box_2.png">
+  <a href="https://xiangflight.github.io/gson-resolve-error/gson-resolve-error-2.png" class="img-link">
+    <img src="https://xiangflight.github.io/gson-resolve-error/gson-resolve-error-2_huf9100c9a67c094070c0e96211ee77546_48628_700x0_resize_box_2.png">
   </a>
   <figcaption id="caption-d4803a5b4227786589225caab271e427">
     content 内容
@@ -332,7 +334,7 @@
 </figure>
 
 
-<p>Gson 能解析的数据格式是应该被 &ldquo;{}&rdquo; 包裹的，而 content 中包含的内容不符合，因而报了这么一个错误。</p>
+<p>Gson 能解析的数据格式是应该被 &ldquo;{}&rdquo; 包裹的，而 content 中的内容不符合，因而报了这么一个错误。</p>
 
 <h3 id="解决">解决</h3>
 
