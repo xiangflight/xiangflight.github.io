@@ -3,19 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://xiangflight.github.io/tags/os/</loc>
-    <lastmod>2019-11-07T20:32:04+08:00</lastmod>
+    <loc>https://xiangflight.github.io/tags/mysql/</loc>
+    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://xiangflight.github.io/mysql-transaction-1/</loc>
+    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://xiangflight.github.io/post/</loc>
-    <lastmod>2019-11-07T20:32:04+08:00</lastmod>
+    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://xiangflight.github.io/tags/</loc>
+    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/%E4%BA%8B%E5%8A%A1/</loc>
+    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/os/</loc>
     <lastmod>2019-11-07T20:32:04+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -94,12 +111,6 @@
   <url>
     <loc>https://xiangflight.github.io/gson-resolve-error/</loc>
     <lastmod>2019-11-02T09:41:33+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/tags/mysql/</loc>
-    <lastmod>2019-11-01T07:37:27+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

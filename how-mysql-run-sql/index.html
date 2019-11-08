@@ -392,14 +392,14 @@
 </tr>
 
 <tr>
-<td align="center">内容</td>
+<td align="center">格式</td>
 <td align="center">物理日志</td>
 <td align="center">逻辑日志，原始逻辑</td>
 </tr>
 
 <tr>
-<td align="center">写入</td>
-<td align="center">空间固定会写完、</td>
+<td align="center">长度</td>
+<td align="center">空间固定会写完</td>
 <td align="center">一直追加</td>
 </tr>
 </tbody>
@@ -407,7 +407,41 @@
 
 <h5 id="执行">执行</h5>
 
+<ol>
+<li>执行器找到 ID = 2 的记录，从磁盘或内存中获取之</li>
+<li>执行器获取记录后修改，再调用引擎接口写入这行记录</li>
+<li>引擎将新记录更新到内存，将操作记录在 redolog 中，redolog 处于准备状态，返回通知</li>
+<li>执行器接收到通知后，生成该操作的 binlog 并写入磁盘</li>
+<li>执行器调用引擎的提交事务接口，更新 redolog 的状态为提交状态，结束</li>
+</ol>
+
+<h5 id="两阶段提交">两阶段提交</h5>
+
+<p>为了保证 binlog 和 redolog 日志的一致性</p>
+
 <h4 id="流程图-1">流程图</h4>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-85294e4da91f71fbf472838bb2e7c428">
+  <a href="https://xiangflight.github.io/how-mysql-run-sql/update-sql-process.png" class="img-link">
+    <img src="https://xiangflight.github.io/how-mysql-run-sql/update-sql-process_hu971b259fb2aaadf2b10c61041af8ffcd_47099_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-85294e4da91f71fbf472838bb2e7c428">
+    Update SQL 运行过程
+  </figcaption>
+</figure>
+
 
   </main>
   <div id="disqus-container">

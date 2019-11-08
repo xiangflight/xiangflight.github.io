@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>事务 on Zone Of Xiang</title>
+    <link>https://xiangflight.github.io/tags/%E4%BA%8B%E5%8A%A1/</link>
+    <description>Recent content in 事务 on Zone Of Xiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 08 Nov 2019 09:43:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiangflight.github.io/tags/%E4%BA%8B%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySQL 事务系列 1</title>
+      <link>https://xiangflight.github.io/mysql-transaction-1/</link>
+      <pubDate>Fri, 08 Nov 2019 09:43:42 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-transaction-1/</guid>
+      <description> 问 事务是什么？
+事务的几大特性？
+不同的隔离级别会存在什么问题？
+事务的不同隔离级别是如何实现的？
+答 </description>
+    </item>
+    
+  </channel>
+</rss>

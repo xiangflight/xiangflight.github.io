@@ -12,6 +12,19 @@
     
     
     <item>
+      <title>MySQL 事务系列 1</title>
+      <link>https://xiangflight.github.io/mysql-transaction-1/</link>
+      <pubDate>Fri, 08 Nov 2019 09:43:42 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-transaction-1/</guid>
+      <description> 问 事务是什么？
+事务的几大特性？
+不同的隔离级别会存在什么问题？
+事务的不同隔离级别是如何实现的？
+答 </description>
+    </item>
+    
+    <item>
       <title>每天学习一点 性能调优 1</title>
       <link>https://xiangflight.github.io/java-performance-1/</link>
       <pubDate>Thu, 07 Nov 2019 20:32:04 +0800</pubDate>
