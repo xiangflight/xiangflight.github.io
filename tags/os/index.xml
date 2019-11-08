@@ -12,13 +12,12 @@
     
     
     <item>
-      <title>每天学习一点 性能调优 1</title>
-      <link>https://xiangflight.github.io/java-performance-1/</link>
+      <title>性能那些事 1</title>
+      <link>https://xiangflight.github.io/performance-1/</link>
       <pubDate>Thu, 07 Nov 2019 20:32:04 +0800</pubDate>
       
-      <guid>https://xiangflight.github.io/java-performance-1/</guid>
-      <description>问 性能监控、分析、调优分别是什么？
-操作系统性能如何监控？
+      <guid>https://xiangflight.github.io/performance-1/</guid>
+      <description> 问 性能监控、分析、调优分别是什么？
 答 定义 性能监控：
  一种以非侵入方式收集或查看应用运行性能数据的活动
  性能分析：
@@ -27,12 +26,7 @@
  性能调优
  一种为改善应用响应性或吞吐量而更改参数、源代码或属性配置的活动
 通常是：性能监控或性能分析之后
- 性能监控 本篇描述如何进行 Linux 操作系统 上的监控。
-具体分为：
- CPU 使用率 CPU 调度程序运行队列 内存使用率 网络 I/O 使用率 磁盘 I/O 使用率  CPU 使用率 大多数操作系统的 CPU 使用率分为：
- 用户态 (usr) CPU 使用率 内核态 (sys) CPU 使用率，也可称为系统态 CPU 使用率   内核态 CPU 使用率高意味着 共享资源有竞争或 I/O 设备间有大量的交互
-理想情况下，应用达到最高性能时，内核态 CPU 使用率应该为 0%
- vmstat 是什么：</description>
+ </description>
     </item>
     
   </channel>

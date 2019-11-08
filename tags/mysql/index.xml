@@ -17,11 +17,13 @@
       <pubDate>Fri, 08 Nov 2019 09:43:42 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/mysql-transaction-1/</guid>
-      <description> 问 事务是什么？
-事务的几大特性？
-不同的隔离级别会存在什么问题？
-事务的不同隔离级别是如何实现的？
-答 </description>
+      <description>问 数据库中的事务是什么？事务的几大特性？不同的隔离级别？
+答 概念  事务指的是一组原子性的 SQL 操作，或者一个独立的 工作单元。
+ 数据库引擎执行事务会有以下特点：
+ 如果成功地执行该组的所有语句，就执行该组查询 如果有任何一条语句崩溃或其他原因无法执行，则不会执行该组查询 不允许部分语句执行成功  举例 银行应用，数据库有两张表：支票表(checking) 和 储蓄表(saving)
+执行转账操作：从用户 Jane 的支票账户转移 200 到其储蓄账户
+在 MySQL 中，该事务语句如下：
+START TRANSACTION; SELECT balance FROM checking WHERE name = &#39;Jane&#39;; UPDATE checking SET balance = balance - 200.00 WHERE name = &#39;Jane&#39;; UPDATE saving SET balance = balance + 200.00 WHERE name = &#39;Jane&#39;; COMMIT;  四大特性 原子性  Atomicity，一个事务必须被视为一个 不可分割 的 最小 工作单元</description>
     </item>
     
     <item>

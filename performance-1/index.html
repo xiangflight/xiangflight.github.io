@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/mysql-transaction-1/">
+  <link rel="canonical" href="https://xiangflight.github.io/performance-1/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>MySQL 事务系列 1 | Zone Of Xiang</title>
+  <title>性能那些事 1 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -227,13 +227,13 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      MySQL 事务系列 1
+      性能那些事 1
     </h1>
 
     <div class="date">
       
       
-      <strong aria-hidden="true">Publish date: </strong>Oct 89, 8119
+      <strong aria-hidden="true">Publish date: </strong>Oct 79, 7119
       
         
       
@@ -249,7 +249,7 @@
                 <use xlink:href="#tag"></use>
               </svg>
               
-              <a href="https://xiangflight.github.io/tags/mysql/">MySQL</a>
+              <a href="https://xiangflight.github.io/tags/os/">OS</a>
             </li>
           
             <li>
@@ -257,7 +257,7 @@
                 <use xlink:href="#tag"></use>
               </svg>
               
-              <a href="https://xiangflight.github.io/tags/%E4%BA%8B%E5%8A%A1/">事务</a>
+              <a href="https://xiangflight.github.io/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">性能调优</a>
             </li>
           
         </ul>
@@ -270,155 +270,33 @@
 
 <h2 id="问">问</h2>
 
-<p>数据库中的事务是什么？事务的几大特性？不同的隔离级别？</p>
+<p>性能监控、分析、调优分别是什么？</p>
 
 <h2 id="答">答</h2>
 
-<h3 id="概念">概念</h3>
+<h3 id="定义">定义</h3>
+
+<p>性能监控：</p>
 
 <blockquote>
-<p>事务指的是一组原子性的 SQL 操作，或者一个独立的 工作单元。</p>
+<p>一种以非侵入方式收集或查看应用运行性能数据的活动</p>
 </blockquote>
 
-<p>数据库引擎执行事务会有以下特点：</p>
-
-<ul>
-<li>如果成功地执行该组的所有语句，就执行该组查询</li>
-<li>如果有任何一条语句崩溃或其他原因无法执行，则不会执行该组查询</li>
-<li>不允许部分语句执行成功</li>
-</ul>
-
-<h4 id="举例">举例</h4>
-
-<p>银行应用，数据库有两张表：支票表(checking) 和 储蓄表(saving)</p>
-
-<p>执行转账操作：从用户 Jane 的支票账户转移 200 到其储蓄账户</p>
-
-<p>在 MySQL 中，该事务语句如下：</p>
-
-<pre><code class="language-mysql">START TRANSACTION;
-
-SELECT balance FROM checking WHERE name = 'Jane';
-UPDATE checking SET balance = balance - 200.00 WHERE name = 'Jane';
-UPDATE saving SET balance = balance + 200.00 WHERE name = 'Jane';
-
-COMMIT;
-</code></pre>
-
-<h3 id="四大特性">四大特性</h3>
-
-<h4 id="原子性">原子性</h4>
+<p>性能分析：</p>
 
 <blockquote>
-<p>Atomicity，一个事务必须被视为一个 不可分割 的 最小 工作单元</p>
+<p>一种以侵入方式收集运行性能数据的活动，会影响应用的吞吐量或响应性</p>
+
+<p>常常是：性能监控后</p>
 </blockquote>
 
-<h4 id="一致性">一致性</h4>
+<p>性能调优</p>
 
 <blockquote>
-<p>Consistency，数据库总是从一个 一致性 的状态转换到另一个 一致性 的状态</p>
+<p>一种为改善应用响应性或吞吐量而更改参数、源代码或属性配置的活动</p>
+
+<p>通常是：性能监控或性能分析之后</p>
 </blockquote>
-
-<h4 id="隔离性">隔离性</h4>
-
-<blockquote>
-<p>Isolation，各事务内部所做的修改对其他事务的可见性，具体见隔离级别</p>
-</blockquote>
-
-<h4 id="持久性">持久性</h4>
-
-<blockquote>
-<p>Durability，一旦事务提交了，其所做的修改就会永久保存在数据库中</p>
-</blockquote>
-
-<p>因：实现了 <strong>ACID</strong> 的数据库，相比没实现的数据库，需要消耗更多的 CPU 能力</p>
-
-<p>果：针对实际情况，选择合适的存储引擎</p>
-
-<h3 id="隔离级别">隔离级别</h3>
-
-<p>因：当存在多个事务同时操作时，可能出现以下问题：</p>
-
-<ul>
-<li>脏读 (dirty read)</li>
-<li>不可重复读 (non-repeatable read)</li>
-<li>幻读 (phantom read)</li>
-</ul>
-
-<p>果：为了解决这些问题，就引出了 “隔离级别” 的概念</p>
-
-<p>SQL 标准中定义了四种隔离级别，分别是：</p>
-
-<ul>
-<li>未提交读</li>
-<li>提交读</li>
-<li>可重复读</li>
-<li>可串行化</li>
-</ul>
-
-<h4 id="未提交读">未提交读</h4>
-
-<blockquote>
-<p>即 READ UNCOMMITED</p>
-
-<p>指 一个事务还没有提交时，它做的变更就能被其他事务看到</p>
-</blockquote>
-
-<h4 id="提交读">提交读</h4>
-
-<blockquote>
-<p>即 READ COMMITED</p>
-
-<p>指 一个事务提交之后，它做的变更才能被其他事务看到</p>
-
-<p>也称为 不可重复读 (nonrepeatable read)</p>
-
-<p>大多数的 RDBMS 的默认隔离级别是 提交读</p>
-</blockquote>
-
-<h4 id="可重复读">可重复读</h4>
-
-<blockquote>
-<p>即 REPEATABLE READ</p>
-
-<p>指 一个事务在执行过程中看到的数据，总是跟该事务在启动时看到的数据是一致的</p>
-
-<p>是 MySQL 的默认隔离级别</p>
-</blockquote>
-
-<h4 id="串行化">串行化</h4>
-
-<blockquote>
-<p>即 SERIALIZABLE</p>
-
-<p>指 对同一行记录，“写“操作加“写锁”，“读”操作加“读锁”。</p>
-
-<p>当出现读写锁冲突时，后访问的事务必须等待前一个事务执行完成，串行执行</p>
-</blockquote>
-
-<h4 id="效率与隔离的平衡">效率与隔离的平衡</h4>
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<figure role="group" aria-describedby="caption-747f6986faccb7feba9ee7111023782b">
-  <a href="https://xiangflight.github.io/mysql-transaction-1/mysql-transaction-1.png" class="img-link">
-    <img src="https://xiangflight.github.io/mysql-transaction-1/mysql-transaction-1_hu6adaec31417fbe2ec76b8025861ba010_24852_700x0_resize_box_2.png">
-  </a>
-  <figcaption id="caption-747f6986faccb7feba9ee7111023782b">
-    隔离性
-  </figcaption>
-</figure>
-
 
   </main>
   <div id="disqus-container">

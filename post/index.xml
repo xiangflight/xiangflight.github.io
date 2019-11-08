@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 08 Nov 2019 09:43:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 08 Nov 2019 21:46:15 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mysql Transaction 2</title>
+      <link>https://xiangflight.github.io/mysql-transaction-2/</link>
+      <pubDate>Fri, 08 Nov 2019 21:46:15 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-transaction-2/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>MySQL 事务系列 1</title>
@@ -17,21 +26,22 @@
       <pubDate>Fri, 08 Nov 2019 09:43:42 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/mysql-transaction-1/</guid>
-      <description> 问 事务是什么？
-事务的几大特性？
-不同的隔离级别会存在什么问题？
-事务的不同隔离级别是如何实现的？
-答 </description>
+      <description>问 数据库中的事务是什么？事务的几大特性？不同的隔离级别？
+答 概念  事务指的是一组原子性的 SQL 操作，或者一个独立的 工作单元。
+ 数据库引擎执行事务会有以下特点：
+ 如果成功地执行该组的所有语句，就执行该组查询 如果有任何一条语句崩溃或其他原因无法执行，则不会执行该组查询 不允许部分语句执行成功  举例 银行应用，数据库有两张表：支票表(checking) 和 储蓄表(saving)
+执行转账操作：从用户 Jane 的支票账户转移 200 到其储蓄账户
+在 MySQL 中，该事务语句如下：
+START TRANSACTION; SELECT balance FROM checking WHERE name = &#39;Jane&#39;; UPDATE checking SET balance = balance - 200.00 WHERE name = &#39;Jane&#39;; UPDATE saving SET balance = balance + 200.00 WHERE name = &#39;Jane&#39;; COMMIT;  四大特性 原子性  Atomicity，一个事务必须被视为一个 不可分割 的 最小 工作单元</description>
     </item>
     
     <item>
-      <title>每天学习一点 性能调优 1</title>
-      <link>https://xiangflight.github.io/java-performance-1/</link>
+      <title>性能那些事 1</title>
+      <link>https://xiangflight.github.io/performance-1/</link>
       <pubDate>Thu, 07 Nov 2019 20:32:04 +0800</pubDate>
       
-      <guid>https://xiangflight.github.io/java-performance-1/</guid>
-      <description>问 性能监控、分析、调优分别是什么？
-操作系统性能如何监控？
+      <guid>https://xiangflight.github.io/performance-1/</guid>
+      <description> 问 性能监控、分析、调优分别是什么？
 答 定义 性能监控：
  一种以非侵入方式收集或查看应用运行性能数据的活动
  性能分析：
@@ -40,12 +50,7 @@
  性能调优
  一种为改善应用响应性或吞吐量而更改参数、源代码或属性配置的活动
 通常是：性能监控或性能分析之后
- 性能监控 本篇描述如何进行 Linux 操作系统 上的监控。
-具体分为：
- CPU 使用率 CPU 调度程序运行队列 内存使用率 网络 I/O 使用率 磁盘 I/O 使用率  CPU 使用率 大多数操作系统的 CPU 使用率分为：
- 用户态 (usr) CPU 使用率 内核态 (sys) CPU 使用率，也可称为系统态 CPU 使用率   内核态 CPU 使用率高意味着 共享资源有竞争或 I/O 设备间有大量的交互
-理想情况下，应用达到最高性能时，内核态 CPU 使用率应该为 0%
- vmstat 是什么：</description>
+ </description>
     </item>
     
     <item>
