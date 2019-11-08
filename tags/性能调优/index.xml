@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>性能调优 on Zone Of Xiang</title>
+    <link>https://xiangflight.github.io/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</link>
+    <description>Recent content in 性能调优 on Zone Of Xiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 07 Nov 2019 20:32:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiangflight.github.io/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>每天学习一点 性能调优 1</title>
+      <link>https://xiangflight.github.io/java-performance-1/</link>
+      <pubDate>Thu, 07 Nov 2019 20:32:04 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/java-performance-1/</guid>
+      <description>问 性能监控、分析、调优分别是什么？
+操作系统性能如何监控？
+答 定义 性能监控：
+ 一种以非侵入方式收集或查看应用运行性能数据的活动
+ 性能分析：
+ 一种以侵入方式收集运行性能数据的活动，会影响应用的吞吐量或响应性
+常常是：性能监控后
+ 性能调优
+ 一种为改善应用响应性或吞吐量而更改参数、源代码或属性配置的活动
+通常是：性能监控或性能分析之后
+ 性能监控 本篇描述如何进行 Linux 操作系统 上的监控。
+具体分为：
+ CPU 使用率 CPU 调度程序运行队列 内存使用率 网络 I/O 使用率 磁盘 I/O 使用率  CPU 使用率 大多数操作系统的 CPU 使用率分为：
+ 用户态 (usr) CPU 使用率 内核态 (sys) CPU 使用率，也可称为系统态 CPU 使用率   内核态 CPU 使用率高意味着 共享资源有竞争或 I/O 设备间有大量的交互
+理想情况下，应用达到最高性能时，内核态 CPU 使用率应该为 0%
+ vmstat 是什么：</description>
+    </item>
+    
+  </channel>
+</rss>

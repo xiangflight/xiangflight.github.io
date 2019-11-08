@@ -6,10 +6,52 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 05 Nov 2019 22:18:58 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Nov 2019 20:32:04 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>每天学习一点 性能调优 1</title>
+      <link>https://xiangflight.github.io/java-performance-1/</link>
+      <pubDate>Thu, 07 Nov 2019 20:32:04 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/java-performance-1/</guid>
+      <description>问 性能监控、分析、调优分别是什么？
+操作系统性能如何监控？
+答 定义 性能监控：
+ 一种以非侵入方式收集或查看应用运行性能数据的活动
+ 性能分析：
+ 一种以侵入方式收集运行性能数据的活动，会影响应用的吞吐量或响应性
+常常是：性能监控后
+ 性能调优
+ 一种为改善应用响应性或吞吐量而更改参数、源代码或属性配置的活动
+通常是：性能监控或性能分析之后
+ 性能监控 本篇描述如何进行 Linux 操作系统 上的监控。
+具体分为：
+ CPU 使用率 CPU 调度程序运行队列 内存使用率 网络 I/O 使用率 磁盘 I/O 使用率  CPU 使用率 大多数操作系统的 CPU 使用率分为：
+ 用户态 (usr) CPU 使用率 内核态 (sys) CPU 使用率，也可称为系统态 CPU 使用率   内核态 CPU 使用率高意味着 共享资源有竞争或 I/O 设备间有大量的交互
+理想情况下，应用达到最高性能时，内核态 CPU 使用率应该为 0%
+ vmstat 是什么：</description>
+    </item>
+    
+    <item>
+      <title>Concurrency Programming 1</title>
+      <link>https://xiangflight.github.io/concurrency-programming/</link>
+      <pubDate>Thu, 07 Nov 2019 09:08:20 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/concurrency-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tomcat Base 1</title>
+      <link>https://xiangflight.github.io/tomcat-base-1/</link>
+      <pubDate>Wed, 06 Nov 2019 22:39:39 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/tomcat-base-1/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Jackson 解析中遇到的坑</title>
@@ -82,7 +124,12 @@ new Gson().toJson(shellResult);  </description>
       <pubDate>Fri, 01 Nov 2019 07:07:07 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/how-mysql-run-sql/</guid>
-      <description></description>
+      <description>问 在 前面 已经介绍了 MySQL 的架构，那么下一步我们自然会想：
+ SQL 语句在 MySQL 的各个组件中是如何运行的呢？
+ 本章将讨论以下两类 SQL 语句的运行细节：
+ 查询语句 (R: Read) 更新语句 (C: Create, U: Update, D: Delete)  答 前提 首先在 MySQL 中创建一张表：
+mysql &amp;gt; create table T(ID int primary key, c int)  查询 此时，已经连接上了 MySQL。SQL 查询语句如下：
+mysql &amp;gt; select * from T where ID = 10;  运行过程  查询缓存：命中即返回结果，否则进入 2；注意：MySQL 8.0 已经无此功能 分析器：解析 SQL 语句，做 词法分析 和 语法分析，判断是否满足语法 优化器：生成执行计划，此处决定使用 ID 这个索引 执行器：执行语句，调用存储引擎的接口，查询结果  若 ID 没有索引，则调用接口取表 T 的每行值，看是否满足条件 若 ID 有索引，则调用满足条件的第一行，继续满足条件的第二行&amp;hellip;   流程图  Query SQL 运行过程   更新 还是在已经连接 MySQL 的情况下，执行下面的更新语句：</description>
     </item>
     
     <item>

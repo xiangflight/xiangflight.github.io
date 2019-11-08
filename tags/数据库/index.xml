@@ -17,7 +17,12 @@
       <pubDate>Fri, 01 Nov 2019 07:07:07 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/how-mysql-run-sql/</guid>
-      <description></description>
+      <description>问 在 前面 已经介绍了 MySQL 的架构，那么下一步我们自然会想：
+ SQL 语句在 MySQL 的各个组件中是如何运行的呢？
+ 本章将讨论以下两类 SQL 语句的运行细节：
+ 查询语句 (R: Read) 更新语句 (C: Create, U: Update, D: Delete)  答 前提 首先在 MySQL 中创建一张表：
+mysql &amp;gt; create table T(ID int primary key, c int)  查询 此时，已经连接上了 MySQL。SQL 查询语句如下：
+mysql &amp;gt; select * from T where ID = 10;  运行过程  查询缓存：命中即返回结果，否则进入 2；注意：MySQL 8.0 已经无此功能 分析器：解析 SQL 语句，做 词法分析 和 语法分析，判断是否满足语法 优化器：生成执行计划，此处决定使用 ID 这个索引 执行器：执行语句，调用存储引擎的接口，查询结果  若 ID 没有索引，则调用接口取表 T 的每行值，看是否满足条件 若 ID 有索引，则调用满足条件的第一行，继续满足条件的第二行&amp;hellip;   流程图  Query SQL 运行过程   更新 还是在已经连接 MySQL 的情况下，执行下面的更新语句：</description>
     </item>
     
     <item>

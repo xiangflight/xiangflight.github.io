@@ -268,12 +268,147 @@
     
     
     
-      
-
 
     
 
-    
+<h2 id="问">问</h2>
+
+<p>在 <a href="/../structure-of-mysql/">前面</a> 已经介绍了 MySQL 的架构，那么下一步我们自然会想：</p>
+
+<blockquote>
+<p>SQL 语句在 MySQL 的各个组件中是如何运行的呢？</p>
+</blockquote>
+
+<p>本章将讨论以下两类 SQL 语句的运行细节：</p>
+
+<ul>
+<li>查询语句 (R: Read)</li>
+<li>更新语句 (C: Create, U: Update, D: Delete)</li>
+</ul>
+
+<h2 id="答">答</h2>
+
+<h3 id="前提">前提</h3>
+
+<p>首先在 MySQL 中创建一张表：</p>
+
+<pre><code class="language-mysql">mysql &gt; create table T(ID int primary key, c int)
+</code></pre>
+
+<h3 id="查询">查询</h3>
+
+<p>此时，已经连接上了 MySQL。SQL 查询语句如下：</p>
+
+<pre><code class="language-mysql">mysql &gt; select * from T where ID = 10;
+</code></pre>
+
+<h4 id="运行过程">运行过程</h4>
+
+<ol>
+<li>查询缓存：命中即返回结果，否则进入 2；注意：MySQL 8.0 已经无此功能</li>
+<li>分析器：解析 SQL 语句，做 词法分析 和 语法分析，判断是否满足语法</li>
+<li>优化器：生成执行计划，此处决定使用 ID 这个索引</li>
+<li>执行器：执行语句，调用存储引擎的接口，查询结果
+
+<ul>
+<li>若 ID 没有索引，则调用接口取表 T 的每行值，看是否满足条件</li>
+<li>若 ID 有索引，则调用满足条件的第一行，继续满足条件的第二行&hellip;</li>
+</ul></li>
+</ol>
+
+<h4 id="流程图">流程图</h4>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-b3d4799febae5c11a3e51586b6ad427b">
+  <a href="https://xiangflight.github.io/how-mysql-run-sql/query-sql-process.png" class="img-link">
+    <img src="https://xiangflight.github.io/how-mysql-run-sql/query-sql-process_hu3f5cd7a13d93e4171dfed5d895b1e1c9_26439_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-b3d4799febae5c11a3e51586b6ad427b">
+    Query SQL 运行过程
+  </figcaption>
+</figure>
+
+
+<h3 id="更新">更新</h3>
+
+<p>还是在已经连接 MySQL 的情况下，执行下面的更新语句：</p>
+
+<pre><code class="language-mysql">mysql &gt; update T set c = c + 1 where ID = 2;
+</code></pre>
+
+<h4 id="运行过程-1">运行过程</h4>
+
+<ol>
+<li>清空查询缓存：只要一个表上有更新，就会清空该表上的所有缓存结果</li>
+<li>分析器：解析 SQL 语句，得知这是一条 更新 语句，继续</li>
+<li>优化器：决定使用 ID 这个索引</li>
+</ol>
+
+<p>截止目前为止，更新语句 与 查询语句 执行过程相同，下面是它们的不同之处：</p>
+
+<h4 id="日志系统">日志系统</h4>
+
+<p>有两套日志系统：redo log 和 bin log</p>
+
+<h5 id="重做日志">重做日志</h5>
+
+<p>即 redo log，是 InnoDB 引擎特有的日志系统。它是固定大小的。</p>
+
+<p>作用：保证 数据库发生异常重启，之后提交的记录也不会丢失，即 crash-safe</p>
+
+<h5 id="归档日志">归档日志</h5>
+
+<p>即 bin log，是 MySQL Server 层自己的日志系统，跨引擎。</p>
+
+<p>作用：用于归档。</p>
+
+<h5 id="比较">比较</h5>
+
+<table>
+<thead>
+<tr>
+<th align="center">不同之处</th>
+<th align="center">redo log</th>
+<th align="center">bin log</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">范围</td>
+<td align="center">InnoDB 引擎特有的</td>
+<td align="center">所有引擎都可使用</td>
+</tr>
+
+<tr>
+<td align="center">内容</td>
+<td align="center">物理日志</td>
+<td align="center">逻辑日志，原始逻辑</td>
+</tr>
+
+<tr>
+<td align="center">写入</td>
+<td align="center">空间固定会写完、</td>
+<td align="center">一直追加</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="执行">执行</h5>
+
+<h4 id="流程图-1">流程图</h4>
+
   </main>
   <div id="disqus-container">
   
