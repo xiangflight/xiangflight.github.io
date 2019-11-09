@@ -6,10 +6,28 @@
     <description>Recent content in Java on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 05 Nov 2019 22:18:58 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Nov 2019 09:08:20 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>并发编程 1</title>
+      <link>https://xiangflight.github.io/concurrency-programming/</link>
+      <pubDate>Thu, 07 Nov 2019 09:08:20 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/concurrency-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tomcat 系列 1</title>
+      <link>https://xiangflight.github.io/tomcat-base-1/</link>
+      <pubDate>Wed, 06 Nov 2019 22:39:39 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/tomcat-base-1/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Jackson 解析中遇到的坑</title>

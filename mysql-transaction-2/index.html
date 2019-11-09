@@ -32,7 +32,7 @@
 
   
   
-  <title>Mysql Transaction 2 | Zone Of Xiang</title>
+  <title>MySQL 事务系列 2 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -227,7 +227,7 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      Mysql Transaction 2
+      MySQL 事务系列 2
     </h1>
 
     <div class="date">
@@ -240,14 +240,106 @@
     </div>
 
     
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/mysql/">MySQL</a>
+            </li>
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/%E4%BA%8B%E5%8A%A1/">事务</a>
+            </li>
+          
+        </ul>
+      </div>
     
     
-      
+    
 
-
     
 
-    
+<h2 id="问">问</h2>
+
+<p>脏读、不可重复读 和 幻读 的含义是什么？分别会在什么隔离级别发生？</p>
+
+<h2 id="答">答</h2>
+
+<h3 id="脏读">脏读</h3>
+
+<blockquote>
+<p>一个事务读取到其他事务未提交的数据，称为脏读（Dirty Read)</p>
+</blockquote>
+
+<h3 id="不可重复读">不可重复读</h3>
+
+<blockquote>
+<p>一个事务中执行两次查询，可能得到不一样的结果，称为不可重复读 (Nonrepeatable Read)</p>
+</blockquote>
+
+<h3 id="幻读">幻读</h3>
+
+<blockquote>
+<p>事务 T1 读取某个范围的记录后，T2 又在该范围内插入了新的记录，T1 基于读取的数据执行一些其他操作，却执行失败了。事务 T1 读取的数据状态不支持它的下一步业务，跟见鬼了一样，称为 幻读（Phantom Read）</p>
+</blockquote>
+
+<h3 id="发生场景">发生场景</h3>
+
+<table>
+<thead>
+<tr>
+<th align="center">隔离级别</th>
+<th align="center">脏读</th>
+<th align="center">不可重复读</th>
+<th align="center">幻读</th>
+<th align="center">开锁读</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">未提交读</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+</tr>
+
+<tr>
+<td align="center">提交读</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+</tr>
+
+<tr>
+<td align="center">可重复读</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+</tr>
+
+<tr>
+<td align="center">串行化</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+</tr>
+</tbody>
+</table>
+
   </main>
   <div id="disqus-container">
   

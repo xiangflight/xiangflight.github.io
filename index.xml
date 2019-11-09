@@ -12,12 +12,38 @@
     
     
     <item>
-      <title>Mysql Transaction 2</title>
+      <title>MySQL 事务系列 4</title>
+      <link>https://xiangflight.github.io/mysql-transaction-4/</link>
+      <pubDate>Sat, 09 Nov 2019 14:22:00 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-transaction-4/</guid>
+      <description> 问 MySQL 中是如何实现各种隔离级别的呢？
+答 </description>
+    </item>
+    
+    <item>
+      <title>MySQL 事务系列 3</title>
+      <link>https://xiangflight.github.io/mysql-transaction-3/</link>
+      <pubDate>Sat, 09 Nov 2019 13:59:24 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-transaction-3/</guid>
+      <description>问 举例说明下隔离级别的具体含义？
+答 首先创建一张表：
+mysql &amp;gt; create table T(c int) engine=InnoDB;  其次，按下表顺序，两个事务分别执行插入行为：
+mysql &amp;gt; insert into T(c) values(1);     事务A 事务B     启动事务，查询得到值 10 启动事务    查询得到值 10    将值更新成 20   查询得到值 V1     提交   查询得到值 V2    提交    查询得到值 V3     那么，在不同的隔离级别下，查询得到的 V1、V2 和 V3 都有不同的结果。</description>
+    </item>
+    
+    <item>
+      <title>MySQL 事务系列 2</title>
       <link>https://xiangflight.github.io/mysql-transaction-2/</link>
       <pubDate>Fri, 08 Nov 2019 21:46:15 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/mysql-transaction-2/</guid>
-      <description></description>
+      <description> 问 脏读、不可重复读 和 幻读 的含义是什么？分别会在什么隔离级别发生？
+答 脏读  一个事务读取到其他事务未提交的数据，称为脏读（Dirty Read)
+ 不可重复读  一个事务中执行两次查询，可能得到不一样的结果，称为不可重复读 (Nonrepeatable Read)
+ 幻读  事务 T1 读取某个范围的记录后，T2 又在该范围内插入了新的记录，T1 基于读取的数据执行一些其他操作，却执行失败了。事务 T1 读取的数据状态不支持它的下一步业务，跟见鬼了一样，称为 幻读（Phantom Read）
+ 发生场景    隔离级别 脏读 不可重复读 幻读 开锁读     未提交读 Y Y Y N   提交读 N Y Y N   可重复读 N N Y N   串行化 N N N Y    </description>
     </item>
     
     <item>
@@ -54,7 +80,7 @@ START TRANSACTION; SELECT balance FROM checking WHERE name = &#39;Jane&#39;; UPD
     </item>
     
     <item>
-      <title>Concurrency Programming 1</title>
+      <title>并发编程 1</title>
       <link>https://xiangflight.github.io/concurrency-programming/</link>
       <pubDate>Thu, 07 Nov 2019 09:08:20 +0800</pubDate>
       
@@ -63,7 +89,7 @@ START TRANSACTION; SELECT balance FROM checking WHERE name = &#39;Jane&#39;; UPD
     </item>
     
     <item>
-      <title>Tomcat Base 1</title>
+      <title>Tomcat 系列 1</title>
       <link>https://xiangflight.github.io/tomcat-base-1/</link>
       <pubDate>Wed, 06 Nov 2019 22:39:39 +0800</pubDate>
       

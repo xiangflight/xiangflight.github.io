@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/concurrency-programming/">
+  <link rel="canonical" href="https://xiangflight.github.io/mysql-transaction-3/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>并发编程 1 | Zone Of Xiang</title>
+  <title>MySQL 事务系列 3 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -227,13 +227,13 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      并发编程 1
+      MySQL 事务系列 3
     </h1>
 
     <div class="date">
       
       
-      <strong aria-hidden="true">Publish date: </strong>Oct 79, 7119
+      <strong aria-hidden="true">Publish date: </strong>Oct 99, 9119
       
         
       
@@ -249,7 +249,7 @@
                 <use xlink:href="#tag"></use>
               </svg>
               
-              <a href="https://xiangflight.github.io/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+              <a href="https://xiangflight.github.io/tags/mysql/">MySQL</a>
             </li>
           
             <li>
@@ -257,7 +257,7 @@
                 <use xlink:href="#tag"></use>
               </svg>
               
-              <a href="https://xiangflight.github.io/tags/java/">Java</a>
+              <a href="https://xiangflight.github.io/tags/%E4%BA%8B%E5%8A%A1/">事务</a>
             </li>
           
         </ul>
@@ -265,12 +265,119 @@
     
     
     
-      
-
 
     
 
-    
+<h2 id="问">问</h2>
+
+<p>举例说明下隔离级别的具体含义？</p>
+
+<h2 id="答">答</h2>
+
+<p>首先创建一张表：</p>
+
+<pre><code class="language-mysql">mysql &gt; create table T(c int) engine=InnoDB;
+</code></pre>
+
+<p>其次，按下表顺序，两个事务分别执行插入行为：</p>
+
+<pre><code class="language-mysql">mysql &gt; insert into T(c) values(1);
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="center">事务A</th>
+<th align="center">事务B</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">启动事务，查询得到值 10</td>
+<td align="center">启动事务</td>
+</tr>
+
+<tr>
+<td align="center"></td>
+<td align="center">查询得到值 10</td>
+</tr>
+
+<tr>
+<td align="center"></td>
+<td align="center">将值更新成 20</td>
+</tr>
+
+<tr>
+<td align="center">查询得到值 V1</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center"></td>
+<td align="center">提交</td>
+</tr>
+
+<tr>
+<td align="center">查询得到值 V2</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">提交</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">查询得到值 V3</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p>那么，在不同的隔离级别下，查询得到的 V1、V2 和 V3 都有不同的结果。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">隔离级别</th>
+<th align="center">V1</th>
+<th align="center">V2</th>
+<th align="center">V3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">读未提交</td>
+<td align="center">20</td>
+<td align="center">20</td>
+<td align="center">20</td>
+</tr>
+
+<tr>
+<td align="center">读提交</td>
+<td align="center">10</td>
+<td align="center">20</td>
+<td align="center">20</td>
+</tr>
+
+<tr>
+<td align="center">可重复读</td>
+<td align="center">10</td>
+<td align="center">10</td>
+<td align="center">20</td>
+</tr>
+
+<tr>
+<td align="center">串行化</td>
+<td align="center">10</td>
+<td align="center">10</td>
+<td align="center">20</td>
+</tr>
+</tbody>
+</table>
+
   </main>
   <div id="disqus-container">
   

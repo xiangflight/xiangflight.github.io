@@ -3,37 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://xiangflight.github.io/mysql-transaction-2/</loc>
-    <lastmod>2019-11-08T21:46:15+08:00</lastmod>
+    <loc>https://xiangflight.github.io/tags/mysql/</loc>
+    <lastmod>2019-11-09T14:22:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/mysql-transaction-4/</loc>
+    <lastmod>2019-11-09T14:22:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://xiangflight.github.io/post/</loc>
-    <lastmod>2019-11-08T21:46:15+08:00</lastmod>
+    <lastmod>2019-11-09T14:22:00+08:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/tags/mysql/</loc>
-    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/mysql-transaction-1/</loc>
-    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://xiangflight.github.io/tags/</loc>
-    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
+    <lastmod>2019-11-09T14:22:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://xiangflight.github.io/tags/%E4%BA%8B%E5%8A%A1/</loc>
-    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
+    <lastmod>2019-11-09T14:22:00+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/mysql-transaction-3/</loc>
+    <lastmod>2019-11-09T13:59:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/mysql-transaction-2/</loc>
+    <lastmod>2019-11-08T21:46:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/mysql-transaction-1/</loc>
+    <lastmod>2019-11-08T09:43:42+08:00</lastmod>
   </url>
   
   <url>
@@ -54,8 +64,26 @@
   </url>
   
   <url>
+    <loc>https://xiangflight.github.io/tags/java/</loc>
+    <lastmod>2019-11-07T09:08:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/%E5%B9%B6%E5%8F%91/</loc>
+    <lastmod>2019-11-07T09:08:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://xiangflight.github.io/concurrency-programming/</loc>
     <lastmod>2019-11-07T09:08:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/tomcat/</loc>
+    <lastmod>2019-11-06T22:39:39+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -72,12 +100,6 @@
   <url>
     <loc>https://xiangflight.github.io/jackson-resolve-pitfall/</loc>
     <lastmod>2019-11-05T22:18:58+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/tags/java/</loc>
-    <lastmod>2019-11-05T22:18:58+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
