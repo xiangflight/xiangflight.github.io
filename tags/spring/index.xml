@@ -6,10 +6,30 @@
     <description>Recent content in Spring on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 10 Nov 2019 09:32:23 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Nov 2019 14:11:26 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring 系列 3</title>
+      <link>https://xiangflight.github.io/spring-3/</link>
+      <pubDate>Sun, 10 Nov 2019 14:11:26 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/spring-3/</guid>
+      <description>问 Spring 的 IoC 容器有哪些？
+如何使用 BeanFactory?
+BeanFactory 是如何进行 对象注册 和 对象间的依赖管理 的？
+答 Spring 中的 IoC 容器  Spring IoC 容器    Spring 中的 IoC 容器是一个 IoC Service Provider 不仅仅是 IoC Service Provider，还提供了 IoC 之外的支持 这些支持包括：AOP 框架支持、企业级服务支持等等
+ Spring 提供了两种容器类型
+ BeanFactory ApplicationContext   BeanFactory  是基础类型的 IoC 容器，提供完整的 IoC 服务支持
+采用 延迟初始化(Lazy-load) 策略
+即只有在需要某个对象时，才初始化依赖对象，并进行依赖注入操作
+容器初期启动速度较快，所需资源有限
+适用场景：资源有限
+ ApplicationContext  继承自 BeanFactory，构建在 BeanFactory 之上，相对高级的容器实现
+扩展了其他功能，如事件发布、国际化信息支持等</description>
+    </item>
     
     <item>
       <title>Spring 系列 2</title>
