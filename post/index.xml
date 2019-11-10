@@ -6,10 +6,58 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 09 Nov 2019 14:22:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Nov 2019 09:32:23 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring 系列 2</title>
+      <link>https://xiangflight.github.io/spring-2/</link>
+      <pubDate>Sun, 10 Nov 2019 09:32:23 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/spring-2/</guid>
+      <description>问 IoC 框架中的各对象是如何创建的，由谁管理的？如何管理依赖关系的？
+答 Ioc Service Provider 背景  在 IoC 场景中，业务对象虽然可以通过某种方式声明相应的依赖，
+但最终仍需要通过 某种角色 或 服务 将这些相互依赖的对象绑定到一起，
+这一角色 称为 IoC Service Provider
+ 职责  业务对象的构建管理
+ 业务对象间的依赖绑定
+  业务对象的构建管理
+ 虽然业务对象无需关心所依赖的对象如何构建如何取得，
+但这部分工作始终需要人做，交给 IoC Service Provider
+ 业务对象间的依赖绑定
+ 这是 IoC Service Provider 最重要最艰巨的职责，
+IoC Service Provider 构建完对象后，识别它们的依赖关系，实现依赖绑定，
+保证在使用到每个业务对象时，处于就绪状态
+ 管理实现 IoC Service Provider 需要知道 被注入对象 和 依赖对象 间的关系
+这种关系需要以某种方式记录下来，如：
+ 通过基本的 文本方式 记录 通过 XML 文件记录 通过 编码方式 记录  以下是实际情况下，IoC Container 记录这种关系的几种方式：</description>
+    </item>
+    
+    <item>
+      <title>Spring 系列 1</title>
+      <link>https://xiangflight.github.io/spring-1/</link>
+      <pubDate>Sun, 10 Nov 2019 08:59:53 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/spring-1/</guid>
+      <description>问 Spring 中 IoC 指的是什么？
+Spring IoC 支持几种依赖注入方式？分别是什么？它们的优缺点？
+答 IoC 的基本概念 即 Inversion of Control，中文 控制反转，别名 依赖注入 (Dependency Injection)
+理念：
+让别人为你服务，让原来的事必躬亲，转变为现在的享受服务
+含义：
+通常来说，被注入对象 直接依赖 被依赖对象
+控制反转后，被注入对象 只需要从 IoC容器 那里获取 被依赖对象
+注入方式 构造方法注入 被注入对象 通过在构造方法中声明 依赖对象 的参数列表，让外部知道其需要哪些 依赖对象
+优点 对象在构造完后，就能进入就绪状态，被外部使用
+缺点  当依赖对象比较多时，构造方法的参数列表较长。
+ 通过反射构造对象时，对相同类型的参数处理会困难，维护使用麻烦
+ 构造方法无法被继承，无法设置默认值
+  setter 方法注入 被注入对象 为其依赖对象对应的属性添加 setter 方法，让外部知道其需要哪些 依赖对象
+优点  在描述性上比 狗早方法注入 好 setter 方法可以被继承，允许设置默认值  缺点 对象无法在构造完成后进入就绪状态，不能被立马使用
+接口注入 被注入对象 需要实现某个接口，外部通过这些接口的 参数类型 来了解其需要哪些 依赖对象</description>
+    </item>
     
     <item>
       <title>MySQL 事务系列 4</title>

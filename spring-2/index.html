@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/post/">
+  <link rel="canonical" href="https://xiangflight.github.io/spring-2/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Posts | Zone Of Xiang</title>
+  <title>Spring 系列 2 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -168,7 +168,7 @@
       
       
       
-      <a href="/post/" aria-current="page">
+      <a href="/post/" >
         <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
           <use xlink:href="#bookmark"></use>
         </svg>
@@ -223,187 +223,248 @@
         <div>
           
   <main id="main">
-    <h1>Posts</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      Spring 系列 2
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 109, 10119
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 2
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/spring/">Spring</a>
+            </li>
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/java/">Java</a>
+            </li>
+          
+        </ul>
+      </div>
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 1
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-transaction-4/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 事务系列 4
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-transaction-3/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 事务系列 3
-          </a>
-        </h2>
-      </li>        
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-transaction-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 事务系列 2
-          </a>
-        </h2>
-      </li>        
+
+<h2 id="问">问</h2>
+
+<p>IoC 框架中的各对象是如何创建的，由谁管理的？如何管理依赖关系的？</p>
+
+<h2 id="答">答</h2>
+
+<h3 id="ioc-service-provider">Ioc Service Provider</h3>
+
+<h4 id="背景">背景</h4>
+
+<blockquote>
+<p>在 IoC 场景中，业务对象虽然可以通过某种方式声明相应的依赖，</p>
+
+<p>但最终仍需要通过 某种角色 或 服务 将这些相互依赖的对象绑定到一起，</p>
+
+<p>这一角色 称为 IoC Service Provider</p>
+</blockquote>
+
+<h4 id="职责">职责</h4>
+
+<ol>
+<li><p>业务对象的构建管理</p></li>
+
+<li><p>业务对象间的依赖绑定</p></li>
+</ol>
+
+<p><strong>业务对象的构建管理</strong></p>
+
+<blockquote>
+<p>虽然业务对象无需关心所依赖的对象如何构建如何取得，</p>
+
+<p>但这部分工作始终需要人做，交给 IoC Service Provider</p>
+</blockquote>
+
+<p><strong>业务对象间的依赖绑定</strong></p>
+
+<blockquote>
+<p>这是 IoC Service Provider 最重要最艰巨的职责，</p>
+
+<p>IoC Service Provider 构建完对象后，识别它们的依赖关系，实现依赖绑定，</p>
+
+<p>保证在使用到每个业务对象时，处于就绪状态</p>
+</blockquote>
+
+<h3 id="管理实现">管理实现</h3>
+
+<p>IoC Service Provider 需要知道 被注入对象 和 依赖对象 间的关系</p>
+
+<p>这种关系需要以某种方式记录下来，如：</p>
+
+<ul>
+<li>通过基本的 文本方式 记录</li>
+<li>通过 XML 文件记录</li>
+<li>通过 编码方式 记录</li>
+</ul>
+
+<p>以下是实际情况下，IoC Container 记录这种关系的几种方式：</p>
+
+<h4 id="直接编码方式">直接编码方式</h4>
+
+<blockquote>
+<p>通过 程序编码 的方式将 被注入对象 和 依赖对象 注册到容器中，</p>
+
+<p>并明确它们相互之间的依赖注入关系</p>
+</blockquote>
+
+<pre><code class="language-java">IoCContainer container = ...;
+container.register(FXNewsProvider.class, new FXNewsProvider());
+container.register(IFXNewsListener.class, new DowJonesNewsListener());
+...
+FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class);
+newsProvider.getAndPersistNews();
+</code></pre>
+
+<p>在这段代码中，展示了 直接编码 这种记录方式。</p>
+
+<p>这是管理 依赖绑定关系 的最基本方式。</p>
+
+<h4 id="配置文件方式">配置文件方式</h4>
+
+<blockquote>
+<p>较为普遍的依赖注入关系管理方式。</p>
+
+<p>最为常见的是通过 XML 文件管理对象注册和对象间依赖关系。</p>
+</blockquote>
+
+<pre><code class="language-XML">&lt;bean id=&quot;newsProvider&quot; class=&quot;..FXNewsProvider&quot;&gt;
+  &lt;property name=&quot;newsListener&quot;&gt;
+      &lt;ref bean=&quot;djNewsListener&quot; /&gt;
+  &lt;/property&gt;
+  &lt;property name=&quot;newsPersister&quot;&gt;
+      &lt;ref bean=&quot;djNewsPersister&quot; /&gt;
+  &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;djNewsListener&quot; 
+   class=&quot;..impl.DowJonesNewsListener&quot;&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;djNewsPersister&quot;
+   class=&quot;..impl.DowJonesNewsPersister&quot;&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>IoC Service Provider 通过读取配置文件，得到其中的实例使用：</p>
+
+<pre><code class="language-java">...
+container.readConfigurationFiles(...);
+FXNewsProvider newsProvider = (FXNewsProvider) container.getBean(&quot;newsProvider&quot;);
+newsProvider.getAndPersistNews();
+</code></pre>
+
+<h4 id="元数据方式-注解的方式">元数据方式(注解的方式)</h4>
+
+<p>这种方式的实现代表是 Google Guice。这是一套轻量级的 IoC 框架。</p>
+
+<p>通过在类中使用 注解 来标注各个对象间的依赖关系，交给 Guice 框架处理</p>
+
+<p>Guice 框架根据注解提供的信息组装对象，交给客户端对象使用。</p>
+
+<hr />
+
+<p>第一步 使用 Guice 提供的注解标注依赖关系后的 FXNewsProvider 的定义</p>
+
+<pre><code class="language-java">public class FXNewsProvider {
+    private IFXNewsListener  newsListener;
+    private IFXNewsPersister newsPersister;
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-transaction-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 事务系列 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/performance-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            性能那些事 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/concurrency-programming/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            并发编程 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/tomcat-base-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Tomcat 系列 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/jackson-resolve-pitfall/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Jackson 解析中遇到的坑
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/system-design-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            高并发系统设计 系列 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mybatis-base-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MyBatis 系列 2
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mybatis-base-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MyBatis 系列 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/gson-resolve-error/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Gson 解析错误
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/how-mysql-run-sql/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            SQL 语句在 MySQL 中的运行过程
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/structure-of-mysql/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 逻辑架构
-          </a>
-        </h2>
-      </li>        
-    
-    </ul>
+    @Inject
+    public FXNewsProvider(IFXNewsListener listener, IFXNewsPersister persister) {
+        this.newsListener = listener;
+        this.newsPersister = persister;
+    }
+    ...
+}
+</code></pre>
+
+<p>通过 @Inject 注解，指明用 构造方法注入 方式，为 FXNewsProvider 注入其依赖的对象。</p>
+
+<hr />
+
+<p>第二步 进一步制定依赖注入相关信息</p>
+
+<pre><code class="language-java">public class NewsBindingModule extends AbstractModule {
+    @Override
+    protected void configure() {
+        bind(IFXNewsListener.class).to(DowJonesNewsListener.class).in(Scopes.SINGLETON);
+        bind(IFXNewsPersister.class).to(DowJonesNewsPersister.class).in(Scopes.SINGLETON);
+    }
+}
+</code></pre>
+
+<hr />
+
+<p>第三步 从 Guice 获取并使用创建完成的 FXNewsProvider</p>
+
+<pre><code class="language-java">Injector injector = Guice.createInjector(new NewsBindingModule());
+FXNewsProvider newsProvider = injector.getInstance(FXNewsProvider.class);
+newsProvider.getAndPersistNews();
+</code></pre>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on Zone Of Xiang</title>
-    <link>https://xiangflight.github.io/tags/java/</link>
-    <description>Recent content in Java on Zone Of Xiang</description>
+    <title>Spring on Zone Of Xiang</title>
+    <link>https://xiangflight.github.io/tags/spring/</link>
+    <description>Recent content in Spring on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 10 Nov 2019 09:32:23 +0800</lastBuildDate>
     
-	<atom:link href="https://xiangflight.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://xiangflight.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -57,56 +57,6 @@ Spring IoC 支持几种依赖注入方式？分别是什么？它们的优缺点
   setter 方法注入 被注入对象 为其依赖对象对应的属性添加 setter 方法，让外部知道其需要哪些 依赖对象
 优点  在描述性上比 狗早方法注入 好 setter 方法可以被继承，允许设置默认值  缺点 对象无法在构造完成后进入就绪状态，不能被立马使用
 接口注入 被注入对象 需要实现某个接口，外部通过这些接口的 参数类型 来了解其需要哪些 依赖对象</description>
-    </item>
-    
-    <item>
-      <title>并发编程 1</title>
-      <link>https://xiangflight.github.io/concurrency-programming/</link>
-      <pubDate>Thu, 07 Nov 2019 09:08:20 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/concurrency-programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tomcat 系列 1</title>
-      <link>https://xiangflight.github.io/tomcat-base-1/</link>
-      <pubDate>Wed, 06 Nov 2019 22:39:39 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/tomcat-base-1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Jackson 解析中遇到的坑</title>
-      <link>https://xiangflight.github.io/jackson-resolve-pitfall/</link>
-      <pubDate>Tue, 05 Nov 2019 22:18:58 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/jackson-resolve-pitfall/</guid>
-      <description>问 继解决了 Gson 解析的错误问题之后，发现日志里又出现了诡异的现象。
-首先看 ShellResult 类：
-@Data public class ShellResult { private int retCode; private String stderr; private String stdout; private String command; public String getExecutionLog() { StringBuilder sb = new StringBuilder(); sb.append(String.format(&amp;quot;%n shell command[%s]&amp;quot;, command)); sb.append(String.format(&amp;quot;%n ret code: %s&amp;quot;, retCode)); sb.append(String.format(&amp;quot;%n stderr: %s&amp;quot;, stderr)); sb.append(String.format(&amp;quot;%n stdout: %s&amp;quot;, stdout)); return sb.toString(); } }   @Data 是 lombok 支持的注解，可以自动生成一系列 JavaBean 的方法。
- 其次，看日志：
- 错误日志   注意，诡异的现象发生了：executionLog 字段从哪来的？</description>
-    </item>
-    
-    <item>
-      <title>Gson 解析错误</title>
-      <link>https://xiangflight.github.io/gson-resolve-error/</link>
-      <pubDate>Sat, 02 Nov 2019 09:41:33 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/gson-resolve-error/</guid>
-      <description> 问 在一次创建 Oracle 的快照库时出现创建超时的情况，进入 Tomcat 的日志中查看，发现报了如下的错误：
- 错误日志   答 初探 从日志中可以很明显地看到错误原因是：
-IllegalStateException: Expected BEGIN_OBJECT but was STRING
-从字面上看
-是 Gson 解析的内容不符合格式，期望的是一个开始对象，结果解析时发现是一个字符串。
-寻觅 那么，现在最重要的是找到 Gson 解析哪块内容时出错。
-发现 Gson 解析的正是 content 的内容，如下图所示：
- content 内容   Gson 能解析的数据格式是应该被 &amp;ldquo;{}&amp;rdquo; 包裹的，而 content 中的内容不符合，因而报了这么一个错误。
-解决 找到错误地方之后，就需要解决它。
-只需要用 Gson 将这个 ShellResult 转化为 Json 格式即可，Java 代码如下：
-new Gson().toJson(shellResult);  </description>
     </item>
     
   </channel>
