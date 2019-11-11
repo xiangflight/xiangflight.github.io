@@ -85,8 +85,18 @@ Spring IoC 支持几种依赖注入方式？分别是什么？它们的优缺点
       <pubDate>Sat, 09 Nov 2019 14:22:00 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/mysql-transaction-4/</guid>
-      <description> 问 MySQL 中是如何实现各种隔离级别的呢？
-答 </description>
+      <description>问 MySQL 是如何实现各种隔离级别的呢？
+答 未提交读：直接读记录的最新版本即可
+串行化：使用加锁的方式读取记录的值
+提交读 和 可重复读 的隔离级别下，采用 MVCC + undo 日志 的方式实现
+  基于 MVCC (Multi-Version Concurrency Control，多版本并发控制)
+ 基于 Undo 日志
+   MVCC  指在 提交读 和 可重复读 的隔离级别下
+事务在执行普通的 SELECT 操作时，访问 记录版本链 的过程
+ 目的  使不同事务的 读-写、写-读 操作能并发执行，从而提高系统性能
+解决了 读-写 直接不阻塞的问题，提高事务之间的并发性
+ 实现 对于 InnoDB 引擎的表来说，每条记录都包含两个必要的列：
+ trx_id：赋值为 最新的对该记录 做改动 的 事务id 值 roll_pointer：指向 改动之前 的记录信息  记录格式 mysql &amp;gt; create table hero(number INT, name VARCHAR(50), PRIMARY KEY (number)); mysql &amp;gt; insert into hero values (1, &#39;小红&#39;);  它的记录表示如下：</description>
     </item>
     
     <item>

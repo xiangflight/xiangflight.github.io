@@ -270,9 +270,143 @@
 
 <h2 id="问">问</h2>
 
-<p>MySQL 中是如何实现各种隔离级别的呢？</p>
+<p>MySQL 是如何实现各种隔离级别的呢？</p>
 
 <h2 id="答">答</h2>
+
+<p>未提交读：直接读记录的最新版本即可</p>
+
+<p>串行化：使用加锁的方式读取记录的值</p>
+
+<p>提交读 和 可重复读 的隔离级别下，采用 MVCC + undo 日志 的方式实现</p>
+
+<blockquote>
+<ol>
+<li><p>基于 MVCC (Multi-Version Concurrency Control，多版本并发控制)</p></li>
+
+<li><p>基于 Undo 日志</p></li>
+</ol>
+</blockquote>
+
+<h3 id="mvcc">MVCC</h3>
+
+<blockquote>
+<p>指在 提交读 和 可重复读 的隔离级别下</p>
+
+<p>事务在执行普通的 SELECT 操作时，访问 记录版本链 的过程</p>
+</blockquote>
+
+<h3 id="目的">目的</h3>
+
+<blockquote>
+<p>使不同事务的 读-写、写-读 操作能并发执行，从而提高系统性能</p>
+
+<p>解决了 读-写 直接不阻塞的问题，提高事务之间的并发性</p>
+</blockquote>
+
+<h3 id="实现">实现</h3>
+
+<p>对于 InnoDB 引擎的表来说，每条记录都包含两个必要的列：</p>
+
+<ul>
+<li>trx_id：赋值为 最新的对该记录 <strong>做改动</strong> 的 事务id 值</li>
+<li>roll_pointer：指向 <strong>改动之前</strong> 的记录信息</li>
+</ul>
+
+<h4 id="记录格式">记录格式</h4>
+
+<pre><code class="language-mysql">mysql &gt; create table hero(number INT, name VARCHAR(50), PRIMARY KEY (number));
+mysql &gt; insert into hero values (1, '小红');
+</code></pre>
+
+<p>它的记录表示如下：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">number</th>
+<th align="center">name</th>
+<th align="center">trx_id</th>
+<th align="center">roll_pointer</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">小红</td>
+<td align="center">1</td>
+<td align="center">&amp;{pre_version}</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="版本链">版本链</h4>
+
+<p>每次对记录改动后，会在 undo 日志中记录旧值，即记录的旧版本</p>
+
+<p>所有版本的记录会被 roll_pointer 串联成一条链表，称为 版本链</p>
+
+<h4 id="readview">ReadView</h4>
+
+<h5 id="成因">成因</h5>
+
+<p>在 提交读 和 可重复读 的隔离级别下，需要保证以下两点：</p>
+
+<ul>
+<li>保证读到 已经提交了 的事务修改过的记录</li>
+<li>在版本链中找到对 当前事务可见 的记录版本</li>
+</ul>
+
+<h5 id="组成">组成</h5>
+
+<ol>
+<li><strong>m_ids</strong>：表示在生成 ReadView 时，当前系统中活跃的读写事务的 id 列表</li>
+<li><strong>min_trx_id</strong>：<strong>m_ids</strong> 中的最小值，即活跃的读写事务的最小 id</li>
+<li><strong>max_trx_id</strong>：<strong>m_ids</strong> 中的最大值 + 1，即系统应该分配个下一个事务的 id</li>
+<li><strong>creator_trx_id</strong>：表示生成该 ReadView 的事务 id</li>
+</ol>
+
+<h5 id="规则">规则</h5>
+
+<p>record.trx_id：当前访问记录的 trx_id 值</p>
+
+<pre><code class="language-python"># 当前事务 可以 访问自己修改过的记录
+if record.trx_id == ReadView.creator_trx_id:
+    return true;
+
+# 当前事务 可以 访问已经提交的事务修改过的记录
+if record.trx_id &lt; ReadView.min_trx_id:
+    return true;
+
+# 当前事务 不可以 访问在该事务之后开启的事务修改的记录
+if record.trx_id &gt;= ReadView.max_trx_id:
+    return false;
+
+if record.trx_id between [min_trx_id, max_trx_id]:
+    
+    # 创建 ReadView 的事务还是活跃的，不可以被访问
+    if record.trx_id in m_ids:
+        return false;
+    
+    # 创建 ReadView 的事务已经被提交，可以访问
+    else:
+        return true;
+</code></pre>
+
+<p>如果某个版本的记录对事务不可见，则遍历链表，找到符合条件的记录为止。</p>
+
+<h5 id="时机">时机</h5>
+
+<p>提交读 与 可重复读 隔离级别 最大的区别是：</p>
+
+<blockquote>
+<p>区别：生成 ReadView 的时机不同</p>
+
+<p>提交读 ——&gt; 事务 在每一次读取数据前 生成一个 ReadView</p>
+
+<p>可重复读 —&gt; 事务 在第一次读取数据时 生成一个 ReadView</p>
+</blockquote>
 
   </main>
   <div id="disqus-container">
