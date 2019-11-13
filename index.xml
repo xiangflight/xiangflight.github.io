@@ -12,6 +12,35 @@
     
     
     <item>
+      <title>Spring 系列 5</title>
+      <link>https://xiangflight.github.io/spring-5/</link>
+      <pubDate>Wed, 13 Nov 2019 21:28:07 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/spring-5/</guid>
+      <description>问 简要介绍一下 bean 的几种 Scope 吧？
+答 含义  通俗来说，称为 作用域
+声明容器中的对象所应该处的 限定场景 或 该对象的存活时间
+容器在对象进入其 scope 前，生成并装配好对象
+容器在对象不再处于这些 scope 限定后，销毁这些对象
+ 类型 singleton  标记为 singleton 的对象，在 Spring 的 IoC 容器中只存在一个实例
+所有对该对象的引用，共享同一个实例
+ 从 对象实例数量 角度，在一个容器中只存在一个实例 从 对象存活时间 角度，从 容器启动到它第一次初始化开始，一直存活  bean 的默认 scope
+ &amp;lt;bean id=&amp;quot;mockObject1&amp;quot; class=&amp;quot;..MockBusinessObject&amp;quot;/&amp;gt; &amp;lt;bean id=&amp;quot;mockObject1&amp;quot; class=&amp;quot;..MockBusinessObject&amp;quot; singleton=&amp;quot;true&amp;quot;/&amp;gt; &amp;lt;bean id=&amp;quot;mockObject1&amp;quot; class=&amp;quot;..MockBusinessObject&amp;quot; scope=&amp;quot;singleton&amp;quot;/&amp;gt;  prototype  标记为 prototype 的对象，容器会为每一次对该对象的请求，生成一个新实例
+容器完成对象实例化和装配工作，就不再引用该对象，由其自身管理生命周期
+请求方不共享一个实例
+ &amp;lt;bean id=&amp;quot;mockObject1&amp;quot; class=&amp;quot;..MockBusinessObject&amp;quot; singleton=&amp;quot;false&amp;quot;/&amp;gt; &amp;lt;bean id=&amp;quot;mockObject1&amp;quot; class=&amp;quot;.</description>
+    </item>
+    
+    <item>
+      <title>Web Protocol 1</title>
+      <link>https://xiangflight.github.io/web-protocol-1/</link>
+      <pubDate>Wed, 13 Nov 2019 11:01:14 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/web-protocol-1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Redis 1</title>
       <link>https://xiangflight.github.io/redis-1/</link>
       <pubDate>Tue, 12 Nov 2019 17:53:45 +0800</pubDate>

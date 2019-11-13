@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/spring/">
+  <link rel="canonical" href="https://xiangflight.github.io/spring-5/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Spring | Zone Of Xiang</title>
+  <title>Spring 系列 5 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -223,66 +223,184 @@
         <div>
           
   <main id="main">
-    <h1>Spring</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      Spring 系列 5
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 139, 13119
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-5/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 5
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/spring/">Spring</a>
+            </li>
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/java/">Java</a>
+            </li>
+          
+        </ul>
+      </div>
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-4/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 4
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-3/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 3
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 2
-          </a>
-        </h2>
-      </li>        
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 1
-          </a>
-        </h2>
-      </li>        
-    
-    </ul>
+
+<h2 id="问">问</h2>
+
+<p>简要介绍一下 bean 的几种 Scope 吧？</p>
+
+<h2 id="答">答</h2>
+
+<h3 id="含义">含义</h3>
+
+<blockquote>
+<p>通俗来说，称为 作用域</p>
+
+<p>声明容器中的对象所应该处的 限定场景 或 该对象的存活时间</p>
+
+<p>容器在对象进入其 scope 前，生成并装配好对象</p>
+
+<p>容器在对象不再处于这些 scope 限定后，销毁这些对象</p>
+</blockquote>
+
+<h3 id="类型">类型</h3>
+
+<h4 id="singleton">singleton</h4>
+
+<blockquote>
+<p>标记为 singleton 的对象，在 Spring 的 IoC 容器中只存在一个实例</p>
+
+<p>所有对该对象的引用，共享同一个实例</p>
+
+<ul>
+<li>从 对象实例数量 角度，在一个容器中只存在一个实例</li>
+<li>从 对象存活时间 角度，从 容器启动到它第一次初始化开始，一直存活</li>
+</ul>
+
+<p>bean 的默认 scope</p>
+</blockquote>
+
+<pre><code class="language-XML">&lt;bean id=&quot;mockObject1&quot; class=&quot;..MockBusinessObject&quot;/&gt;
+&lt;bean id=&quot;mockObject1&quot; class=&quot;..MockBusinessObject&quot; singleton=&quot;true&quot;/&gt;
+&lt;bean id=&quot;mockObject1&quot; class=&quot;..MockBusinessObject&quot; scope=&quot;singleton&quot;/&gt;
+</code></pre>
+
+<h4 id="prototype">prototype</h4>
+
+<blockquote>
+<p>标记为 prototype 的对象，容器会为每一次对该对象的请求，生成一个新实例</p>
+
+<p>容器完成对象实例化和装配工作，就不再引用该对象，由其自身管理生命周期</p>
+
+<p>请求方不共享一个实例</p>
+</blockquote>
+
+<pre><code class="language-XML">&lt;bean id=&quot;mockObject1&quot; class=&quot;..MockBusinessObject&quot; singleton=&quot;false&quot;/&gt;
+&lt;bean id=&quot;mockObject1&quot; class=&quot;..MockBusinessObject&quot; scope=&quot;prototype&quot;/&gt;
+</code></pre>
+
+<h4 id="request-session-global-session">request | session | global session</h4>
+
+<p>前提：仅适用于 Web 应用程序，通常与 XmlWebApplicationContext 共同使用</p>
+
+<ul>
+<li>request</li>
+</ul>
+
+<blockquote>
+<p>XmlWebApplicationContext 为每一个 HTTP 请求创建一个新的 RequestProcessor 供当前请求使用，当请求结束后，该对象实例的生命周期结束。</p>
+
+<p>prototype 的特例，场景只能用在 Web 应用中</p>
+</blockquote>
+
+<pre><code class="language-XML">&lt;bean id=&quot;requestProcessor&quot; class=&quot;..RequestProcessor&quot; scope=&quot;request&quot;/&gt;
+</code></pre>
+
+<ul>
+<li>session</li>
+</ul>
+
+<blockquote>
+<p>对于需要放入 session 中的信息，指定其 scope 为 session</p>
+
+<p>与 request 基本相同，可能该实例的生命周期更长</p>
+</blockquote>
+
+<pre><code class="language-XML">&lt;bean id=&quot;userPreferences&quot; class=&quot;com.foo.UserPreferences&quot; scope=&quot;session&quot;/&gt;
+</code></pre>
+
+<ul>
+<li>global session</li>
+</ul>
+
+<blockquote>
+<p>只能应用在基于 portlet 的 Web 应用程序中</p>
+
+<p>如果是在基于 servlet 的 Web 应用中，与 session 相同</p>
+</blockquote>
+
+<pre><code class="language-XML">&lt;bean id=&quot;userPreferences&quot; class=&quot;com.foo.UserPreferences&quot; scope=&quot;globalSession&quot;/&gt;
+</code></pre>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>
