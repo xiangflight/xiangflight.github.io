@@ -12,12 +12,16 @@
     
     
     <item>
-      <title>高并发系统设计 系列 1</title>
+      <title>系统设计 系列 - 横向扩展 VS 纵向扩展</title>
       <link>https://xiangflight.github.io/system-design-1/</link>
       <pubDate>Tue, 05 Nov 2019 09:38:00 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/system-design-1/</guid>
-      <description></description>
+      <description> 问 系统设计中，横向扩展与纵向扩展的区别？
+答 概念 横向扩展：vertical scaling，增加机器的数量
+纵向扩展：horizontal scaling，增强机器的性能
+意义 处理更多的请求，handle more requests
+区别    横向扩展 纵向扩展     需要 负载均衡器 无   RESILIENT，弹性，可恢复性 单点故障   网络调用 (RPC) 进程间通信(Inter Process Communication)   数据不一致 数据一致   扩展性好 硬件限制    </description>
     </item>
     
   </channel>

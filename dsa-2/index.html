@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/system-design-1/">
+  <link rel="canonical" href="https://xiangflight.github.io/dsa-2/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>系统设计 系列 - 横向扩展 VS 纵向扩展 | Zone Of Xiang</title>
+  <title>数据结构与算法 系列 - 数组 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -227,13 +227,13 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      系统设计 系列 - 横向扩展 VS 纵向扩展
+      数据结构与算法 系列 - 数组
     </h1>
 
     <div class="date">
       
       
-      <strong aria-hidden="true">Publish date: </strong>Oct 59, 5119
+      <strong aria-hidden="true">Publish date: </strong>Oct 169, 16119
       
         
       
@@ -249,7 +249,7 @@
                 <use xlink:href="#tag"></use>
               </svg>
               
-              <a href="https://xiangflight.github.io/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a>
+              <a href="https://xiangflight.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
             </li>
           
         </ul>
@@ -259,61 +259,6 @@
     
 
     
-
-<h2 id="问">问</h2>
-
-<p>系统设计中，横向扩展与纵向扩展的区别？</p>
-
-<h2 id="答">答</h2>
-
-<h3 id="概念">概念</h3>
-
-<p>横向扩展：vertical scaling，增加机器的数量</p>
-
-<p>纵向扩展：horizontal scaling，增强机器的性能</p>
-
-<h3 id="意义">意义</h3>
-
-<p>处理更多的请求，handle more requests</p>
-
-<h3 id="区别">区别</h3>
-
-<table>
-<thead>
-<tr>
-<th align="center">横向扩展</th>
-<th align="center">纵向扩展</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="center">需要 负载均衡器</td>
-<td align="center">无</td>
-</tr>
-
-<tr>
-<td align="center">RESILIENT，弹性，可恢复性</td>
-<td align="center">单点故障</td>
-</tr>
-
-<tr>
-<td align="center">网络调用 (RPC)</td>
-<td align="center">进程间通信(Inter Process Communication)</td>
-</tr>
-
-<tr>
-<td align="center">数据不一致</td>
-<td align="center">数据一致</td>
-</tr>
-
-<tr>
-<td align="center">扩展性好</td>
-<td align="center">硬件限制</td>
-</tr>
-</tbody>
-</table>
-
   </main>
   <div id="disqus-container">
   

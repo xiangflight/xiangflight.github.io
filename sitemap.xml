@@ -3,13 +3,35 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://xiangflight.github.io/tags/java/</loc>
-    <lastmod>2019-11-16T11:16:28+08:00</lastmod>
+    <loc>https://xiangflight.github.io/post/</loc>
+    <lastmod>2019-11-16T19:35:09+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://xiangflight.github.io/post/</loc>
+    <loc>https://xiangflight.github.io/tags/</loc>
+    <lastmod>2019-11-16T19:35:09+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2019-11-16T19:35:09+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/dsa-3/</loc>
+    <lastmod>2019-11-16T19:35:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/dsa-2/</loc>
+    <lastmod>2019-11-16T19:35:04+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/java/</loc>
     <lastmod>2019-11-16T11:16:28+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -23,18 +45,6 @@
   <url>
     <loc>https://xiangflight.github.io/spring-7/</loc>
     <lastmod>2019-11-16T11:16:28+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/tags/</loc>
-    <lastmod>2019-11-16T11:16:28+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2019-11-14T20:36:32+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
