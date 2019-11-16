@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/spring/">
+  <link rel="canonical" href="https://xiangflight.github.io/spring-7/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Spring | Zone Of Xiang</title>
+  <title>Spring 系列 - Bean 的一生 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -223,88 +223,175 @@
         <div>
           
   <main id="main">
-    <h1>Spring</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      Spring 系列 - Bean 的一生
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 169, 16119
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-7/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - Bean 的一生
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/spring/">Spring</a>
+            </li>
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/java/">Java</a>
+            </li>
+          
+        </ul>
+      </div>
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-6/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - 容器启动
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-5/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - Bean 的 Scope
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-4/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - XML 配置管理对象
-          </a>
-        </h2>
-      </li>        
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-3/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - IoC 容器
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - 注册对象和依赖管理
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - IoC 基本概念
-          </a>
-        </h2>
-      </li>        
-    
-    </ul>
+
+<h2 id="问">问</h2>
+
+<p>Spring IoC 容器启动后，Bean 还需要进行实例化，这阶段有哪些步骤？</p>
+
+<h2 id="答">答</h2>
+
+<h3 id="触发">触发</h3>
+
+<p>容器启动阶段做的事上一章已经总结过，接下来会进入 bean 实例化的阶段。</p>
+
+<p>bean 实例化阶段发生的时机：</p>
+
+<ul>
+<li>请求方通过调用 BeanFactory 的 getBean() 方法请求某个对象实例可能触发</li>
+</ul>
+
+<p>getBean() 分为 显式调用 和 隐式调用 两种</p>
+
+<blockquote>
+<p>隐式调用发生在不同的 IoC 容器中：</p>
+
+<p>在 BeanFactory 中，对象实例化是延迟加载，按请求实现内部依赖的隐式调用</p>
+
+<p>在 ApplicationContext 中，会隐式地实例化所有的 bean 定义</p>
+</blockquote>
+
+<h3 id="bean-的一生">Bean 的一生</h3>
+
+<p>实例化过程步骤乍看很多，细分之下也是有章可循的：</p>
+
+<h4 id="第一步-初始实例化-bean">第一步 初始实例化 Bean</h4>
+
+<ol>
+<li>实例化 Bean 对象，完成依赖注入</li>
+<li>检查 Aware 相关接口，进一步完成依赖注入</li>
+</ol>
+
+<h4 id="第二步-使用-beanpostprocessor-进行前后置处理">第二步 使用 BeanPostProcessor 进行前后置处理</h4>
+
+<ol>
+<li>利用 postProcessBeforeInitialization 对符合条件的对象实例进行前置处理</li>
+<li>利用 postProcessAfterInitialization 对符合条件的对象实例进行后置处理</li>
+</ol>
+
+<h4 id="第三步-在-beanpostprocessor-之间进行初始化操作">第三步 在 BeanPostProcessor 之间进行初始化操作</h4>
+
+<ol>
+<li>检查对象是否实现 InitializingBean 接口，调用其 afterPropertiesSet() 方法</li>
+<li>检查是否配置了自定义的 init-method，若有，则执行该方法进行初始化</li>
+</ol>
+
+<h4 id="第四步-注册必要的-destruction-相关回调接口">第四步 注册必要的 Destruction 相关回调接口</h4>
+
+<ol>
+<li>检查对象是否实现 Disposable 接口，注册用于对象销毁的回调</li>
+<li>检查 bean 定义是否配置了自定义的 destroy-method</li>
+</ol>
+
+<h4 id="第五步-使用">第五步 使用</h4>
+
+<ul>
+<li>正常使用已配置好的 Bean</li>
+</ul>
+
+<h3 id="图示">图示</h3>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-71b06136e256206a74d7e8de78383a29">
+  <a href="https://xiangflight.github.io/spring-7/spring-7-1.png" class="img-link">
+    <img src="https://xiangflight.github.io/spring-7/spring-7-1_hu68ba1efec18ddc9997146a4377449d7d_103107_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-71b06136e256206a74d7e8de78383a29">
+    Bean 的实例化过程
+  </figcaption>
+</figure>
+
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>
