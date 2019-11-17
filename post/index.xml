@@ -6,10 +6,45 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 16 Nov 2019 19:35:09 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 21:34:11 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TCP/IP 协议栈系列 - TCP 基本概念</title>
+      <link>https://xiangflight.github.io/tcp-ip-stack-1/</link>
+      <pubDate>Sun, 17 Nov 2019 21:34:11 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/tcp-ip-stack-1/</guid>
+      <description>问 简要描述下 TCP 协议，它的特点？
+以及为何它具有这些特点？如何保证的？
+答 概念  TCP 和 UDP 协议都是 传输层 上的协议 TCP 和 UDP 协议都基于 网络层的 IP 协议 IP 数据包中的 protocol 字段可以指明在传输层使用哪一种协议  特点 面向连接的  要求通信双方 在发送数据之前 建立一条逻辑上的连接
+要求通信双方 在结束发送数据 之前断开连接
+通过 三次握手 来建立一条连接
+通过 四次挥手 来释放一条连接
+ 可靠的 因为下层的 IP 协议无连接、不可靠，只尽最大可能传输数据报，会有如下缺点：
+ 不保证数据包到达接收方的顺序和发送数据包的顺序相同 不保证数据包是否重复 不保证数据包是否到达  TCP 为了做到可靠，需要解决上述问题：
+ 校验和(Checksum)：每个 TCP 首部有两个字节的校验和，完成报文内容的校对工作，若报文内容计算出的校验和与该值不同，则认为损坏并丢弃报文。该机制解决了 问题 3 包的序列号(Sequence Number)：解决了接收数据的乱序和重复问题，即问题 1和 2 超时重传：TCP 发送数据包后会启动一个定时器，等待对端确认接收到该包。若指定时间没有收到 ACK 确认，则重传数据包。该机制解决问题 3 流量控制、拥塞控制：解决其他问题  基于字节流  字节流的含义是 没有固定的报文边界</description>
+    </item>
+    
+    <item>
+      <title>Spring 系列 - IoC 容器中的注解</title>
+      <link>https://xiangflight.github.io/spring-9/</link>
+      <pubDate>Sun, 17 Nov 2019 09:46:10 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/spring-9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring 系列 - 高级容器 ApplicationContext</title>
+      <link>https://xiangflight.github.io/spring-8/</link>
+      <pubDate>Sun, 17 Nov 2019 08:33:16 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/spring-8/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>数据结构与算法 系列 - 链表</title>

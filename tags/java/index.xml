@@ -6,10 +6,28 @@
     <description>Recent content in Java on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 16 Nov 2019 11:16:28 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 09:46:10 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring 系列 - IoC 容器中的注解</title>
+      <link>https://xiangflight.github.io/spring-9/</link>
+      <pubDate>Sun, 17 Nov 2019 09:46:10 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/spring-9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring 系列 - 高级容器 ApplicationContext</title>
+      <link>https://xiangflight.github.io/spring-8/</link>
+      <pubDate>Sun, 17 Nov 2019 08:33:16 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/spring-8/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Spring 系列 - Bean 的一生</title>
