@@ -12,6 +12,19 @@
     
     
     <item>
+      <title>Nginx 系列 - 基础</title>
+      <link>https://xiangflight.github.io/nginx-note-1/</link>
+      <pubDate>Mon, 18 Nov 2019 10:14:20 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/nginx-note-1/</guid>
+      <description>问 Nginx 的安装和基础概念
+答 安装 在 RedHat 或 CentOS 上安装 Nginx 创建文件 /etc/yum.repos.d/nginx.repo，内容如下：
+# 告诉 yum 使用 Nginx 官方包 [nginx] name=nginx repo baseurl=http://nginx.org/packages/mainline/OS/OSRELEASE/$basearch/ gpgcheck=0 enabled=1  根据实际，修改 OS 为 rhel 或 centos，修改 OSRELEASE 为 6 或 7 等等
+执行如下命令：
+yum -y install nginx # 安装 nginx systemctl enable nginx # 设置成开机启动 systemctl start nginx # 立即启动 nginx firewall-cmd --permanent --zone=public --add-port=80/tcp # 打开 80 端口 firewall-cmd --reload # 提交修改使之生效  核心文件和目录 目录：/etc/nginx/</description>
+    </item>
+    
+    <item>
       <title>TCP/IP 协议栈系列 - TCP 基本概念</title>
       <link>https://xiangflight.github.io/tcp-ip-stack-1/</link>
       <pubDate>Sun, 17 Nov 2019 21:34:11 +0800</pubDate>
