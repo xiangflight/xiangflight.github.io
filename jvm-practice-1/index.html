@@ -32,7 +32,7 @@
 
   
   
-  <title>Jvm Practice 1 | Zone Of Xiang</title>
+  <title>JVM 系列 - 程序执行内幕与内存分布 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -227,7 +227,7 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      Jvm Practice 1
+      JVM 系列 - 程序执行内幕与内存分布
     </h1>
 
     <div class="date">
@@ -240,10 +240,316 @@
     </div>
 
     
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/java/">Java</a>
+            </li>
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/jvm/">JVM</a>
+            </li>
+          
+        </ul>
+      </div>
+    
     
     
 
     
+
+<h2 id="问">问</h2>
+
+<p>Java 生态圈中除了编程语言外，另一个重要的版块是 Java 虚拟机，简称 JVM。那么当一个程序运行的时候，JVM 是如何执行程序的呢，它是如何为程序分配内存的呢？</p>
+
+<h2 id="答">答</h2>
+
+<h3 id="前提">前提</h3>
+
+<p>JVM 为 Java 程序的运行提供了外部环境，因此熟悉 JVM 尤其重要。</p>
+
+<p>一些诊断工具，如阿里的 <a href="https://github.com/alibaba/arthas">arthas</a>，在使用 dashboard 命令时，会出现如下界面：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-7fb8bf80402605b7f1e68776d4d6d92d">
+  <a href="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-1.png" class="img-link">
+    <img src="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-1_hu3d95713016e0febe61a5ece008aa1641_145681_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-7fb8bf80402605b7f1e68776d4d6d92d">
+    arthas 执行 dashboard 界面
+  </figcaption>
+</figure>
+
+
+<p>上图展示了程序运行时系统的状况，熟悉这里的参数对于性能调优尤其重要。</p>
+
+<h3 id="执行过程">执行过程</h3>
+
+<ol>
+<li><p>Java 程序的源代码文件格式为 .java</p></li>
+
+<li><p>在使用 javac 编译后，会生成对应的字节码文件，即以 .class 结尾的文件</p></li>
+
+<li><p>类加载器 ClassLoader 会加载这些 字节码文件 到 JVM 中</p></li>
+
+<li><p>JVM 执行代码</p></li>
+</ol>
+
+<h4 id="类加载机制">类加载机制</h4>
+
+<p>JVM 何时加载一个类？加载的过程是什么样？</p>
+
+<h5 id="加载时机">加载时机</h5>
+
+<p>当代码中需要用到某个类的时候，就会加载那个类</p>
+
+<h5 id="过程">过程</h5>
+
+<blockquote>
+<p>过程分为 加载 &mdash;&gt; 验证 &mdash;&gt; 准备 &mdash;&gt; 解析 &mdash;&gt; 初始化</p>
+
+<p>验证：根据 JVM 规范，校验加载进来的字节码文件里的内容是否符合规范</p>
+
+<p>准备：1. 给加载的类分配内存 2. 给类中的静态变量分配内存，赋初值</p>
+
+<p>解析：将 符号引用 替换为 直接引用</p>
+
+<p>初始化：执行类的初始化代码，如执行 static 代码块、给 static 变量赋具体值</p>
+
+<ul>
+<li>时机：当 new 一个对象时，完成从 加载 到 初始化 的整个过程</li>
+<li>存在父类：初始化一个类时，如果发现父类没有初始化，先初始化父类</li>
+</ul>
+
+<p>使用：使用初始化好的类，实例化具体对象</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-f2b3d0cba20190d96583f4727ae86ccd">
+  <a href="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-2.png" class="img-link">
+    <img src="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-2_huc8c2ffb730b254882e79685a8ae566fc_27213_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-f2b3d0cba20190d96583f4727ae86ccd">
+    类加载大致过程
+  </figcaption>
+</figure>
+
+
+<h5 id="类加载器">类加载器</h5>
+
+<ul>
+<li>启动类加载器：Bootstrap ClassLoader，负责加载 Java 目录下的核心类
+
+<ul>
+<li>如 <code>lib</code> 目录下的类</li>
+</ul></li>
+<li>扩展类加载器：Extension ClassLoader，负责加载 Java 系统中关键的类
+
+<ul>
+<li>如 <code>lib\ext</code> 目录下的类</li>
+</ul></li>
+<li>应用类加载器：Application ClassLoader，负责加载 ClassPath 路径中的类</li>
+<li>自定义类加载器：自定义类加载器，加载自己的类</li>
+</ul>
+
+<p>通过把这些类加载器组织成 亲子层级，就能实现双亲委派机制</p>
+
+<p>亲子层级结构：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-2780b438a3355f29710b07ead94e3b10">
+  <a href="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-3.png" class="img-link">
+    <img src="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-3_hu9d6206e5a566594bb295d2060a5dfa60_17448_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-2780b438a3355f29710b07ead94e3b10">
+    类加载器亲子结构
+  </figcaption>
+</figure>
+
+
+<p>双亲委派机制：避免多层次的类加载器重复加载某些类</p>
+
+<blockquote>
+<p>当前类加载器需要加载一个类时，先委派给自己的父类加载器取加载</p>
+
+<p>如果父类加载器加载不了，就下推加载任务给自己的子类加载器</p>
+</blockquote>
+
+<p>Tomcat 的类加载器体系：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-d7bdedc6f72f31ad9792836709adca5b">
+  <a href="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-4.png" class="img-link">
+    <img src="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-4_hu4ea929256836ccc6d3f857c18caffd00_26923_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-d7bdedc6f72f31ad9792836709adca5b">
+    Tomcat类加载器结构
+  </figcaption>
+</figure>
+
+
+<p>组成：</p>
+
+<ul>
+<li>Common 类加载器</li>
+<li>Catalina 类加载器</li>
+<li>Shared 类加载器等</li>
+</ul>
+
+<blockquote>
+<p>用于加载 Tomcat 自身的一些核心类库</p>
+</blockquote>
+
+<ul>
+<li>每个 web 应用有一个对应的 webapp 类加载器</li>
+</ul>
+
+<blockquote>
+<p>用于加载部署的 web 应用的类，不向上传导</p>
+</blockquote>
+
+<ul>
+<li>Jsp 类加载器</li>
+</ul>
+
+<blockquote>
+<p>用于加载 JSP</p>
+</blockquote>
+
+<p>打破双亲委派机制：</p>
+
+<blockquote>
+<p>如果不同的 web 应用都有相同的父类加载器，会导致类重复加载</p>
+
+<p>打破这种机制之后，每个 web 应用走自己的类加载器</p>
+</blockquote>
+
+<h3 id="内存分布">内存分布</h3>
+
+<h4 id="metaspace">MetaSpace</h4>
+
+<blockquote>
+<p>在 JDK 1.8 之前，称为 方法区</p>
+
+<p>这块内存存放加载的类信息，还有一些常量池</p>
+</blockquote>
+
+<h4 id="pc-程序计数器">PC 程序计数器</h4>
+
+<blockquote>
+<p>字节码执行引擎借助它 <strong>记录</strong>当前<strong>执行到的</strong>字节码指令<strong>的位置</strong></p>
+
+<p>每个线程私有的</p>
+</blockquote>
+
+<h4 id="java-虚拟机栈">Java 虚拟机栈</h4>
+
+<blockquote>
+<p>保存每个 Java 方法中的局部变量等数据</p>
+
+<p>每个线程私有的</p>
+
+<p>在调用 Java 方法时，会创建相应的栈帧会，压入该栈中</p>
+</blockquote>
+
+<h4 id="java-堆">Java 堆</h4>
+
+<blockquote>
+<p>存放创建的每一个 Java 对象</p>
+</blockquote>
+
+<h4 id="本地方法栈">本地方法栈</h4>
+
+<blockquote>
+<p>调用本地方法，即 native 方法时，会创建本地方法栈帧，压入该栈中</p>
+</blockquote>
+
+<h4 id="堆外内存">堆外内存</h4>
+
+<blockquote>
+<p>通过 NIO 的 allocateDirect API 可以在 Java 堆外分配内存</p>
+
+<p>通过 JVM 中的 DirectByteBuffer 引用和操纵堆外内存空间</p>
+
+<p>为什么用？某些场景下，可以提升性能</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-8dd766008b83c1cd51e5fe947dfc1f28">
+  <a href="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-5.png" class="img-link">
+    <img src="https://xiangflight.github.io/jvm-practice-1/jvm-practice-1-5_hu6f78c38c57a5e3389631851a33fb3692_33137_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-8dd766008b83c1cd51e5fe947dfc1f28">
+    JVM 内存分布图
+  </figcaption>
+</figure>
+
+
   </main>
   <div id="disqus-container">
   

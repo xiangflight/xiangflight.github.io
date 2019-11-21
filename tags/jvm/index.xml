@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JVM on Zone Of Xiang</title>
+    <link>https://xiangflight.github.io/tags/jvm/</link>
+    <description>Recent content in JVM on Zone Of Xiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 12 Nov 2019 17:51:12 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiangflight.github.io/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JVM 系列 - 程序执行内幕与内存分布</title>
+      <link>https://xiangflight.github.io/jvm-practice-1/</link>
+      <pubDate>Tue, 12 Nov 2019 17:51:12 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/jvm-practice-1/</guid>
+      <description>问 Java 生态圈中除了编程语言外，另一个重要的版块是 Java 虚拟机，简称 JVM。那么当一个程序运行的时候，JVM 是如何执行程序的呢，它是如何为程序分配内存的呢？
+答 前提 JVM 为 Java 程序的运行提供了外部环境，因此熟悉 JVM 尤其重要。
+一些诊断工具，如阿里的 arthas，在使用 dashboard 命令时，会出现如下界面：
+ arthas 执行 dashboard 界面   上图展示了程序运行时系统的状况，熟悉这里的参数对于性能调优尤其重要。
+执行过程  Java 程序的源代码文件格式为 .java
+ 在使用 javac 编译后，会生成对应的字节码文件，即以 .class 结尾的文件
+ 类加载器 ClassLoader 会加载这些 字节码文件 到 JVM 中
+ JVM 执行代码
+  类加载机制 JVM 何时加载一个类？加载的过程是什么样？
+加载时机 当代码中需要用到某个类的时候，就会加载那个类
+过程  过程分为 加载 &amp;mdash;&amp;gt; 验证 &amp;mdash;&amp;gt; 准备 &amp;mdash;&amp;gt; 解析 &amp;mdash;&amp;gt; 初始化
+验证：根据 JVM 规范，校验加载进来的字节码文件里的内容是否符合规范</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>oracle on Zone Of Xiang</title>
+    <link>https://xiangflight.github.io/tags/oracle/</link>
+    <description>Recent content in oracle on Zone Of Xiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 18 Nov 2019 14:12:32 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiangflight.github.io/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Oracle 中 orapwd 问题</title>
+      <link>https://xiangflight.github.io/oracle-orapwd-issue/</link>
+      <pubDate>Mon, 18 Nov 2019 14:12:32 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/oracle-orapwd-issue/</guid>
+      <description>问 近期完成需求提测后，测试人员发现创建 11g oracle 快照库会失败。
+报错信息如下：
+ 创建 oracle 快照库失败   答 查询日志 从日志中看到，错误原因是：
+ invalid username/password: logon denied
+ 看上去，是用户名/密码登录的方式失败了。
+尝试 自动登录失败了，于是我决定到 11g 的 oracle 数据库中亲自试验一遍流程：
+第一步，生成 password 文件，使用的语句是：
+su - oracle -c &amp;quot;orapwd file=/opt/oracle/products/dbs/orapwmaster1 password=oracle entries=10 force=y format=12&amp;quot;  结果执行完后，发现报了如下信息：
+ 执行 orapwd 语句结果   并没有执行成功，原因是在 11g 的 oracle 数据库上这条命令没有 format 参数
+突然想起来，之前成功创建 oracle 快照库的环境都是使用的 oracle 12c 主库，
+原来如此。
+修正 代码中赶紧修复了下：
+String cmd = String.format(OracleExecuteCmd.GenerateEncryptedFile.getCommand(), String.</description>
+    </item>
+    
+  </channel>
+</rss>

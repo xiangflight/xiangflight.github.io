@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+  <link rel="canonical" href="https://xiangflight.github.io/oracle-orapwd-issue/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>数据库 | Zone Of Xiang</title>
+  <title>Oracle 中 orapwd 问题 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -223,44 +223,231 @@
         <div>
           
   <main id="main">
-    <h1>数据库</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      Oracle 中 orapwd 问题
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 189, 18119
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/oracle-orapwd-issue/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Oracle 中 orapwd 问题
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/oracle/">oracle</a>
+            </li>
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            </li>
+          
+        </ul>
+      </div>
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/how-mysql-run-sql/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            SQL 语句在 MySQL 中的运行过程
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/structure-of-mysql/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 逻辑架构
-          </a>
-        </h2>
-      </li>        
     
-    </ul>
+
+    
+
+<h2 id="问">问</h2>
+
+<p>近期完成需求提测后，测试人员发现创建 11g oracle 快照库会失败。</p>
+
+<p>报错信息如下：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-dd90d039879d7549d4baa3349f2db2ed">
+  <a href="https://xiangflight.github.io/oracle-orapwd-issue/oracle-orapwd-issue-2.png" class="img-link">
+    <img src="https://xiangflight.github.io/oracle-orapwd-issue/oracle-orapwd-issue-2_hub407972e42106c64bf51e5c0f9a8cfa6_79150_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-dd90d039879d7549d4baa3349f2db2ed">
+    创建 oracle 快照库失败
+  </figcaption>
+</figure>
+
+
+<h2 id="答">答</h2>
+
+<h3 id="查询日志">查询日志</h3>
+
+<p>从日志中看到，错误原因是：</p>
+
+<blockquote>
+<p>invalid username/password: logon denied</p>
+</blockquote>
+
+<p>看上去，是用户名/密码登录的方式失败了。</p>
+
+<h3 id="尝试">尝试</h3>
+
+<p>自动登录失败了，于是我决定到 11g 的 oracle 数据库中亲自试验一遍流程：</p>
+
+<p>第一步，生成 password 文件，使用的语句是：</p>
+
+<pre><code class="language-shell">su - oracle -c &quot;orapwd file=/opt/oracle/products/dbs/orapwmaster1 password=oracle entries=10 force=y format=12&quot;
+</code></pre>
+
+<p>结果执行完后，发现报了如下信息：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-f6b2fab0cf67d4b6b268ddb6e3d7d3e4">
+  <a href="https://xiangflight.github.io/oracle-orapwd-issue/oracle-orapwd-issue-3.png" class="img-link">
+    <img src="https://xiangflight.github.io/oracle-orapwd-issue/oracle-orapwd-issue-3_hufb5ede796f104ef487d3f3b0698aa470_107183_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-f6b2fab0cf67d4b6b268ddb6e3d7d3e4">
+    执行 orapwd 语句结果
+  </figcaption>
+</figure>
+
+
+<p>并没有执行成功，原因是在 11g 的 oracle 数据库上这条命令没有 format 参数</p>
+
+<p>突然想起来，之前成功创建 oracle 快照库的环境都是使用的 oracle 12c 主库，</p>
+
+<p>原来如此。</p>
+
+<h3 id="修正">修正</h3>
+
+<p>代码中赶紧修复了下：</p>
+
+<pre><code class="language-java">String cmd = String.format(OracleExecuteCmd.GenerateEncryptedFile.getCommand(), String.format(OracleSystemSetting.ORACLE_PASSWORD_FILE_PATH.toString(), sid), password) + (dto.getBefore12c() ? &quot;&quot;: &quot; format=12&quot;);
+ShellUtils.runAndReturnSwitchUser(SystemConst.OracleUser.getStringValue(), cmd);
+</code></pre>
+
+<h3 id="验证">验证</h3>
+
+<p>我找到一台装有 oracle 12c 版本的虚拟机，进去执行了与上述相同的语句，执行成功了，可以看到执行后的结果如下：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-f6b2fab0cf67d4b6b268ddb6e3d7d3e4">
+  <a href="https://xiangflight.github.io/oracle-orapwd-issue/oracle-orapwd-issue-1.png" class="img-link">
+    <img src="https://xiangflight.github.io/oracle-orapwd-issue/oracle-orapwd-issue-1_hu271ac49122bac9de09178764c9f6adcb_400207_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-f6b2fab0cf67d4b6b268ddb6e3d7d3e4">
+    执行 orapwd 语句结果
+  </figcaption>
+</figure>
+
+
+<p>是有 format 这个参数的，而且在 12c 之后的版本执行都会有 format 参数。</p>
+
+<h3 id="总结">总结</h3>
+
+<p>那么 format 参数是什么，为什么 oracle 在 12c 这个版本加入了这么个参数呢？</p>
+
+<h4 id="缘起">缘起</h4>
+
+<p>从 Oracle Database 12.2.0.1 版本开始，</p>
+
+<p>orapwd 这个工具为远程认证创建密码文件时，</p>
+
+<p>会要求密码必须满足以下条件以符合安全性：</p>
+
+<ul>
+<li>密码至少含有 8 个字符</li>
+<li>密码不允许含有双引号</li>
+<li>密码至少包含一个字母</li>
+<li>密码至少包含一个数字</li>
+<li>密码至少包含一个特殊字符</li>
+<li>密码必须不能包含用户名</li>
+<li>密码必须不能包含反转后的用户名</li>
+</ul>
+
+<h4 id="解决方案">解决方案</h4>
+
+<ol>
+<li>使用满足条件的强密码，如 <code>welcome1!</code></li>
+<li>使用 12c 格式的密码文件，此时必须加上 format 参数，可以使用不满足这些条件的密码</li>
+</ol>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>

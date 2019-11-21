@@ -6,10 +6,30 @@
     <description>Recent content in Nginx on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 18 Nov 2019 10:14:20 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 18 Nov 2019 13:56:10 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nginx 系列 - 优雅的重载</title>
+      <link>https://xiangflight.github.io/nginx-note-3/</link>
+      <pubDate>Mon, 18 Nov 2019 13:56:10 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/nginx-note-3/</guid>
+      <description> 问 一旦 Nginx 的上游服务器情况发生变化，如何在不丢包的情况下，重载 Nginx 的配置文件呢？
+答 </description>
+    </item>
+    
+    <item>
+      <title>Nginx 系列 - 静态文件服务器</title>
+      <link>https://xiangflight.github.io/nginx-note-2/</link>
+      <pubDate>Mon, 18 Nov 2019 13:56:05 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/nginx-note-2/</guid>
+      <description> 问 Nginx 除了作为负载均衡器(Load Balancer)之外，还有什么功能？
+答 </description>
+    </item>
     
     <item>
       <title>Nginx 系列 - 基础</title>

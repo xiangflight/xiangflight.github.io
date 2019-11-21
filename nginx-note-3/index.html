@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+  <link rel="canonical" href="https://xiangflight.github.io/nginx-note-3/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>数据库 | Zone Of Xiang</title>
+  <title>Nginx 系列 - 优雅的重载 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -223,44 +223,85 @@
         <div>
           
   <main id="main">
-    <h1>数据库</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      Nginx 系列 - 优雅的重载
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 189, 18119
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/oracle-orapwd-issue/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Oracle 中 orapwd 问题
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/nginx/">Nginx</a>
+            </li>
+          
+        </ul>
+      </div>
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/how-mysql-run-sql/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            SQL 语句在 MySQL 中的运行过程
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/structure-of-mysql/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 逻辑架构
-          </a>
-        </h2>
-      </li>        
     
-    </ul>
+
+    
+
+<h2 id="问">问</h2>
+
+<p>一旦 Nginx 的上游服务器情况发生变化，如何在不丢包的情况下，重载 Nginx 的配置文件呢？</p>
+
+<h2 id="答">答</h2>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>
