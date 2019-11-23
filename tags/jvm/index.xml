@@ -6,10 +6,44 @@
     <description>Recent content in JVM on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 Nov 2019 17:51:12 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 23 Nov 2019 14:56:10 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JVM 系列 - 垃圾回收机制 分代</title>
+      <link>https://xiangflight.github.io/jvm-practice-3/</link>
+      <pubDate>Sat, 23 Nov 2019 14:56:10 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/jvm-practice-3/</guid>
+      <description>问 所有可被回收的对象都采取相同的垃圾回收算法吗？
+答 针对生命周期不同的对象，需要采用不同的垃圾回收算法
+生命周期 大部分对象 如下代码：
+public class A { public static void main(String[] args) { while (true) { readFromDb(); Thread.sleep(1000L); } } private static void readFromDb() { DataReader reader = new DataReader(); reader.read(); } }  运行时内存分布图：
+ 局部变量持有对象引用   执行完 readFromDb() 方法后，该栈帧出栈，DataReader 对象无人引用被回收
+特点 实际应用中大部分的对象就如 DataReader 一样，生命周期极短。
+少数对象 public class A { private static DataReader reader = new DataReader(); public static void main(String[] args) { while (true) { readFromDb(); Thread.</description>
+    </item>
+    
+    <item>
+      <title>JVM 系列 - 垃圾回收机制 基础</title>
+      <link>https://xiangflight.github.io/jvm-practice-2/</link>
+      <pubDate>Thu, 21 Nov 2019 21:19:40 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/jvm-practice-2/</guid>
+      <description>问 在 JVM 中：
+如何估算一个 Java 对象所占大小？
+为什么需要垃圾回收机制？
+谁去执行这些垃圾回收工作？
+对哪些内存会进行垃圾回收？
+可被垃圾回收的对象需要满足哪些条件？
+答 Java 对象的大小 Java 对象占用的内存大小可以用如下公式计算：
+对象大小 = 对象头 + 实例数据 + 对齐填充（可选） Object Size = Object Header + Instance Data + Padding (option)  对象头 Mark Word  存储对象自身的运行时数据，包括
+哈希码 + GC 分代年龄 + 锁状态标志 + 线程持有的锁 + 偏向线程 ID + 偏向时间戳 + &amp;hellip;
+(在 32 位和 64 位虚拟机上则分别占用 4 字节和 8 字节)
+ Class Pointer  对象指向它的类元数据的指针</description>
+    </item>
     
     <item>
       <title>JVM 系列 - 程序执行内幕与内存分布</title>
