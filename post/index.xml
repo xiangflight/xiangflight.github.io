@@ -6,10 +6,93 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 23 Nov 2019 14:56:10 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 13:50:36 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>数据结构与算法 系列 - 跳表</title>
+      <link>https://xiangflight.github.io/dsa-14/</link>
+      <pubDate>Tue, 26 Nov 2019 13:50:36 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-14/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java 8 IO 流 陷阱</title>
+      <link>https://xiangflight.github.io/io-stream-pitfall/</link>
+      <pubDate>Tue, 26 Nov 2019 10:08:56 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/io-stream-pitfall/</guid>
+      <description>问 今天下午，测试人员在测试 MySQL 备库修改存储配置时，必现如下错误：
+ description: &amp;ldquo;CONSUME_MSG_FAIL&amp;rdquo;
+details: &amp;ldquo;CloudRuntimeException(id=44d32759dcd54f1db2bec0d748864274, message=Shell command failed:↵xfs_growfs /data, causeOfStr=java.io.IOException:
+Cannot run program &amp;ldquo;/bin/bash&amp;rdquo; (in directory &amp;ldquo;/root&amp;rdquo;): error=24, Too many open files)&amp;rdquo;
+ 最后一行报错信息是 Too many open files
+答 原因 Too many open files
+ 不同说法：
+句柄数超出系统限制
+程序打开的文件/socket连接数量超过系统设定值
+进程在某个时刻打开了超过系统限制的文件数量以及通讯链接数
+ 解决 ulimit -a  最大句柄数   其中 open files (-n) 65536 表示允许单个进程最大允许打开的文件数量是 65536
+ps axu | grep java  查看运行的 Java 进程   lsof -p ${PID} | wc -l  查看进程打开的文件数量   小结 从前三个步骤看出，4196 &amp;lt;&amp;lt; 65536，因此不需要增大进程可以打开的文件数</description>
+    </item>
+    
+    <item>
+      <title>数据结构与算法 系列 - 二分查找</title>
+      <link>https://xiangflight.github.io/dsa-13/</link>
+      <pubDate>Mon, 25 Nov 2019 16:38:34 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-13/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据结构与算法 排序系列 - 非递归实现</title>
+      <link>https://xiangflight.github.io/dsa-12/</link>
+      <pubDate>Mon, 25 Nov 2019 16:38:32 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-12/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据结构与算法 排序系列 - 链表应用</title>
+      <link>https://xiangflight.github.io/dsa-11/</link>
+      <pubDate>Mon, 25 Nov 2019 16:38:29 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-11/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据结构与算法 排序系列 - 排序总结</title>
+      <link>https://xiangflight.github.io/dsa-10/</link>
+      <pubDate>Mon, 25 Nov 2019 16:38:26 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-10/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据结构与算法 排序系列 - 桶排序 计数排序 基数排序</title>
+      <link>https://xiangflight.github.io/dsa-9/</link>
+      <pubDate>Mon, 25 Nov 2019 16:38:22 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据结构与算法 排序系列 - 归并 快排</title>
+      <link>https://xiangflight.github.io/dsa-8/</link>
+      <pubDate>Mon, 25 Nov 2019 16:38:19 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-8/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>JVM 系列 - 垃圾回收机制 分代</title>
@@ -46,7 +129,7 @@ public class A { public static void main(String[] args) { while (true) { readFro
     </item>
     
     <item>
-      <title>数据结构与算法 系列 - 排序</title>
+      <title>数据结构与算法 排序系列 - 冒泡 插入 选择</title>
       <link>https://xiangflight.github.io/dsa-7/</link>
       <pubDate>Thu, 21 Nov 2019 10:38:46 +0800</pubDate>
       

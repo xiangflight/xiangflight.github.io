@@ -6,10 +6,30 @@
     <description>Recent content in Java on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 23 Nov 2019 14:56:10 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 10:08:56 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java 8 IO 流 陷阱</title>
+      <link>https://xiangflight.github.io/io-stream-pitfall/</link>
+      <pubDate>Tue, 26 Nov 2019 10:08:56 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/io-stream-pitfall/</guid>
+      <description>问 今天下午，测试人员在测试 MySQL 备库修改存储配置时，必现如下错误：
+ description: &amp;ldquo;CONSUME_MSG_FAIL&amp;rdquo;
+details: &amp;ldquo;CloudRuntimeException(id=44d32759dcd54f1db2bec0d748864274, message=Shell command failed:↵xfs_growfs /data, causeOfStr=java.io.IOException:
+Cannot run program &amp;ldquo;/bin/bash&amp;rdquo; (in directory &amp;ldquo;/root&amp;rdquo;): error=24, Too many open files)&amp;rdquo;
+ 最后一行报错信息是 Too many open files
+答 原因 Too many open files
+ 不同说法：
+句柄数超出系统限制
+程序打开的文件/socket连接数量超过系统设定值
+进程在某个时刻打开了超过系统限制的文件数量以及通讯链接数
+ 解决 ulimit -a  最大句柄数   其中 open files (-n) 65536 表示允许单个进程最大允许打开的文件数量是 65536
+ps axu | grep java  查看运行的 Java 进程   lsof -p ${PID} | wc -l  查看进程打开的文件数量   小结 从前三个步骤看出，4196 &amp;lt;&amp;lt; 65536，因此不需要增大进程可以打开的文件数</description>
+    </item>
     
     <item>
       <title>JVM 系列 - 垃圾回收机制 分代</title>

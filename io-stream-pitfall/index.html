@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/java/">
+  <link rel="canonical" href="https://xiangflight.github.io/io-stream-pitfall/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Java | Zone Of Xiang</title>
+  <title>Java 8 IO 流 陷阱 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -223,198 +223,333 @@
         <div>
           
   <main id="main">
-    <h1>Java</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      Java 8 IO 流 陷阱
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 269, 26119
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/io-stream-pitfall/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Java 8 IO 流 陷阱
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/java/">Java</a>
+            </li>
+          
+        </ul>
+      </div>
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/jvm-practice-3/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM 系列 - 垃圾回收机制 分代
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/jvm-practice-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM 系列 - 垃圾回收机制 基础
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-9/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - IoC 容器中的注解
-          </a>
-        </h2>
-      </li>        
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-8/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - 高级容器 ApplicationContext
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-7/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - Bean 的一生
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-6/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - 容器启动
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-5/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - Bean 的 Scope
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/jvm-practice-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM 系列 - 程序执行内幕与内存分布
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-4/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - XML 配置管理对象
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-3/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - IoC 容器
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - 注册对象和依赖管理
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/spring-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Spring 系列 - IoC 基本概念
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/concurrency-programming-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            并发编程系列 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/tomcat-base-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Tomcat 系列 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/jackson-resolve-pitfall/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Jackson 解析中遇到的坑
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/gson-resolve-error/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            Gson 解析错误
-          </a>
-        </h2>
-      </li>        
-    
-    </ul>
+
+<h2 id="问">问</h2>
+
+<p>今天下午，测试人员在测试 MySQL 备库修改存储配置时，必现如下错误：</p>
+
+<blockquote>
+<p>description: &ldquo;CONSUME_MSG_FAIL&rdquo;</p>
+
+<p>details: &ldquo;CloudRuntimeException(id=44d32759dcd54f1db2bec0d748864274, message=Shell command failed:↵xfs_growfs /data, causeOfStr=java.io.IOException:</p>
+
+<p>Cannot run program &ldquo;/bin/bash&rdquo; (in directory &ldquo;/root&rdquo;): error=24, Too many open files)&rdquo;</p>
+</blockquote>
+
+<p>最后一行报错信息是 <strong>Too many open files</strong></p>
+
+<h2 id="答">答</h2>
+
+<h3 id="原因">原因</h3>
+
+<p>Too many open files</p>
+
+<blockquote>
+<p>不同说法：</p>
+
+<p>句柄数超出系统限制</p>
+
+<p>程序打开的文件/socket连接数量超过系统设定值</p>
+
+<p>进程在某个时刻打开了超过系统限制的文件数量以及通讯链接数</p>
+</blockquote>
+
+<h3 id="解决">解决</h3>
+
+<h4 id="ulimit-a">ulimit -a</h4>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-b3138ab07f186203c2fe00e9b8d7870b">
+  <a href="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-1.png" class="img-link">
+    <img src="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-1_huc61b3eca0d0254ded70d921abdd097f1_204876_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-b3138ab07f186203c2fe00e9b8d7870b">
+    最大句柄数
+  </figcaption>
+</figure>
+
+
+<p>其中 open files (-n) 65536 表示允许单个进程最大允许打开的文件数量是 65536</p>
+
+<h4 id="ps-axu-grep-java">ps axu | grep java</h4>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-a4dc9140cf45ff80351c6de854df6e3a">
+  <a href="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-2.png" class="img-link">
+    <img src="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-2_hu0430e152f4244183a7947a7075125fd3_23027_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-a4dc9140cf45ff80351c6de854df6e3a">
+    查看运行的 Java 进程
+  </figcaption>
+</figure>
+
+
+<h4 id="lsof-p-pid-wc-l">lsof -p ${PID} | wc -l</h4>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-6f19e784a5e288e6d6bf3a8318f2d725">
+  <a href="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-3.png" class="img-link">
+    <img src="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-3_hu3bf239667a8b234733d0ea11621d367c_6514_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-6f19e784a5e288e6d6bf3a8318f2d725">
+    查看进程打开的文件数量
+  </figcaption>
+</figure>
+
+
+<h4 id="小结">小结</h4>
+
+<p>从前三个步骤看出，4196 &lt;&lt; 65536，因此不需要增大进程可以打开的文件数</p>
+
+<p>同时需要进一步查看 4196 个句柄的持有者是谁？</p>
+
+<h4 id="ls-lh-proc-pid-fd">ls -lh /proc/${PID}/fd</h4>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-7b9453347762cb38d26ef4147653bcd9">
+  <a href="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-4.png" class="img-link">
+    <img src="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-4_hued9d22e9253d8e9080ee602870a16c45_667712_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-7b9453347762cb38d26ef4147653bcd9">
+    查看进程打开的文件描述符
+  </figcaption>
+</figure>
+
+
+<p>发现 slave.index 的句柄泄漏了，需要定位到代码中</p>
+
+<h4 id="定位">定位</h4>
+
+<h5 id="原先代码">原先代码</h5>
+
+<pre><code class="language-java">private List&lt;String&gt; getAllBinLogs(Comparator&lt;String&gt; comparator) {
+    ...
+    String content = readFile(binLogIndexPath);
+    return ...;
+}
+
+private String readFile(String filePath) {
+    Path path = Paths.get(filePath);
+    String content = null;
+    try {
+        content = Files.lines(path).collect(Collectors.joining());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return content;
+}
+</code></pre>
+
+<p>追溯到 Files.lines(Path path) 的源码可以看到：</p>
+
+<pre><code class="language-java">public static Stream&lt;String&gt; lines(Path path, Charset cs) throws IOException {
+    BufferedReader br = Files.newBufferedReader(path, cs);
+    try {
+        return br.lines().onClose(asUncheckedRunnable(br));
+    } catch (Error|RuntimeException e) {
+        try {
+            br.close();
+        } catch (IOException ex) {
+            try {
+                e.addSuppressed(ex);
+            } catch (Throwable ignore) {}
+        }
+        throw e;
+    }
+}
+</code></pre>
+
+<p>现在关注该方法上的两段注释：</p>
+
+<blockquote>
+<p>Read all lines from a file as a {@code Stream}. <strong>Unlike {@link</strong>
+<strong>readAllLines(Path, Charset) readAllLines}</strong>, this method does not read
+all lines into a {@code List}, but instead populates lazily as the stream
+is consumed.</p>
+
+<p>The returned stream encapsulates a {@link Reader}.  If timely
+disposal of file system resources is required<strong>, the try-with-resources</strong>
+<strong>construct should be used</strong> to ensure that the stream&rsquo;s
+{@link Stream#close close} method is invoked after the stream operations
+are completed.</p>
+</blockquote>
+
+<p>提到了 readAllLines(Path, Charset) 方法，看一下：</p>
+
+<pre><code class="language-java">public static List&lt;String&gt; readAllLines(Path path, Charset cs) throws IOException{
+    try (BufferedReader reader = newBufferedReader(path, cs)) {
+        List&lt;String&gt; result = new ArrayList&lt;&gt;();
+        for (;;) {
+            String line = reader.readLine();
+            if (line == null)
+                break;
+            result.add(line);
+        }
+        return result;
+    }
+}
+</code></pre>
+
+<p>可以看到，该方法清晰地使用了 try-with-resources 语法糖，保证文件的关闭</p>
+
+<p>与此相反，Files.lines(Path path) 并没有保证文件的关闭</p>
+
+<h5 id="修复代码">修复代码</h5>
+
+<pre><code class="language-java">private List&lt;String&gt; getAllBinLogs(Comparator&lt;String&gt; comparator) {
+        ...
+        List&lt;String&gt; content;
+        try {
+            content = Files.readAllLines(Paths.get(binLogIndexPath));
+        } catch (IOException e) {
+            throw new CloudRuntimeException(e);
+        }
+        return ...;
+    }
+</code></pre>
+
+<h4 id="验证">验证</h4>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-7b9453347762cb38d26ef4147653bcd9">
+  <a href="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-5.png" class="img-link">
+    <img src="https://xiangflight.github.io/io-stream-pitfall/io-stream-pitfall-5_hub08cd77a6ad8f4996a0f2624b25b7a98_826684_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-7b9453347762cb38d26ef4147653bcd9">
+    查看进程打开的文件描述符
+  </figcaption>
+</figure>
+
+
+<p>没有泄漏的句柄，Over</p>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>
