@@ -6,10 +6,24 @@
     <description>Recent content in 事务 on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 09 Nov 2019 14:22:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Dec 2019 17:41:58 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/%E4%BA%8B%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MySQL 锁和事务模型 1</title>
+      <link>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-1/</link>
+      <pubDate>Sat, 07 Dec 2019 17:41:58 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-1/</guid>
+      <description>Shared and Exclusive Locks InnoDB 实现了两种标准的 行级别 的锁，即：共享锁 和 排他锁
+ 共享锁（S 锁） 允许 持有该锁的 事务 读取 行 排他锁（X 锁） 允许 持有该锁的 事务 更新或删除 行  如果一个事务 T1 持有行 r 上的共享锁，另一个事务 T2 在行 r 上的操作如下：
+ T2 持有共享锁，允许对行 r 操作，T1 和 T2 都持有行 r 上的共享锁 T2 持有排他锁，不允许对行 r 操作  如果一个事务 T1 持有行 r 上的排他锁，另一个事务 T2 只能等待其释放锁
+Intention Locks InnoDB 支持多粒度的锁，即允许 行锁 和 表锁 共存
+比如，使用如下语句可以在具体表上加上排他锁：
+LOCK TABLES ... WRITE  InnoDB 使用 意向锁 来支持多粒度的锁</description>
+    </item>
     
     <item>
       <title>MySQL 事务系列 4</title>

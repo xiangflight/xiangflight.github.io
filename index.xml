@@ -12,6 +12,120 @@
     
     
     <item>
+      <title>Netty in Action 1</title>
+      <link>https://xiangflight.github.io/netty-in-action-1/</link>
+      <pubDate>Sun, 08 Dec 2019 11:24:54 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/netty-in-action-1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mysql Innodb Locking and Transaction Model 5</title>
+      <link>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-5/</link>
+      <pubDate>Sat, 07 Dec 2019 17:42:12 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mysql Innodb Locking and Transaction Model 4</title>
+      <link>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-4/</link>
+      <pubDate>Sat, 07 Dec 2019 17:42:10 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mysql Innodb Locking and Transaction Model 3</title>
+      <link>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-3/</link>
+      <pubDate>Sat, 07 Dec 2019 17:42:08 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mysql Innodb Locking and Transaction Model 2</title>
+      <link>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-2/</link>
+      <pubDate>Sat, 07 Dec 2019 17:42:06 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL 锁和事务模型 1</title>
+      <link>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-1/</link>
+      <pubDate>Sat, 07 Dec 2019 17:41:58 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-1/</guid>
+      <description>Shared and Exclusive Locks InnoDB 实现了两种标准的 行级别 的锁，即：共享锁 和 排他锁
+ 共享锁（S 锁） 允许 持有该锁的 事务 读取 行 排他锁（X 锁） 允许 持有该锁的 事务 更新或删除 行  如果一个事务 T1 持有行 r 上的共享锁，另一个事务 T2 在行 r 上的操作如下：
+ T2 持有共享锁，允许对行 r 操作，T1 和 T2 都持有行 r 上的共享锁 T2 持有排他锁，不允许对行 r 操作  如果一个事务 T1 持有行 r 上的排他锁，另一个事务 T2 只能等待其释放锁
+Intention Locks InnoDB 支持多粒度的锁，即允许 行锁 和 表锁 共存
+比如，使用如下语句可以在具体表上加上排他锁：
+LOCK TABLES ... WRITE  InnoDB 使用 意向锁 来支持多粒度的锁</description>
+    </item>
+    
+    <item>
+      <title>Mysql Source Code Compile</title>
+      <link>https://xiangflight.github.io/mysql-source-code-compile/</link>
+      <pubDate>Fri, 06 Dec 2019 10:02:29 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-source-code-compile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mysql Index 2</title>
+      <link>https://xiangflight.github.io/mysql-index-2/</link>
+      <pubDate>Thu, 28 Nov 2019 17:44:19 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-index-2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL 索引系列 1</title>
+      <link>https://xiangflight.github.io/mysql-index-1/</link>
+      <pubDate>Thu, 28 Nov 2019 17:44:16 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-index-1/</guid>
+      <description> 问 索引是什么？
+为什么会出现索引？
+常见的索引模型有哪些？MySQL 中 InnoDB 引擎使用的是什么索引模型？
+MySQL 中索引的实现方式是什么？
+聚簇索引是什么？
+联合索引是什么？
+最左前缀是什么？
+索引下推是什么？
+二级索引是什么？
+覆盖索引是什么？
+答 </description>
+    </item>
+    
+    <item>
+      <title>数据结构与算法 系列 - 哈希算法</title>
+      <link>https://xiangflight.github.io/dsa-16/</link>
+      <pubDate>Tue, 26 Nov 2019 19:52:05 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-16/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据结构与算法 系列 - 散列表</title>
+      <link>https://xiangflight.github.io/dsa-15/</link>
+      <pubDate>Tue, 26 Nov 2019 19:52:01 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/dsa-15/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>数据结构与算法 系列 - 跳表</title>
       <link>https://xiangflight.github.io/dsa-14/</link>
       <pubDate>Tue, 26 Nov 2019 13:50:36 +0800</pubDate>
