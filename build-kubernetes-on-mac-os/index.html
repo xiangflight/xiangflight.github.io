@@ -487,7 +487,7 @@ k8s.gcr.io/etcd:3.3.10=gotok8s/etcd:3.3.10
 <pre><code class="language-shell">:%s/1.14.1/1.15.5/gc
 </code></pre>
 
-<p>接着在执行语句下载镜像：</p>
+<p>接着再执行语句下载镜像：</p>
 
 <pre><code class="language-shell">./load_images.sh
 </code></pre>
@@ -614,7 +614,7 @@ subjects:
   namespace: kubernetes-dashboard
 </code></pre>
 
-<p>然后生成管理员用户，生成 Token</p>
+<p>然后创建管理员用户，生成 Token</p>
 
 <pre><code class="language-shell"># 创建 ServiceAccount kubernetes-dashboard-admin 并绑定集群管理员权限
 $ kubectl apply -f dashboard-admin.yaml
@@ -649,7 +649,7 @@ $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashbo
 
 <h3 id="使用-token-登录">使用 Token 登录</h3>
 
-<p>再次启动 Dashboard：</p>
+<p>再次启动 Dashboard，访问<a href="http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/">登录页面</a>：</p>
 
 <pre><code class="language-shell"># 开启本机访问代理，默认监听 8001 端口
 $ kubectl proxy
