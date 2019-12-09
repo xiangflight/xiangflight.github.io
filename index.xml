@@ -12,6 +12,22 @@
     
     
     <item>
+      <title>在 Mac OS 上搭建 Kubernetes</title>
+      <link>https://xiangflight.github.io/build-kubernetes-on-mac-os/</link>
+      <pubDate>Mon, 09 Dec 2019 15:12:28 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/build-kubernetes-on-mac-os/</guid>
+      <description>前言 突然兴起想在 Mac OS 系统上搭建 Kubernetes 环境，果不其然，在这个过程中我遇到了很多坑。为了便于回顾或他人借鉴，特将过程记录于此。
+下载安装 Docker for Mac 下载安装 Docker for Mac，版本选择 Edge (重要)，不能选错
+ 下载 Edge 版本的 Docker   配置镜像加速服务 国内下载 Kubernetes 集群所需的镜像速度太慢，
+因此需要在 Preferences&amp;gt;&amp;gt;Docker Engine 中配置一下：
+{ &amp;quot;insecure-registries&amp;quot;: [], &amp;quot;registry-mirrors&amp;quot;: [ &amp;quot;https://dockerhub.azk8s.cn&amp;quot; ], &amp;quot;experimental&amp;quot;: true, &amp;quot;debug&amp;quot;: true }   配置镜像加速服务   k8s-docker-desktop-for-mac 使用如下语句，把项目克隆到本地
+git clone https://github.com/gotok8s/k8s-docker-desktop-for-mac.git
+下载 Kubernetes 所需镜像 查看 Docker 的版本：
+ 关于 Docker Desktop   进入 k8s-docker-desktop-for-mac 项目中，查看 images 文件的内容：</description>
+    </item>
+    
+    <item>
       <title>Netty in Action 1</title>
       <link>https://xiangflight.github.io/netty-in-action-1/</link>
       <pubDate>Sun, 08 Dec 2019 11:24:54 +0800</pubDate>

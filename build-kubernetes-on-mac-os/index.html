@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/">
+  <link rel="canonical" href="https://xiangflight.github.io/build-kubernetes-on-mac-os/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>Tags | Zone Of Xiang</title>
+  <title>在 Mac OS 上搭建 Kubernetes | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -181,7 +181,7 @@
       
       
       
-      <a href="/tags/" aria-current="page">
+      <a href="/tags/" >
         <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
           <use xlink:href="#bookmark"></use>
         </svg>
@@ -223,253 +223,530 @@
         <div>
           
   <main id="main">
-    <h1>Tags</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      在 Mac OS 上搭建 Kubernetes
+    </h1>
+
+    <div class="date">
       
-        <li>
-          <h2>
-            <a href="/tags/docker/">
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 99, 9129
+      
+        
+      
+    </div>
+
+    
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
               <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
                 <use xlink:href="#tag"></use>
               </svg>
-              (1) docker
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/gson/">
+              
+              <a href="https://xiangflight.github.io/tags/docker/">docker</a>
+            </li>
+          
+            <li>
               <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
                 <use xlink:href="#tag"></use>
               </svg>
-              (1) Gson
-            </a>
-          </h2>
+              
+              <a href="https://xiangflight.github.io/tags/kubernetes/">Kubernetes</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+    
+    
+      
+
+  <nav class="toc" aria-labelledby="toc-heading">
+    <h2 id="toc-heading">Table of contents</h2>
+    <ol>
+      
+        <li>
+          
+          
+          
+          
+          <a href="#%e5%89%8d%e8%a8%80">
+            前言
+          </a>
         </li>
       
         <li>
-          <h2>
-            <a href="/tags/jackson/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) Jackson
-            </a>
-          </h2>
+          
+          
+          
+          
+          <a href="#%e4%b8%8b%e8%bd%bd%e5%ae%89%e8%a3%85-docker-for-mac">
+            下载安装 Docker for Mac
+          </a>
         </li>
       
         <li>
-          <h2>
-            <a href="/tags/java/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (17) Java
-            </a>
-          </h2>
+          
+          
+          
+          
+          <a href="#%e9%85%8d%e7%bd%ae%e9%95%9c%e5%83%8f%e5%8a%a0%e9%80%9f%e6%9c%8d%e5%8a%a1">
+            配置镜像加速服务
+          </a>
         </li>
       
         <li>
-          <h2>
-            <a href="/tags/jvm/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (3) JVM
-            </a>
-          </h2>
+          
+          
+          
+          
+          <a href="#k8s-docker-desktop-for-mac">
+            k8s-docker-desktop-for-mac
+          </a>
         </li>
       
         <li>
-          <h2>
-            <a href="/tags/kubernetes/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) Kubernetes
-            </a>
-          </h2>
+          
+          
+          
+          
+          <a href="#%e4%b8%8b%e8%bd%bd-kubernetes-%e6%89%80%e9%9c%80%e9%95%9c%e5%83%8f">
+            下载 Kubernetes 所需镜像
+          </a>
         </li>
       
         <li>
-          <h2>
-            <a href="/tags/mybatis/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (2) MyBatis
-            </a>
-          </h2>
+          
+          
+          
+          
+          <a href="#%e5%90%af%e7%94%a8-kubernetes">
+            启用 Kubernetes
+          </a>
         </li>
       
         <li>
-          <h2>
-            <a href="/tags/mysql/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (8) MySQL
-            </a>
-          </h2>
+          
+          
+          
+          
+          <a href="#%e6%9f%a5%e7%9c%8b%e6%98%af%e5%90%a6%e5%ae%89%e8%a3%85%e6%88%90%e5%8a%9f">
+            查看是否安装成功
+          </a>
         </li>
       
         <li>
-          <h2>
-            <a href="/tags/nginx/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (3) Nginx
-            </a>
-          </h2>
+          
+          
+          
+          
+          <a href="#%e9%83%a8%e7%bd%b2-kubernetes-dashboard">
+            部署 Kubernetes Dashboard
+          </a>
         </li>
       
         <li>
-          <h2>
-            <a href="/tags/oracle/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) oracle
-            </a>
-          </h2>
+          
+          
+          
+          
+          <a href="#%e5%8f%82%e8%80%83">
+            参考
+          </a>
         </li>
       
-        <li>
-          <h2>
-            <a href="/tags/os/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) OS
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/spring/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (9) Spring
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/tcp/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) TCP
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/tomcat/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) Tomcat
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/%E4%BA%8B%E5%8A%A1/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (5) 事务
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/%E5%B9%B6%E5%8F%91/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) 并发
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) 性能调优
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (3) 数据库
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (7) 数据结构
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/%E7%AE%97%E6%B3%95/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (8) 算法
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) 系统设计
-            </a>
-          </h2>
-        </li>
-      
-        <li>
-          <h2>
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
-                <use xlink:href="#tag"></use>
-              </svg>
-              (1) 计算机网络
-            </a>
-          </h2>
-        </li>
-      
-    </ul>
+    </ol>
+  </nav>
+
+
+    
+
+    
+
+<h2 id="前言">前言</h2>
+
+<p>突然兴起想在 Mac OS 系统上搭建 Kubernetes 环境，果不其然，在这个过程中我遇到了很多坑。为了便于回顾或他人借鉴，特将过程记录于此。</p>
+
+<h2 id="下载安装-docker-for-mac">下载安装 Docker for Mac</h2>
+
+<p>下载安装 <a href="https://docs.docker.com/v17.12/docker-for-mac/install/">Docker for Mac</a>，版本选择 <strong>Edge</strong> (重要)，不能选错</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-73e3b99816fd554ed669f6333ec7039f">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-1.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-1_huc4a9d28fff52e96a8f7016159c916530_184711_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-73e3b99816fd554ed669f6333ec7039f">
+    下载 Edge 版本的 Docker
+  </figcaption>
+</figure>
+
+
+<h2 id="配置镜像加速服务">配置镜像加速服务</h2>
+
+<p>国内下载 Kubernetes 集群所需的镜像速度太慢，</p>
+
+<p>因此需要在 <strong>Preferences&gt;&gt;Docker Engine</strong> 中配置一下：</p>
+
+<pre><code class="language-yml">{
+  &quot;insecure-registries&quot;: [],
+  &quot;registry-mirrors&quot;: [
+    &quot;https://dockerhub.azk8s.cn&quot;
+  ],
+  &quot;experimental&quot;: true,
+  &quot;debug&quot;: true
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-27d8dfe2b1f7e44d4c8633f70fcfd94b">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-2.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-2_hubdbcf71174bc73e14ec9e670a1e2b6d1_91001_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-27d8dfe2b1f7e44d4c8633f70fcfd94b">
+    配置镜像加速服务
+  </figcaption>
+</figure>
+
+
+<h2 id="k8s-docker-desktop-for-mac">k8s-docker-desktop-for-mac</h2>
+
+<p>使用如下语句，把项目克隆到本地</p>
+
+<p><code>git clone https://github.com/gotok8s/k8s-docker-desktop-for-mac.git</code></p>
+
+<h2 id="下载-kubernetes-所需镜像">下载 Kubernetes 所需镜像</h2>
+
+<p>查看 Docker 的版本：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-0f001ca8e2b2b234212f6198c97210ac">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-3.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-3_hufdd049334275b69253cf6a40be9adb8d_169698_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-0f001ca8e2b2b234212f6198c97210ac">
+    关于 Docker Desktop
+  </figcaption>
+</figure>
+
+
+<p>进入 k8s-docker-desktop-for-mac 项目中，查看 images 文件的内容：</p>
+
+<pre><code class="language-shell">k8s.gcr.io/kube-proxy:v1.15.5=gotok8s/kube-proxy:v1.15.5
+k8s.gcr.io/kube-controller-manager:v1.15.5=gotok8s/kube-controller-manager:v1.15.5
+k8s.gcr.io/kube-scheduler:v1.15.5=gotok8s/kube-scheduler:v1.15.5
+k8s.gcr.io/kube-apiserver:v1.15.5=gotok8s/kube-apiserver:v1.15.5
+k8s.gcr.io/coredns:1.3.1=gotok8s/coredns:1.3.1
+k8s.gcr.io/pause:3.1=gotok8s/pause:3.1
+k8s.gcr.io/etcd:3.3.10=gotok8s/etcd:3.3.10
+</code></pre>
+
+<p><strong>一定保证</strong>：v1.15.5 这里的版本与关于 Docker Desktop 里 Kubernetes 版本相同</p>
+
+<p>可以使用 vim 进行版本内容的全局替换：</p>
+
+<pre><code class="language-shell">:%s/1.14.1/1.15.5/gc
+</code></pre>
+
+<p>接着在执行语句下载镜像：</p>
+
+<pre><code class="language-shell">./load_images.sh
+</code></pre>
+
+<p>到此，应该一切顺利，如果不顺利，请参考末尾链接</p>
+
+<h2 id="启用-kubernetes">启用 Kubernetes</h2>
+
+<p>在 <code>Docker for Mac</code> 中启用 Kubernetes，稍等会：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-0f001ca8e2b2b234212f6198c97210ac">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-4.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-4_hu88ca8500cad2b9d9c8e84a393ce71e72_198437_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-0f001ca8e2b2b234212f6198c97210ac">
+    关于 Docker Desktop
+  </figcaption>
+</figure>
+
+
+<h2 id="查看是否安装成功">查看是否安装成功</h2>
+
+<p>执行下面命令确认：</p>
+
+<pre><code class="language-shell">$ kubectl cluster-info
+$ kubectl get nodes
+$ kubectl describe node
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-9706537f21ad4647275620a91868516a">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-5.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-5_hu9a185e13db142b51433be4bfc6096366_189910_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-9706537f21ad4647275620a91868516a">
+    查看运行状态
+  </figcaption>
+</figure>
+
+
+<h2 id="部署-kubernetes-dashboard">部署 Kubernetes Dashboard</h2>
+
+<h3 id="启动-dashboard">启动 Dashboard</h3>
+
+<pre><code class="language-shell">$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
+
+# 开启本机访问代理，默认监听 8001 端口
+$ kubectl proxy
+</code></pre>
+
+<h3 id="登录">登录</h3>
+
+<p>访问 <a href="http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/">登录页面</a>，会得到如下页面：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-3328c177a662da8f84200238f68f6937">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-6.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-6_hu5adc954210f79967c05ed2b7823a9877_159667_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-3328c177a662da8f84200238f68f6937">
+    登录页面
+  </figcaption>
+</figure>
+
+
+<h3 id="创建管理员用户-生成-token">创建管理员用户，生成 Token</h3>
+
+<p>首先，创建文件 dashboard-admin.yml：</p>
+
+<pre><code class="language-yml">apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kubernetes-dashboard-admin
+  namespace: kubernetes-dashboard
+  labels:
+    k8s-app: kubernetes-dashboard
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard-admin
+  namespace: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: kubernetes-dashboard-admin
+  namespace: kubernetes-dashboard
+</code></pre>
+
+<p>然后生成管理员用户，生成 Token</p>
+
+<pre><code class="language-shell"># 创建 ServiceAccount kubernetes-dashboard-admin 并绑定集群管理员权限
+$ kubectl apply -f dashboard-admin.yaml
+
+# 获取登陆 token
+$ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep kubernetes-dashboard-admin | awk '{print $1}')
+</code></pre>
+
+<p>Token 内容如下：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-0aa0ba5504e484a255e50307e259c7f1">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-7.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-7_hu8fa64aeea943f76db14d12efc5bafa64_129902_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-0aa0ba5504e484a255e50307e259c7f1">
+    生成 Token
+  </figcaption>
+</figure>
+
+
+<h3 id="使用-token-登录">使用 Token 登录</h3>
+
+<p>再次启动 Dashboard：</p>
+
+<pre><code class="language-shell"># 开启本机访问代理，默认监听 8001 端口
+$ kubectl proxy
+</code></pre>
+
+<p>填入 Token：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-352e09f0e932dc3ad55ef108aa536ff2">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-8.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-8_hua5ac789cdc1517354530f3849e44344e_138427_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-352e09f0e932dc3ad55ef108aa536ff2">
+    使用 Token 登录
+  </figcaption>
+</figure>
+
+
+<p>成功进入 Dashboard 页面：</p>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-ccec16f56f10ba95c2294cc21347931f">
+  <a href="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-9.png" class="img-link">
+    <img src="https://xiangflight.github.io/build-kubernetes-on-mac-os/build-kubernetes-9_hu2da37c3d407b5346aed3bb05de6dcba7_391622_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-ccec16f56f10ba95c2294cc21347931f">
+    Kubernetes Dashboard
+  </figcaption>
+</figure>
+
+
+<h2 id="参考">参考</h2>
+
+<p><a href="http://fwhyy.com/2019/05/building-kubernetes-in-mac/">冯威的个人博客</a></p>
+
+<p><a href="https://github.com/gotok8s/k8s-docker-desktop-for-mac">k8s-docker-desktop-for-mac</a></p>
+
+<p><a href="https://github.com/gotok8s/gotok8s#部署-kubernetes-dashboard">Goto Kubernetes</a></p>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>

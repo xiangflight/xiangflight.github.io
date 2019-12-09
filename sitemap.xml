@@ -3,14 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://xiangflight.github.io/netty-in-action-1/</loc>
-    <lastmod>2019-12-08T11:24:54+08:00</lastmod>
+    <loc>https://xiangflight.github.io/tags/kubernetes/</loc>
+    <lastmod>2019-12-09T15:12:28+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://xiangflight.github.io/post/</loc>
-    <lastmod>2019-12-08T11:24:54+08:00</lastmod>
+    <lastmod>2019-12-09T15:12:28+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/</loc>
+    <lastmod>2019-12-09T15:12:28+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/docker/</loc>
+    <lastmod>2019-12-09T15:12:28+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/build-kubernetes-on-mac-os/</loc>
+    <lastmod>2019-12-09T15:12:28+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/netty-in-action-1/</loc>
+    <lastmod>2019-12-08T11:24:54+08:00</lastmod>
   </url>
   
   <url>
@@ -42,12 +65,6 @@
   <url>
     <loc>https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-1/</loc>
     <lastmod>2019-12-07T17:41:58+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/tags/</loc>
-    <lastmod>2019-12-07T17:41:58+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
