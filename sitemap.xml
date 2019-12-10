@@ -3,19 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://xiangflight.github.io/tags/kubernetes/</loc>
-    <lastmod>2019-12-09T15:12:28+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://xiangflight.github.io/post/</loc>
-    <lastmod>2019-12-09T15:12:28+08:00</lastmod>
+    <lastmod>2019-12-10T20:32:09+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://xiangflight.github.io/tags/</loc>
+    <lastmod>2019-12-10T20:32:09+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/http-load-case/</loc>
+    <lastmod>2019-12-10T20:32:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2019-12-10T20:32:09+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/kubernetes/</loc>
     <lastmod>2019-12-09T15:12:28+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -306,6 +317,12 @@
   <url>
     <loc>https://xiangflight.github.io/redis-1/</loc>
     <lastmod>2019-11-12T17:53:45+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/leetcode/</loc>
+    <lastmod>2019-11-12T17:52:18+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

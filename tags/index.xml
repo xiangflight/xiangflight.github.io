@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 09 Dec 2019 15:12:28 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2019 20:32:09 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>测试</title>
+      <link>https://xiangflight.github.io/tags/%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Tue, 10 Dec 2019 20:32:09 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/tags/%E6%B5%8B%E8%AF%95/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes</title>
@@ -134,6 +143,15 @@
       <pubDate>Sun, 17 Nov 2019 09:46:10 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/tags/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Leetcode</title>
+      <link>https://xiangflight.github.io/tags/leetcode/</link>
+      <pubDate>Tue, 12 Nov 2019 17:52:18 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/tags/leetcode/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,31 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 09 Dec 2019 15:12:28 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2019 20:32:09 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>http_load 小试牛刀</title>
+      <link>https://xiangflight.github.io/http-load-case/</link>
+      <pubDate>Tue, 10 Dec 2019 20:32:09 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/http-load-case/</guid>
+      <description>问 如何对一个应用进行整体的测试？
+答 可以使用 http_load 工具
+创建文件 创建一个文件 http_urls，内容是：
+https://www.percona.com/blog/ https://www.baidu.com http://youdao.com/  模拟单用户 执行如下命令：
+http_load -parallel 1 -seconds 10 http_urls  结果：
+ 9 fetches, 1 max parallel, 100340 bytes, in 10.2233 seconds
+11148.9 mean bytes/connection
+0.880343 fetches/sec, 9814.85 bytes/sec
+msecs/connect: 53.9417 mean, 286.954 max, 15.097 min
+msecs/first-response: 142.392 mean, 898.593 max, 29.578 min
+HTTP response codes:
+code 200 &amp;ndash; 9
+ 解释  -parallel：并发的用户进程数 -rate：每秒的访问频率 -seconds：总计的访问时间   9 fetches, 1 max parallel, 100340 bytes, in 10.</description>
+    </item>
     
     <item>
       <title>在 Mac OS 上搭建 Kubernetes</title>
@@ -503,12 +524,14 @@ bean 实例化阶段发生的时机：
     </item>
     
     <item>
-      <title>Leetcode Pc 1</title>
+      <title>Two Sum</title>
       <link>https://xiangflight.github.io/leetcode-pc-1/</link>
       <pubDate>Tue, 12 Nov 2019 17:52:18 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/leetcode-pc-1/</guid>
-      <description></description>
+      <description> 题目 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+示例 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1].  思路｜分析｜题解 所得 </description>
     </item>
     
     <item>
