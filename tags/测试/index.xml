@@ -6,10 +6,33 @@
     <description>Recent content in 测试 on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Dec 2019 20:32:09 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Dec 2019 21:13:44 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>sysbench 初探</title>
+      <link>https://xiangflight.github.io/sysbench-test/</link>
+      <pubDate>Wed, 11 Dec 2019 21:13:44 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/sysbench-test/</guid>
+      <description>概况 sysbench 可以执行多种类型的基准测试
+ 可以测试数据库的性能 测试运行数据库的服务器的性能  使用 版本  sysbench：1.0.17（通过 sysbench -v 获取） OS：CentOS 7.2.1511（通过 lsb_release -a 获取）  CPU 基准测试 执行：
+sysbench --test=cpu --cpu-max-prime=20000 run  结果：
+ CPU speed:
+​ events per second: 356.63
+General statistics:
+​ total time: 10.0026s
+​ total number of events: 3568
+Latency (ms):
+​ min: 2.78
+​ avg: 2.80
+​ max: 2.94
+​ 95th percentile: 2.81
+​ sum: 10000.08
+Threads fairness:</description>
+    </item>
     
     <item>
       <title>http_load 小试牛刀</title>
