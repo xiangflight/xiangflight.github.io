@@ -6,10 +6,57 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 11 Dec 2019 21:13:44 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jan 2020 15:24:40 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GitLab CI/CD 实践</title>
+      <link>https://xiangflight.github.io/gitlab-cd-practice/</link>
+      <pubDate>Thu, 09 Jan 2020 15:24:40 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/gitlab-cd-practice/</guid>
+      <description>介绍 来看一幅图：
+ CI/CD 流程图   可以看到：
+ 作为开发的我们只需要提交代码，仅此而已
+ 应用的编译、单元测试、集成测试全部在 CI 流程中自动执行
+ 应用的部署、交付在 CD 流程中自动执行
+  为什么可以使用 CI/CD：开发之后到部署完成 这段过程 是固定的
+CI/CD 能解决什么问题：当自动化在工作流中占很大的比重时
+概念 CI/CD  在软件工程中，CI/CD 通常是指 持续集成 和 持续交付(有时也称持续部署)相结合的实践
+ Job  表示构建工作，可以在一个 Stage 中定义多个 Job
+Job 具有如下特点：
+ 相同 Stage 中的 Jobs 会并行执行 相同 Stage 中的 Jobs 都执行成功，该 Stage 才会成功 任何一个 Job 失败，那么该 Stage 失败，那么构建任务 Pipeline 也失败   Stage  表示构建阶段，可以在一次 Pipeline 中定义多个 Stage</description>
+    </item>
+    
+    <item>
+      <title>Zookeeper Basic Concepts</title>
+      <link>https://xiangflight.github.io/zookeeper-basic-concepts/</link>
+      <pubDate>Wed, 08 Jan 2020 18:43:39 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/zookeeper-basic-concepts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>记一次 MySQL Buffer Pool 调优经历</title>
+      <link>https://xiangflight.github.io/mysql-tuning-buffer-pool/</link>
+      <pubDate>Tue, 17 Dec 2019 10:03:57 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/mysql-tuning-buffer-pool/</guid>
+      <description>起因 项目中跑一次白盒测试的速度如下：
+ QStackCoreTest 的测试：15 分钟 QBCoreTest 的测试：45 分钟  每次跑测试占用太多时间，本文仅从数据库角度</description>
+    </item>
+    
+    <item>
+      <title>Profile Single Mysql Statement</title>
+      <link>https://xiangflight.github.io/profile-single-mysql-statement/</link>
+      <pubDate>Thu, 12 Dec 2019 08:33:24 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/profile-single-mysql-statement/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>sysbench 初探</title>
