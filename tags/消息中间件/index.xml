@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>消息中间件 on Zone Of Xiang</title>
+    <link>https://xiangflight.github.io/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
+    <description>Recent content in 消息中间件 on Zone Of Xiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 20 Feb 2020 21:53:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiangflight.github.io/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RocketMQ 集群部署与使用</title>
+      <link>https://xiangflight.github.io/rocketmq-cluster-deployment/</link>
+      <pubDate>Thu, 20 Feb 2020 21:53:04 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/rocketmq-cluster-deployment/</guid>
+      <description>概念 RocketMQ 由四部分组成：
+ 生产者 - Producer
+ 消费者 - Consumer
+ 协调中心 - NameServer
+ 暂存及传输组件 - Broker
+ 消息类型 - Topic
+ 消息队列 - Message Queue
+   RocketMQ角色关系图   部署 目的：为了消除单点故障、增加可靠性或者增大吞吐量，可以在多台机器上部署多个 NameServer 和 Broker，为每个 Broker 部署一个或多个 Slave
+准备 搭建出双主、双从、无单点故障的高可用 RocketMQ 集群
+操作系统：Red Hat 4.8.5-16
+主机 A：10.10.60.49
+主机 B：10.10.60.36
+启动 NameServer  在主机 A 和主机 B 上分别进入 RocketMQ 的文件目录
+ 执行 nohup sh bin/mqnamesrv &amp;amp;</description>
+    </item>
+    
+  </channel>
+</rss>

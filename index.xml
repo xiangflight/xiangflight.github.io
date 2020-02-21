@@ -12,6 +12,37 @@
     
     
     <item>
+      <title>Cache Basic Knowledge</title>
+      <link>https://xiangflight.github.io/cache-basic-knowledge/</link>
+      <pubDate>Fri, 21 Feb 2020 16:44:51 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/cache-basic-knowledge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RocketMQ 集群部署与使用</title>
+      <link>https://xiangflight.github.io/rocketmq-cluster-deployment/</link>
+      <pubDate>Thu, 20 Feb 2020 21:53:04 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/rocketmq-cluster-deployment/</guid>
+      <description>概念 RocketMQ 由四部分组成：
+ 生产者 - Producer
+ 消费者 - Consumer
+ 协调中心 - NameServer
+ 暂存及传输组件 - Broker
+ 消息类型 - Topic
+ 消息队列 - Message Queue
+   RocketMQ角色关系图   部署 目的：为了消除单点故障、增加可靠性或者增大吞吐量，可以在多台机器上部署多个 NameServer 和 Broker，为每个 Broker 部署一个或多个 Slave
+准备 搭建出双主、双从、无单点故障的高可用 RocketMQ 集群
+操作系统：Red Hat 4.8.5-16
+主机 A：10.10.60.49
+主机 B：10.10.60.36
+启动 NameServer  在主机 A 和主机 B 上分别进入 RocketMQ 的文件目录
+ 执行 nohup sh bin/mqnamesrv &amp;amp;</description>
+    </item>
+    
+    <item>
       <title>GitLab CI/CD 实践</title>
       <link>https://xiangflight.github.io/gitlab-cd-practice/</link>
       <pubDate>Thu, 09 Jan 2020 15:24:40 +0800</pubDate>
@@ -316,40 +347,6 @@ ps axu | grep java  查看运行的 Java 进程   lsof -p ${PID} | wc -l  查看
     </item>
     
     <item>
-      <title>JVM 系列 - 垃圾回收机制 分代</title>
-      <link>https://xiangflight.github.io/jvm-practice-3/</link>
-      <pubDate>Sat, 23 Nov 2019 14:56:10 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/jvm-practice-3/</guid>
-      <description>问 所有可被回收的对象都采取相同的垃圾回收算法吗？
-答 针对生命周期不同的对象，需要采用不同的垃圾回收算法
-生命周期 大部分对象 如下代码：
-public class A { public static void main(String[] args) { while (true) { readFromDb(); Thread.sleep(1000L); } } private static void readFromDb() { DataReader reader = new DataReader(); reader.read(); } }  运行时内存分布图：
- 局部变量持有对象引用   执行完 readFromDb() 方法后，该栈帧出栈，DataReader 对象无人引用被回收
-特点 实际应用中大部分的对象就如 DataReader 一样，生命周期极短。
-少数对象 public class A { private static DataReader reader = new DataReader(); public static void main(String[] args) { while (true) { readFromDb(); Thread.</description>
-    </item>
-    
-    <item>
-      <title>JVM 系列 - 垃圾回收机制 基础</title>
-      <link>https://xiangflight.github.io/jvm-practice-2/</link>
-      <pubDate>Thu, 21 Nov 2019 21:19:40 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/jvm-practice-2/</guid>
-      <description>问 在 JVM 中：
-如何估算一个 Java 对象所占大小？
-为什么需要垃圾回收机制？
-谁去执行这些垃圾回收工作？
-对哪些内存会进行垃圾回收？
-可被垃圾回收的对象需要满足哪些条件？
-答 Java 对象的大小 Java 对象占用的内存大小可以用如下公式计算：
-对象大小 = 对象头 + 实例数据 + 对齐填充（可选） Object Size = Object Header + Instance Data + Padding (option)  对象头 Mark Word  存储对象自身的运行时数据，包括
-哈希码 + GC 分代年龄 + 锁状态标志 + 线程持有的锁 + 偏向线程 ID + 偏向时间戳 + &amp;hellip;
-(在 32 位和 64 位虚拟机上则分别占用 4 字节和 8 字节)
- Class Pointer  对象指向它的类元数据的指针</description>
-    </item>
-    
-    <item>
       <title>数据结构与算法 排序系列 - 冒泡 插入 选择</title>
       <link>https://xiangflight.github.io/dsa-7/</link>
       <pubDate>Thu, 21 Nov 2019 10:38:46 +0800</pubDate>
@@ -602,26 +599,6 @@ bean 实例化阶段发生的时机：
       <description> 题目 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 示例 Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1].  思路｜分析｜题解 所得 </description>
-    </item>
-    
-    <item>
-      <title>JVM 系列 - 程序执行内幕与内存分布</title>
-      <link>https://xiangflight.github.io/jvm-practice-1/</link>
-      <pubDate>Tue, 12 Nov 2019 17:51:12 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/jvm-practice-1/</guid>
-      <description>问 Java 生态圈中除了编程语言外，另一个重要的版块是 Java 虚拟机，简称 JVM。那么当一个程序运行的时候，JVM 是如何执行程序的呢，它是如何为程序分配内存的呢？
-答 前提 JVM 为 Java 程序的运行提供了外部环境，因此熟悉 JVM 尤其重要。
-一些诊断工具，如阿里的 arthas，在使用 dashboard 命令时，会出现如下界面：
- arthas 执行 dashboard 界面   上图展示了程序运行时系统的状况，熟悉这里的参数对于性能调优尤其重要。
-执行过程  Java 程序的源代码文件格式为 .java
- 在使用 javac 编译后，会生成对应的字节码文件，即以 .class 结尾的文件
- 类加载器 ClassLoader 会加载这些 字节码文件 到 JVM 中
- JVM 执行代码
-  类加载机制 JVM 何时加载一个类？加载的过程是什么样？
-加载时机 当代码中需要用到某个类的时候，就会加载那个类
-过程  过程分为 加载 &amp;mdash;&amp;gt; 验证 &amp;mdash;&amp;gt; 准备 &amp;mdash;&amp;gt; 解析 &amp;mdash;&amp;gt; 初始化
-验证：根据 JVM 规范，校验加载进来的字节码文件里的内容是否符合规范</description>
     </item>
     
     <item>
