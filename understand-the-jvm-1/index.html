@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/jvm/">
+  <link rel="canonical" href="https://xiangflight.github.io/understand-the-jvm-1/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>JVM | Zone Of Xiang</title>
+  <title>JVM系列 - 运行时数据区域 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -223,22 +223,227 @@
         <div>
           
   <main id="main">
-    <h1>JVM</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      JVM系列 - 运行时数据区域
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 269, 26029
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/understand-the-jvm-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM系列 - 运行时数据区域
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/jvm/">JVM</a>
+            </li>
+          
+        </ul>
+      </div>
     
-    </ul>
+    
+    
+
+    
+
+<h2 id="概述">概述</h2>
+
+<p>JVM 在运行 Java 程序时会把内存划分为若干个不同的数据区域，包括：</p>
+
+<ul>
+<li>程序计数器 - <strong>Program Counter Register</strong></li>
+<li>虚拟机栈 - <strong>VM Stack</strong></li>
+<li>本地方法栈 - <strong>Native Method Stack</strong></li>
+<li>Java 堆 - <strong>Heap</strong></li>
+<li>方法区 - <strong>Method Area</strong></li>
+</ul>
+
+<h2 id="程序计数器">程序计数器</h2>
+
+<p>线程私有</p>
+
+<p>可以看作 <strong>当前线程所执行的字节码的行号指示器</strong></p>
+
+<p>每个线程都需要有独立的程序计数器，互不影响，独立存储</p>
+
+<h2 id="java-虚拟机栈-本地方法栈">Java 虚拟机栈 &amp; 本地方法栈</h2>
+
+<p>线程私有</p>
+
+<p>生命周期与线程相同，描述 Java 方法执行的线程内存模型</p>
+
+<p>每个方法被调用至执行完毕，就对应着栈帧在 虚拟机栈 中的入栈和出栈</p>
+
+<p>栈帧中包含的局部变量表存放了编译器可知的：</p>
+
+<ol>
+<li>基本数据类型</li>
+<li>对象引用（引用指针或对象句柄）</li>
+<li>returnAddress 类型（指向一条字节码指令的地址）</li>
+</ol>
+
+<p>区别：</p>
+
+<ul>
+<li><p>虚拟机栈：为虚拟机执行 Java 方法服务</p></li>
+
+<li><p>本地方法栈：为虚拟机执行 本地（Native）方法服务</p></li>
+</ul>
+
+<h3 id="异常">异常</h3>
+
+<ol>
+<li>线程请求的栈深度大于虚拟机所允许的深度，抛出 StackOverflowError 异常</li>
+<li>如果虚拟机栈容量可以动态扩展，则当栈无法申请到足够内存，就报 OOM</li>
+</ol>
+
+<h2 id="java-堆">Java 堆</h2>
+
+<p>线程共享</p>
+
+<p>目的：存放 <strong>对象实例</strong> 以及 <strong>数组</strong></p>
+
+<h3 id="从内存回收的角度">从内存回收的角度</h3>
+
+<p>由于现代垃圾收集器大部分都是基于 <strong>分代收集理论</strong> 设计的，</p>
+
+<p>所以 Java 堆中经常会出现：</p>
+
+<ol>
+<li>新生代</li>
+<li>老年代</li>
+<li>永久代</li>
+<li>Eden空间</li>
+<li>From Survivor 空间</li>
+<li>To Survivor 空间</li>
+</ol>
+
+<p>等名词，这些划分适用于 HotSpot 虚拟机，因为它是基于 <strong>经典分代</strong> 设计的</p>
+
+<h3 id="从分配内存的角度">从分配内存的角度</h3>
+
+<p>所有线程共享的 Java 堆可以划分出多个 <strong>线程私有</strong> 的 <strong>分配缓冲区</strong>，称为：</p>
+
+<p>TLAB (Thread Local Allocation Buffer)，提升对象分配时的效率</p>
+
+<h3 id="异常-1">异常</h3>
+
+<p>可以通过参数 -Xmx 和 -Xms 设定 Java 堆的最大值和初始值</p>
+
+<p>如果堆大小无法扩展，无法完成实例的分配，就会抛出 OOM 异常</p>
+
+<h2 id="方法区">方法区</h2>
+
+<p>线程共享</p>
+
+<p>存储：</p>
+
+<ul>
+<li>加载类的类型信息</li>
+<li>常量</li>
+<li>静态变量</li>
+<li>即时编译器编译后的的代码缓存</li>
+</ul>
+
+<p>JDK 8 之前，使用 <strong>永久代</strong> 实现 <strong>方法区</strong>，但二者并不等价</p>
+
+<p>JDK 8 之后，放弃 <strong>永久代</strong>，改用 <strong>本地内存</strong> 实现 <strong>元空间</strong>，主要存放 <strong>类型信息</strong></p>
+
+<p><strong>字符串常量池</strong> 和 <strong>静态变量</strong> 等等也被移出，到哪？</p>
+
+<h3 id="内存回收">内存回收</h3>
+
+<p>主要针对 <strong>常量池的回收</strong> 和对 <strong>类型的卸载</strong></p>
+
+<h3 id="异常-2">异常</h3>
+
+<p>如果方法区无法满足新的内存分配需求，将抛出 OOM 异常</p>
+
+<h3 id="运行时常量池">运行时常量池</h3>
+
+<p>Runtime Constant Pool 是方法区的一部分</p>
+
+<p>Class 文件中包含的 常量池表（Constant Pool Table）存放：</p>
+
+<ol>
+<li>编译时生成的各种字面量</li>
+<li>符号引用</li>
+</ol>
+
+<p>这部分内容在类加载后存放到方法区的运行时常量池中</p>
+
+<h3 id="特点">特点</h3>
+
+<p>相较于 Class 文件常量池，运行时常量池具备 <strong>动态性</strong></p>
+
+<p>即在运行期间，允许将新的常量放入池中，比如 <strong>String</strong> 类的 <strong>intern()</strong> 方法</p>
+
+<h3 id="异常-3">异常</h3>
+
+<p>当常量池无法申请到内存时，会抛出 OOM</p>
+
+<h2 id="直接内存">直接内存</h2>
+
+<p><strong>不是</strong> 虚拟机运行时数据区的一部分，但因为被频繁使用，也会导致 OOM 异常</p>
+
+<p>Java NIO  可以使用 <strong>Native 函数库</strong> 直接分配 <strong>堆外内存</strong>，</p>
+
+<p>通过 Java 堆中的 DirectByteBuffer 对象作为这块内存的引用进行操作</p>
+
+<p>因为避免了数据在 Java 堆和 Native 堆之间频繁复制，某些场景可以提高性能</p>
+
+<p>需要考虑 <strong>本机总内存</strong>，防止 JVM 中所有内存与直接内存总和过大造成 OOM</p>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>

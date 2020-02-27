@@ -6,10 +6,30 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 21 Feb 2020 16:44:51 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Feb 2020 22:34:23 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JVM系列 - 运行时数据区域</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-1/</link>
+      <pubDate>Wed, 26 Feb 2020 22:34:23 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/understand-the-jvm-1/</guid>
+      <description>概述 JVM 在运行 Java 程序时会把内存划分为若干个不同的数据区域，包括：
+ 程序计数器 - Program Counter Register 虚拟机栈 - VM Stack 本地方法栈 - Native Method Stack Java 堆 - Heap 方法区 - Method Area  程序计数器 线程私有
+可以看作 当前线程所执行的字节码的行号指示器
+每个线程都需要有独立的程序计数器，互不影响，独立存储
+Java 虚拟机栈 &amp;amp; 本地方法栈 线程私有
+生命周期与线程相同，描述 Java 方法执行的线程内存模型
+每个方法被调用至执行完毕，就对应着栈帧在 虚拟机栈 中的入栈和出栈
+栈帧中包含的局部变量表存放了编译器可知的：
+ 基本数据类型 对象引用（引用指针或对象句柄） returnAddress 类型（指向一条字节码指令的地址）  区别：
+ 虚拟机栈：为虚拟机执行 Java 方法服务
+ 本地方法栈：为虚拟机执行 本地（Native）方法服务
+  异常  线程请求的栈深度大于虚拟机所允许的深度，抛出 StackOverflowError 异常 如果虚拟机栈容量可以动态扩展，则当栈无法申请到足够内存，就报 OOM  Java 堆 线程共享</description>
+    </item>
     
     <item>
       <title>缓存基本知识</title>

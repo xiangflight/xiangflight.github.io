@@ -6,63 +6,29 @@
     <description>Recent content in JVM on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 23 Nov 2019 14:56:10 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Feb 2020 22:34:23 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>JVM 系列 - 垃圾回收机制 分代</title>
-      <link>https://xiangflight.github.io/jvm-practice-3/</link>
-      <pubDate>Sat, 23 Nov 2019 14:56:10 +0800</pubDate>
+      <title>JVM系列 - 运行时数据区域</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-1/</link>
+      <pubDate>Wed, 26 Feb 2020 22:34:23 +0800</pubDate>
       
-      <guid>https://xiangflight.github.io/jvm-practice-3/</guid>
-      <description>问 所有可被回收的对象都采取相同的垃圾回收算法吗？
-答 针对生命周期不同的对象，需要采用不同的垃圾回收算法
-生命周期 大部分对象 如下代码：
-public class A { public static void main(String[] args) { while (true) { readFromDb(); Thread.sleep(1000L); } } private static void readFromDb() { DataReader reader = new DataReader(); reader.read(); } }  运行时内存分布图：
- 局部变量持有对象引用   执行完 readFromDb() 方法后，该栈帧出栈，DataReader 对象无人引用被回收
-特点 实际应用中大部分的对象就如 DataReader 一样，生命周期极短。
-少数对象 public class A { private static DataReader reader = new DataReader(); public static void main(String[] args) { while (true) { readFromDb(); Thread.</description>
-    </item>
-    
-    <item>
-      <title>JVM 系列 - 垃圾回收机制 基础</title>
-      <link>https://xiangflight.github.io/jvm-practice-2/</link>
-      <pubDate>Thu, 21 Nov 2019 21:19:40 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/jvm-practice-2/</guid>
-      <description>问 在 JVM 中：
-如何估算一个 Java 对象所占大小？
-为什么需要垃圾回收机制？
-谁去执行这些垃圾回收工作？
-对哪些内存会进行垃圾回收？
-可被垃圾回收的对象需要满足哪些条件？
-答 Java 对象的大小 Java 对象占用的内存大小可以用如下公式计算：
-对象大小 = 对象头 + 实例数据 + 对齐填充（可选） Object Size = Object Header + Instance Data + Padding (option)  对象头 Mark Word  存储对象自身的运行时数据，包括
-哈希码 + GC 分代年龄 + 锁状态标志 + 线程持有的锁 + 偏向线程 ID + 偏向时间戳 + &amp;hellip;
-(在 32 位和 64 位虚拟机上则分别占用 4 字节和 8 字节)
- Class Pointer  对象指向它的类元数据的指针</description>
-    </item>
-    
-    <item>
-      <title>JVM 系列 - 程序执行内幕与内存分布</title>
-      <link>https://xiangflight.github.io/jvm-practice-1/</link>
-      <pubDate>Tue, 12 Nov 2019 17:51:12 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/jvm-practice-1/</guid>
-      <description>问 Java 生态圈中除了编程语言外，另一个重要的版块是 Java 虚拟机，简称 JVM。那么当一个程序运行的时候，JVM 是如何执行程序的呢，它是如何为程序分配内存的呢？
-答 前提 JVM 为 Java 程序的运行提供了外部环境，因此熟悉 JVM 尤其重要。
-一些诊断工具，如阿里的 arthas，在使用 dashboard 命令时，会出现如下界面：
- arthas 执行 dashboard 界面   上图展示了程序运行时系统的状况，熟悉这里的参数对于性能调优尤其重要。
-执行过程  Java 程序的源代码文件格式为 .java
- 在使用 javac 编译后，会生成对应的字节码文件，即以 .class 结尾的文件
- 类加载器 ClassLoader 会加载这些 字节码文件 到 JVM 中
- JVM 执行代码
-  类加载机制 JVM 何时加载一个类？加载的过程是什么样？
-加载时机 当代码中需要用到某个类的时候，就会加载那个类
-过程  过程分为 加载 &amp;mdash;&amp;gt; 验证 &amp;mdash;&amp;gt; 准备 &amp;mdash;&amp;gt; 解析 &amp;mdash;&amp;gt; 初始化
-验证：根据 JVM 规范，校验加载进来的字节码文件里的内容是否符合规范</description>
+      <guid>https://xiangflight.github.io/understand-the-jvm-1/</guid>
+      <description>概述 JVM 在运行 Java 程序时会把内存划分为若干个不同的数据区域，包括：
+ 程序计数器 - Program Counter Register 虚拟机栈 - VM Stack 本地方法栈 - Native Method Stack Java 堆 - Heap 方法区 - Method Area  程序计数器 线程私有
+可以看作 当前线程所执行的字节码的行号指示器
+每个线程都需要有独立的程序计数器，互不影响，独立存储
+Java 虚拟机栈 &amp;amp; 本地方法栈 线程私有
+生命周期与线程相同，描述 Java 方法执行的线程内存模型
+每个方法被调用至执行完毕，就对应着栈帧在 虚拟机栈 中的入栈和出栈
+栈帧中包含的局部变量表存放了编译器可知的：
+ 基本数据类型 对象引用（引用指针或对象句柄） returnAddress 类型（指向一条字节码指令的地址）  区别：
+ 虚拟机栈：为虚拟机执行 Java 方法服务
+ 本地方法栈：为虚拟机执行 本地（Native）方法服务
+  异常  线程请求的栈深度大于虚拟机所允许的深度，抛出 StackOverflowError 异常 如果虚拟机栈容量可以动态扩展，则当栈无法申请到足够内存，就报 OOM  Java 堆 线程共享</description>
     </item>
     
   </channel>
