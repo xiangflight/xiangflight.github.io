@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>JVM系列 - 对象探索</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-2/</link>
+      <pubDate>Thu, 27 Feb 2020 21:22:35 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/understand-the-jvm-2/</guid>
+      <description>问 在 HotSpot 虚拟机中：
+ 如何在堆中分配 Java 对象 Java 对象的布局 如何访问堆中的 Java 对象  对象分配  对象分配的过程   步骤  JVM 遇到一条字节码 new 指令，检查该指令 参数 能否在 常量池 中定位到一个 类的符号引用，并检查该符号引用代表的类 是否已被加载、解析和初始化过，若没有，则先进行类加载，否则分配内存 分配内存时，可采取 指针碰撞 和 空闲列表 两种方式，取决于当前 Java 堆是否规整。Java 堆是否规整取决于垃圾收集器是否带空间压缩整理的功能。Serial 和 ParNew 带压缩整理，CMS 收集器基本上不带 分配内存如何在并发情况下保证线程安全：使用CAS加失败重试 和 TLAB策略。JVM 通过参数 -XX:+/-UseTLAB 设定是否使用 TLAB（Thread Local Allocation Buffer）  对象布局 在 HotSpot 虚拟机中，对象的内存布局可以划分为：
+ 对象头（Header） 实例数据（Instance Data） 对齐填充（Padding）   对象布局   对齐填充 不是必然存在的，仅仅起着 占位符 的作用</description>
+    </item>
+    
+    <item>
       <title>JVM系列 - 运行时数据区域</title>
       <link>https://xiangflight.github.io/understand-the-jvm-1/</link>
       <pubDate>Wed, 26 Feb 2020 22:34:23 +0800</pubDate>
@@ -24,7 +35,7 @@
 Java 虚拟机栈 &amp;amp; 本地方法栈 线程私有
 生命周期与线程相同，描述 Java 方法执行的线程内存模型
 每个方法被调用至执行完毕，就对应着栈帧在 虚拟机栈 中的入栈和出栈
-栈帧中包含的局部变量表存放了编译器可知的：
+栈帧中包含的局部变量表存放了编译期可知的：
  基本数据类型 对象引用（引用指针或对象句柄） returnAddress 类型（指向一条字节码指令的地址）  区别：
  虚拟机栈：为虚拟机执行 Java 方法服务
  本地方法栈：为虚拟机执行 本地（Native）方法服务
