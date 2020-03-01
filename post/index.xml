@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 27 Feb 2020 21:22:35 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Feb 2020 21:37:25 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JVM系列 - 内存异常的代码实践</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-3/</link>
+      <pubDate>Sat, 29 Feb 2020 21:37:25 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/understand-the-jvm-3/</guid>
+      <description>Java 堆溢出 条件  不断地创建对象 保证 GC Roots 到对象之间可达，避免垃圾回收 通过 -Xmx 和 -Xms 设置堆的最大值和最小值  代码与报错 /** * VM Args: -Xms10m -Xmx10m -XX:+HeapDumpOnOutOfMemoryError */ public class HeapOOM { static class OOMObject { } public static void main(String[] args) { List&amp;lt;OOMObject&amp;gt; list = new ArrayList&amp;lt;&amp;gt;(); while (true) { list.add(new OOMObject()); } } }   java.lang.OutOfMemoryError: Java heap space Dumping heap to java_pid6584.hprof &amp;hellip; Heap dump file created [12984164 bytes in 0.</description>
+    </item>
     
     <item>
       <title>JVM系列 - 对象探索</title>
