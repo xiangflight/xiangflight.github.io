@@ -6,10 +6,36 @@
     <description>Recent content in Posts on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 29 Feb 2020 21:37:25 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 18:07:43 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JVM系列 - 何时回收何处对象</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-4/</link>
+      <pubDate>Mon, 02 Mar 2020 18:07:43 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/understand-the-jvm-4/</guid>
+      <description>回收何处对象 JVM 运行时内存数据区域包括：
+ 程序计数器 JVM 栈 本地方法栈 JVM 堆 方法区  程序计数器、JVM 栈和本地方法栈的生命周期与线程相同
+它们涉及的内存分配和回收具备确定性
+因此，主要关注的就是内存分配和回收具备动态性的 JVM 堆 和 方法区
+何时回收对象 一些不再被使用的对象驻留在内存中，占用内存资源，因此需要回收这些对象
+如何判定 不再被使用 的对象：
+引用计数算法 概念 在对象中添加一个引用计数器，
+当有一个地方引用它时，计数器值加一
+当引用失效时，计数器值减一
+任何时刻计数器值为 0 的对象就是不可能再被使用的
+使用者 微软的 COM、Python 语言都使用 Reference Counting
+优点 原理简单，判定效率很高
+缺点  占用一些额外内存 需要考虑很多例外情况，如 相互循环引用 就很难解决  可达性分析算法 概念 首先定义一些称为 “GC Roots” 的根对象作为起始节点集
+从起始节点集开始，沿着引用关系搜索形成引用链(Reference Chain)
+如果某个对象在这条引用链上，那么就认为该对象可达
+如果某对象不在这条引用链上，就认为该对象不可达，即不可能再被使用的
+GC Roots 包括：
+ 在虚拟机栈（栈帧中的局部变量表）中引用的对象 方法区中类静态属性引用的对象 方法区常量引用的对象 本地方法栈 JNI 引用的对象 JVM 内部的引用，如基本数据类型对应的 Class 对象，一些常驻的异常对象，系统类加载器 所有被同步锁持有（synchronized修饰）的对象 反映 JVM 内部情况的 JMXBean、JVMTI 中注册的回调、本地代码缓存等  使用者 Java、C# 和 Lisp 等等商用程序语言</description>
+    </item>
     
     <item>
       <title>JVM系列 - 内存异常的代码实践</title>
