@@ -6,10 +6,25 @@
     <description>Recent content in JVM on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 02 Mar 2020 18:07:43 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 04 Mar 2020 21:19:24 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JVM系列 - 垃圾收集算法</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-5/</link>
+      <pubDate>Wed, 04 Mar 2020 21:19:24 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/understand-the-jvm-5/</guid>
+      <description>分代收集理论 是符合大多数程序运行实际情况的经验法则，建立在以下分代假说之上：
+ 弱分代假说：绝大多数对象都是朝生夕灭的 强分代假说：熬过越多次垃圾收集过程的对象越难以消亡 跨代引用假说：跨代引用相对于同代引用来说占极少数  由此可见，收集器应将堆划分出不同区域，然后将对象分配到不同的区域中存储
+划分出不同区域后，才有了 Minor GC、Major GC 和 FULL GC 等等回收类型
+概念  部分收集(Partial GC)：收集目标是 部分Java堆  新生代收集(Minor GC/Young GC)：收集目标是 新生代 老年代收集(Major GC/Old GC)：收集目标是 老年代 CMS 混合收集(Mixed GC)：收集目标是 新生代和部分老年代 G1  整堆收集(Full GC)：收集目标是 整个Java堆和方法区  垃圾收集算法 标记-清除 Mark-Sweep
+过程 分为两个阶段：
+ 标记：标记出所有需要回收的对象 清除：标记完成后，统一回收所有被标记的对象  缺点  执行效率不稳定，易受Java堆中存活对象数目影响 内存空间碎片化问题，大量不连续的内存碎片会导致内存分配降低  标记-复制 也简称为 复制算法，现代 JVM 多优先用该算法回收 新生代
+半区复制算法过程  将内存按容量划分为大小相等的两块 每次只使用其中的一块分配对象 当用完一块内存，就将还存活的对象复制到另一块上面 清理用完的那块内存  缺点  当内存中多数对象是存活的，那么复制的开销比较大，执行效率低 内存空间浪费太多  优点  当内存中只有少部分对象是存活的，那么复制开销小，运行高效  更优化的半区复制分代策略  将 新生代 分为 一块较大 的 Eden 空间和 两块较小 的 Survivor 空间 每次分配内存只使用 Eden 和其中 一块 Survivor 垃圾收集时，将 Eden 和 Survivor 存活的对象复制到 另一块 Survivor 清理掉 Eden 和已经使用过的 Survivor 空间  HotSpot JVM 中默认 Eden 和 Survivor 大小比例是 8:1</description>
+    </item>
     
     <item>
       <title>JVM系列 - 何时回收何处对象</title>

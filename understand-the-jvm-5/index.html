@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/jvm/">
+  <link rel="canonical" href="https://xiangflight.github.io/understand-the-jvm-5/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>JVM | Zone Of Xiang</title>
+  <title>JVM系列 - 垃圾收集算法 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -223,66 +223,205 @@
         <div>
           
   <main id="main">
-    <h1>JVM</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      JVM系列 - 垃圾收集算法
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 49, 4039
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/understand-the-jvm-5/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM系列 - 垃圾收集算法
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/jvm/">JVM</a>
+            </li>
+          
+        </ul>
+      </div>
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/understand-the-jvm-4/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM系列 - 何时回收何处对象
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/understand-the-jvm-3/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM系列 - 内存异常的代码实践
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/understand-the-jvm-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM系列 - 对象探索
-          </a>
-        </h2>
-      </li>        
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/understand-the-jvm-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            JVM系列 - 运行时数据区域
-          </a>
-        </h2>
-      </li>        
-    
-    </ul>
+
+<h2 id="分代收集理论">分代收集理论</h2>
+
+<p>是符合大多数程序运行实际情况的经验法则，建立在以下分代假说之上：</p>
+
+<ol>
+<li>弱分代假说：绝大多数对象都是朝生夕灭的</li>
+<li>强分代假说：熬过越多次垃圾收集过程的对象越难以消亡</li>
+<li>跨代引用假说：跨代引用相对于同代引用来说占极少数</li>
+</ol>
+
+<p>由此可见，收集器应将堆划分出不同区域，然后将对象分配到不同的区域中存储</p>
+
+<p>划分出不同区域后，才有了 Minor GC、Major GC 和 FULL GC 等等回收类型</p>
+
+<h3 id="概念">概念</h3>
+
+<ul>
+<li>部分收集(Partial GC)：收集目标是 <strong>部分Java堆</strong>
+
+<ul>
+<li>新生代收集(Minor GC/Young GC)：收集目标是 <strong>新生代</strong></li>
+<li>老年代收集(Major GC/Old GC)：收集目标是 <strong>老年代</strong> <strong>CMS</strong></li>
+<li>混合收集(Mixed GC)：收集目标是 <strong>新生代和部分老年代</strong> <strong>G1</strong></li>
+</ul></li>
+<li>整堆收集(Full GC)：收集目标是 <strong>整个Java堆和方法区</strong></li>
+</ul>
+
+<h2 id="垃圾收集算法">垃圾收集算法</h2>
+
+<h3 id="标记-清除">标记-清除</h3>
+
+<p>Mark-Sweep</p>
+
+<h4 id="过程">过程</h4>
+
+<p>分为两个阶段：</p>
+
+<ul>
+<li>标记：标记出所有需要回收的对象</li>
+<li>清除：标记完成后，统一回收所有被标记的对象</li>
+</ul>
+
+<h4 id="缺点">缺点</h4>
+
+<ul>
+<li>执行效率不稳定，易受Java堆中存活对象数目影响</li>
+<li>内存空间碎片化问题，大量不连续的内存碎片会导致内存分配降低</li>
+</ul>
+
+<h3 id="标记-复制">标记-复制</h3>
+
+<p>也简称为 <strong>复制算法</strong>，现代 JVM 多优先用该算法回收 <strong>新生代</strong></p>
+
+<h4 id="半区复制算法过程">半区复制算法过程</h4>
+
+<ul>
+<li>将内存按容量划分为大小相等的两块</li>
+<li>每次只使用其中的一块分配对象</li>
+<li>当用完一块内存，就将还存活的对象复制到另一块上面</li>
+<li>清理用完的那块内存</li>
+</ul>
+
+<h4 id="缺点-1">缺点</h4>
+
+<ul>
+<li>当内存中多数对象是存活的，那么复制的开销比较大，执行效率低</li>
+<li>内存空间浪费太多</li>
+</ul>
+
+<h4 id="优点">优点</h4>
+
+<ul>
+<li>当内存中只有少部分对象是存活的，那么复制开销小，运行高效</li>
+</ul>
+
+<h4 id="更优化的半区复制分代策略">更优化的半区复制分代策略</h4>
+
+<ol>
+<li>将 <strong>新生代</strong> 分为 <strong>一块较大</strong> 的 <strong>Eden</strong> 空间和 <strong>两块较小</strong> 的 <strong>Survivor</strong> 空间</li>
+<li>每次分配内存只使用 <strong>Eden</strong> 和其中 <strong>一块</strong> <strong>Survivor</strong></li>
+<li>垃圾收集时，将 <strong>Eden</strong> 和 <strong>Survivor</strong> 存活的对象复制到 <strong>另一块</strong> <strong>Survivor</strong></li>
+<li>清理掉 <strong>Eden</strong> 和已经使用过的 <strong>Survivor</strong> 空间</li>
+</ol>
+
+<p>HotSpot JVM 中默认 Eden 和 Survivor 大小比例是 8:1</p>
+
+<h4 id="handle-promotion">Handle Promotion</h4>
+
+<p>当 <strong>Survivor</strong> 空间放不下 <strong>Minor</strong> <strong>GC</strong> 后存活的对象，就依赖其他内存区域进行分配担保，通常是 老年代，称为 <strong>Handle</strong> <strong>Promotion</strong></p>
+
+<h3 id="标记-整理">标记-整理</h3>
+
+<p>老年代因为对象存活率较高，所以不适合 <strong>标记-复制</strong> 算法</p>
+
+<h4 id="过程-1">过程</h4>
+
+<ul>
+<li>标记：标记出所有需要回收的对象</li>
+<li>整理：让所有存活对象向内存空间的一端移动</li>
+<li>清除：移动完成后，直接清理掉边界以外的内存</li>
+</ul>
+
+<h4 id="缺点-2">缺点</h4>
+
+<ul>
+<li>如果内存中有大量对象需要移动，那么整理操作就会极为负重</li>
+<li>对象移动时必须 <strong>全程暂停</strong> 应用程序进行，造成 <strong>Stop The World</strong></li>
+</ul>
+
+<h4 id="实际使用">实际使用</h4>
+
+<ul>
+<li><strong>整理</strong> 会使 <strong>内存回收</strong> 更加复杂，停顿时间长，延迟大，但吞吐量大</li>
+<li><strong>不整理</strong> 会使 <strong>内存分配</strong> 更加复杂，停顿时间短，延迟小，但吞吐量小</li>
+</ul>
+
+<p><strong>Parallel Scanvenge</strong> 关注 <strong>吞吐量</strong>，所以使用的是 <strong>标记-整理</strong> 算法</p>
+
+<p><strong>CMS</strong> 关注 <strong>延迟</strong>，所以使用的是 <strong>标记-清除</strong> 算法</p>
+
+<blockquote>
+<p>CMS 多数时间采用 标记-清除 算法，暂时容忍 内存碎片 的存在</p>
+
+<p>直到内存碎片问题严重到影响到内存分配，采用 标记-整理 算法收集一次</p>
+</blockquote>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>
