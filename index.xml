@@ -12,6 +12,28 @@
     
     
     <item>
+      <title>JVM系列 - HotSpot的算法实现</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-6/</link>
+      <pubDate>Sun, 08 Mar 2020 17:27:49 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/understand-the-jvm-6/</guid>
+      <description>问 HotSpot 虚拟机有以下三个问题需要追溯：
+ 如何发起内存回收 如何加速内存回收 如何保证回收正确性  内存回收 - 发起 根结点枚举 固定可作为 GC Roots 的节点主要在：
+ 全局性的引用（常量 或 类静态属性） 执行上下文（栈帧中的 本地变量表）  所有收集器在 根节点枚举 这一步都是必须暂停用户线程的，即会造成 STW
+如果根结点集合的对象引用关系还不断变化，那么无法保证分析结果准确性
+加速枚举 使用 OopMap，其中 Oop 指的是 Ordinary Object Pointer
+可以直接让 收集器 直接得到 存放对象引用的 位置
+从而避免 一个不漏地检查所有 执行上下文 和 全局的引用位置
+安全点 HotSpot 不会为每一条指令都生成 OopMap，否则会占用大量的额外的存储空间
+只有在特定位置生成 OopMap，这些位置称为 安全点
+用户程序只有在到达安全点后，才能停顿下来，开始垃圾收集
+如何在垃圾收集发生时，让所有线程跑到最近的安全点并停顿：
+ 抢先式中断：几乎没有虚拟机采用这种方式暂停线程 主动式中断：设置标志位，各个线程轮询标志位，各自主动挂起   HotSpot 使用 内存保护陷阱 的方式，保证轮询操作高效
+只需要一条汇编指令，就可完成 安全点轮询 和 触发线程中断
+ 安全区域 安全点只保证了：</description>
+    </item>
+    
+    <item>
       <title>JVM系列 - 垃圾收集算法</title>
       <link>https://xiangflight.github.io/understand-the-jvm-5/</link>
       <pubDate>Wed, 04 Mar 2020 21:19:24 +0800</pubDate>
@@ -152,15 +174,6 @@ CI/CD 能解决什么问题：当自动化在工作流中占很大的比重时
  Job  表示构建工作，可以在一个 Stage 中定义多个 Job
 Job 具有如下特点：
  相同 Stage 中的 Jobs 会并行执行 相同 Stage 中的 Jobs 都执行成功，该 Stage 才会成功 任何一个 Job 失败，那么该 Stage 失败，那么构建任务 Pipeline 也失败   Stage  表示构建阶段，可以在一次 Pipeline 中定义多个 Stage</description>
-    </item>
-    
-    <item>
-      <title>Zookeeper Basic Concepts</title>
-      <link>https://xiangflight.github.io/zookeeper-basic-concepts/</link>
-      <pubDate>Wed, 08 Jan 2020 18:43:39 +0800</pubDate>
-      
-      <guid>https://xiangflight.github.io/zookeeper-basic-concepts/</guid>
-      <description></description>
     </item>
     
     <item>
