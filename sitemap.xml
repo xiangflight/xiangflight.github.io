@@ -4,25 +4,30 @@
   
   <url>
     <loc>https://xiangflight.github.io/tags/jvm/</loc>
-    <lastmod>2020-03-08T17:27:49+08:00</lastmod>
+    <lastmod>2020-03-11T21:57:06+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/understand-the-jvm-7/</loc>
+    <lastmod>2020-03-11T21:57:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/post/</loc>
+    <lastmod>2020-03-11T21:57:06+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiangflight.github.io/tags/</loc>
+    <lastmod>2020-03-11T21:57:06+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://xiangflight.github.io/understand-the-jvm-6/</loc>
     <lastmod>2020-03-08T17:27:49+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/post/</loc>
-    <lastmod>2020-03-08T17:27:49+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiangflight.github.io/tags/</loc>
-    <lastmod>2020-03-08T17:27:49+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

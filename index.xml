@@ -12,6 +12,30 @@
     
     
     <item>
+      <title>JVM系列 - 新生代垃圾收集器</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-7/</link>
+      <pubDate>Wed, 11 Mar 2020 21:57:06 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/understand-the-jvm-7/</guid>
+      <description>概要 新生代存在三个经典的垃圾收集器：
+ Serial 收集器 ParNew 收集器 Parallel Scavenge 收集器  它们使用的垃圾收集算法都是 标记-复制
+Serial 一个单线程工作的收集器
+在进行垃圾收集时，必须暂停 其他所有工作线程，直到收集结束，造成 STW
+是客户端模式下的默认新生代收集器
+ParNew Serial 收集器的 多线程并行版本
+除了支持多线程并行收集外，与 Serial 收集器基本相同
+可以与 CMS 收集器配合工作
+使用 -XX:+UseConcMarkSweepGC 选项激活 CMS 后，ParNew 会成为默认的新生代垃圾收集器
+使用 -XX:+/-UseParNewGC 选项可以强制指定或禁用 ParNew 收集器
+使用 -XX:ParallelGCThreads 可以限制垃圾收集的线程数
+注意 在 单核心处理器的环境 中，不会比 Serial 收集器有更好的效果
+当使用的 处理器核数增加 时，ParNew 收集器可以提高对系统资源的使用率
+Parallel Scavenge 基本与 ParNew 相同，但是关注点不同：
+ 其他收集器是缩短 垃圾收集时 用户线程的停顿时间 达到一个可控制的吞吐量   吞吐量：处理器运行用户代码的时间 / 处理器的总消耗时间
+ 两种场景 延迟短 适合 用户交互的场景，保证服务响应质量的程序，响应快，用户体验好</description>
+    </item>
+    
+    <item>
       <title>JVM系列 - HotSpot的算法实现</title>
       <link>https://xiangflight.github.io/understand-the-jvm-6/</link>
       <pubDate>Sun, 08 Mar 2020 17:27:49 +0800</pubDate>
