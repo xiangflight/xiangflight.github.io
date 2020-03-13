@@ -12,12 +12,32 @@
     
     
     <item>
+      <title>JVM系列 - CMS收集器</title>
+      <link>https://xiangflight.github.io/understand-the-jvm-10/</link>
+      <pubDate>Fri, 13 Mar 2020 22:17:53 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/understand-the-jvm-10/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>JVM系列 - 老年代垃圾收集器</title>
       <link>https://xiangflight.github.io/understand-the-jvm-8/</link>
       <pubDate>Thu, 12 Mar 2020 22:49:25 +0800</pubDate>
       
       <guid>https://xiangflight.github.io/understand-the-jvm-8/</guid>
-      <description></description>
+      <description>概要 老年代也存在三个经典的垃圾收集器：
+ Serial Old 收集器 Parallel Old 收集器 CMS 收集器  其中 Serial Old 和 Parallel Old 使用 标记-整理 算法
+CMS 使用 标记-清理 算法
+因为整理可能会造成 STW，CMS 希望延迟更小，没有 STW
+Serial Old Serial 收集器的老年代版本
+同样也是单线程收集器
+主要供 客户端模式下 的 HotSpot 虚拟机使用
+两种用途  JDK 5 之前可与 Parallel Scavenge 搭配使用 作为 CMS 收集器发生失败时的后备预案  Parallel Old Parallel Scavenge 收集器的老年代版本
+支持多线程并行收集
+可充分利用服务器多处理器的并行处理能力
+在 JDK 6 之后与 Parallel Scavenge 搭配使用，可获得 较高的吞吐量
+适合场景 注重吞吐量 或 处理器资源较为稀缺 的场合</description>
     </item>
     
     <item>

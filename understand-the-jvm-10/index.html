@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/understand-the-jvm-8/">
+  <link rel="canonical" href="https://xiangflight.github.io/understand-the-jvm-10/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>JVM系列 - 老年代垃圾收集器 | Zone Of Xiang</title>
+  <title>JVM系列 - CMS收集器 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -227,13 +227,13 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      JVM系列 - 老年代垃圾收集器
+      JVM系列 - CMS收集器
     </h1>
 
     <div class="date">
       
       
-      <strong aria-hidden="true">Publish date: </strong>Oct 129, 12039
+      <strong aria-hidden="true">Publish date: </strong>Oct 139, 13039
       
         
       
@@ -259,52 +259,6 @@
     
 
     
-
-<h2 id="概要">概要</h2>
-
-<p>老年代也存在三个经典的垃圾收集器：</p>
-
-<ol>
-<li>Serial Old 收集器</li>
-<li>Parallel Old 收集器</li>
-<li>CMS 收集器</li>
-</ol>
-
-<p>其中 Serial Old 和 Parallel Old 使用 <strong>标记-整理</strong> 算法</p>
-
-<p>CMS 使用 <strong>标记-清理</strong> 算法</p>
-
-<p>因为整理可能会造成 STW，CMS 希望延迟更小，没有 STW</p>
-
-<h2 id="serial-old">Serial Old</h2>
-
-<p>Serial 收集器的老年代版本</p>
-
-<p>同样也是单线程收集器</p>
-
-<p>主要供 客户端模式下 的 HotSpot 虚拟机使用</p>
-
-<h3 id="两种用途">两种用途</h3>
-
-<ol>
-<li>JDK 5 之前可与 <strong>Parallel Scavenge</strong> 搭配使用</li>
-<li>作为 CMS 收集器发生失败时的后备预案</li>
-</ol>
-
-<h2 id="parallel-old">Parallel Old</h2>
-
-<p>Parallel Scavenge 收集器的老年代版本</p>
-
-<p>支持多线程并行收集</p>
-
-<p>可充分利用服务器多处理器的并行处理能力</p>
-
-<p>在 JDK 6 之后与 Parallel Scavenge 搭配使用，可获得 <strong>较高的吞吐量</strong></p>
-
-<h3 id="适合场景">适合场景</h3>
-
-<p><strong>注重吞吐量</strong> 或 <strong>处理器资源较为稀缺</strong> 的场合</p>
-
   </main>
   <div id="disqus-container">
   
