@@ -32,7 +32,7 @@
 
   
   
-  <title>JVM系列 - CMS收集器 | Zone Of Xiang</title>
+  <title>JVM系列 - G1收集器 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -227,13 +227,13 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      JVM系列 - CMS收集器
+      JVM系列 - G1收集器
     </h1>
 
     <div class="date">
       
       
-      <strong aria-hidden="true">Publish date: </strong>Oct 139, 13039
+      <strong aria-hidden="true">Publish date: </strong>Oct 239, 23039
       
         
       
@@ -259,6 +259,97 @@
     
 
     
+
+<h2 id="特性">特性</h2>
+
+<p>主要面向服务端应用的垃圾收集器，有如下特性：</p>
+
+<ul>
+<li>面向全堆的任何部分组成 <strong>回收集</strong> 进行回收</li>
+</ul>
+
+<blockquote>
+<p>衡量标准：哪块内存中存放的垃圾数量最多，回收收益大，即 Mixed GC 模式</p>
+</blockquote>
+
+<ul>
+<li>全功能的垃圾收集器</li>
+</ul>
+
+<blockquote>
+<p>不仅关注 <strong>响应时间</strong>，而且关注 <strong>吞吐量</strong></p>
+</blockquote>
+
+<ul>
+<li><strong>停顿时间模型</strong></li>
+</ul>
+
+<blockquote>
+<p>支持在长度为 M 毫秒的时间片段内，垃圾收集消耗时间不超过 N 毫秒</p>
+</blockquote>
+
+<h3 id="创新">创新</h3>
+
+<ol>
+<li>开创了面向局部收集的设计思路，不再区分老年代还是新生代</li>
+<li>基于 <strong>Region</strong> 的内存布局，不是固定的分代</li>
+<li>收集回收思路由 <strong>一次清理干净Java堆</strong> 转变为 <strong>收集速度跟得上对象分配速度</strong></li>
+</ol>
+
+<blockquote>
+<p>每个 Region 都可以扮演新生代的 <strong>Eden</strong> 空间、<strong>Survivor</strong> 空间 或 <strong>老年代空间</strong></p>
+</blockquote>
+
+<h2 id="阶段">阶段</h2>
+
+<ol>
+<li>初始标记：仅标记 GC Roots 能直接关联到的对象，停顿很短</li>
+<li>并发标记：从 GC Roots 开始扫描对象图，与用户线程并发执行</li>
+<li>最终标记：停顿用户线程，处理并发阶段遗留的少量 SATB 记录</li>
+<li>筛选回收：暂停用户线程，多条收集线程并行执行</li>
+</ol>
+
+<blockquote>
+<p>除了并发标记阶段，其他阶段都是需要 STW</p>
+
+<p>由此可见，并非完全追求 <strong>低延迟</strong>，而是 <strong>延迟可控</strong>的情况下尽可能<strong>高的吞吐量</strong></p>
+</blockquote>
+
+<h2 id="与-cms-对比">与 CMS 对比</h2>
+
+<ul>
+<li>G1 使用标记-整理算法，CMS 使用标记-清除算法</li>
+</ul>
+
+<blockquote>
+<ol>
+<li>G1 不容易产生内存碎片，有利于程序长期运行</li>
+<li>分配大对象时，G1 更容易找到合适的空间，避免提前触发下一次收集</li>
+</ol>
+</blockquote>
+
+<ul>
+<li>内存占用，G1 比 CMS 高</li>
+</ul>
+
+<blockquote>
+<p>G1 的堆中每个Region 要维护一份卡表，而 CMS 全局只有一份卡表</p>
+</blockquote>
+
+<ul>
+<li>执行负载，G1 比 CMS 高</li>
+</ul>
+
+<blockquote>
+<p>G1 对写屏障的复杂操作比 CMS 消耗更多的运算资源</p>
+
+<p>CMS 写屏障实现是同步的，CMS 写屏障实现是异步的</p>
+</blockquote>
+
+<ul>
+<li>小内存应用上，CMS 表现通常会更好，大内存应用上 G1 表现通常更好</li>
+</ul>
+
   </main>
   <div id="disqus-container">
   
