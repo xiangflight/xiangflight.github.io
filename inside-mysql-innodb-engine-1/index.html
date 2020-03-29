@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/tags/mysql/">
+  <link rel="canonical" href="https://xiangflight.github.io/inside-mysql-innodb-engine-1/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>MySQL | Zone Of Xiang</title>
+  <title>《MySQL技术内幕》1～3章笔记 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -223,132 +223,226 @@
         <div>
           
   <main id="main">
-    <h1>MySQL</h1>
-    <ul class="patterns-list">
+    <h1>
+      <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
+        <use xlink:href="#bookmark"></use>
+      </svg>
+      《MySQL技术内幕》1～3章笔记
+    </h1>
+
+    <div class="date">
+      
+      
+      <strong aria-hidden="true">Publish date: </strong>Oct 299, 29039
+      
+        
+      
+    </div>
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/inside-mysql-innodb-engine-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            《MySQL技术内幕》1～3章笔记
-          </a>
-        </h2>
-      </li>        
+      <div class="tags">
+        <strong aria-hidden="true">Tags: </strong>
+        <ul aria-label="tags">
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/mysql/">MySQL</a>
+            </li>
+          
+        </ul>
+      </div>
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-tuning-buffer-pool/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            记一次 MySQL Buffer Pool 调优经历
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/sysbench-test/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            sysbench 初探
-          </a>
-        </h2>
-      </li>        
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-innodb-locking-and-transaction-model-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 锁和事务模型 1
-          </a>
-        </h2>
-      </li>        
+
     
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-index-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 索引系列 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-transaction-4/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 事务系列 4
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-transaction-3/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 事务系列 3
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-transaction-2/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 事务系列 2
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/mysql-transaction-1/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 事务系列 1
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/how-mysql-run-sql/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            SQL 语句在 MySQL 中的运行过程
-          </a>
-        </h2>
-      </li>        
-    
-      <li>
-        <h2>
-          <a href="https://xiangflight.github.io/structure-of-mysql/">
-            <svg class="bookmark" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
-              <use xlink:href="#bookmark"></use>
-            </svg>
-            MySQL 逻辑架构
-          </a>
-        </h2>
-      </li>        
-    
-    </ul>
+
+<h2 id="前言">前言</h2>
+
+<p>在阅读姜承尧大大《MySQL技术内幕》的同时，我买了台阿里云服务器，并在上面安装了 5.6.44 版本的 MySQL，以便进行书中的实践。</p>
+
+<p>在看完了本书的前3章后，我觉得有必要停下来从头复习一遍，并思考曾看过的一些内容，故记笔记于此。</p>
+
+<h2 id="数据库与实例">数据库与实例</h2>
+
+<h3 id="数据库">数据库</h3>
+
+<blockquote>
+<p>物理操作系统文件或其他形式文件类型的集合，是由文件组成</p>
+</blockquote>
+
+<h3 id="实例">实例</h3>
+
+<blockquote>
+<p>由后台线程以及一个共享内存区组成</p>
+</blockquote>
+
+<h3 id="架构">架构</h3>
+
+<blockquote>
+<p>MySQL数据库实例在操作系统上的表现是一个进程，架构是单进程多线程</p>
+
+<p>Oracle 是多进程的架构，但它的 Windows 版本也是单进程多线程</p>
+</blockquote>
+
+<h2 id="存储引擎">存储引擎</h2>
+
+<h3 id="innodb存储引擎">InnoDB存储引擎</h3>
+
+<ul>
+<li><p>支持事务</p></li>
+
+<li><p>面向的是 在线事务处理(OLTP) 的应用</p></li>
+
+<li><p>行锁设计、支持外键、非锁定读</p></li>
+
+<li><p>从5.5.8版本开始，成为默认的存储引擎</p></li>
+
+<li><p>使用 MVCC 获得高并发性</p></li>
+
+<li><p>使用 next-key locking 避免幻读</p></li>
+</ul>
+
+<h3 id="myisam存储引擎">MyISAM存储引擎</h3>
+
+<ul>
+<li>不支持事务</li>
+<li>面向的是 在线分析处理(OLAP) 的应用</li>
+<li>表锁设计、支持全文索引</li>
+</ul>
+
+<h3 id="ndb存储引擎">NDB存储引擎</h3>
+
+<ul>
+<li>是一个集群存储引擎，类似于 Oracle 的 RAC 集群</li>
+<li>与 Oracle RAC 不同的是，其集群架构是 share nothing 的，能提供更高的可用性</li>
+<li>数据全部放入内存中，主键查找速度非常快</li>
+<li>缺点：JOIN 操作是在数据库层完成的，复杂的连接操作网络开销较大</li>
+</ul>
+
+<h3 id="其他">其他</h3>
+
+<p>Memory 存储引擎</p>
+
+<p>Archive 存储引擎</p>
+
+<p>Federated 存储引擎</p>
+
+<p>Maria 存储引擎</p>
+
+<p>等等</p>
+
+<h3 id="实践">实践</h3>
+
+<p>查看当前 MySQL 支持的存储引擎，使用命令：</p>
+
+<blockquote>
+<p>SHOW ENGINES\G</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-7d9d5c20fcea832742fe6ac4fd465503">
+  <a href="https://xiangflight.github.io/inside-mysql-innodb-engine-1/inside-mysql-innodb-engine-1.png" class="img-link">
+    <img src="https://xiangflight.github.io/inside-mysql-innodb-engine-1/inside-mysql-innodb-engine-1_huf1d6f6002d892c57ed811a9294989895_301377_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-7d9d5c20fcea832742fe6ac4fd465503">
+    支持的存储引擎
+  </figcaption>
+</figure>
+
+
+<h2 id="连接-mysql">连接 MySQL</h2>
+
+<p>连接 MySQL 操作的本质是 <strong>连接进程</strong> 和 <strong>MySQL 数据库实例</strong> 的 <strong>进程间通信</strong></p>
+
+<p>常见的进程间通信方式有：</p>
+
+<ul>
+<li>管道</li>
+<li>命名管道</li>
+<li>共享内存</li>
+<li>TCP/IP 套接字</li>
+<li>UNIX 域套接字</li>
+</ul>
+
+<h3 id="tcp-ip">TCP/IP</h3>
+
+<p>任何平台都支持，是网络中使用得最多的一种方式</p>
+
+<p>使用命令：</p>
+
+<blockquote>
+<p>mysql -h host_ip_address -u user_name  -p password</p>
+</blockquote>
+
+<h3 id="unix域套接字">UNIX域套接字</h3>
+
+<p>在 Linux 和 UNIX 环境下，可以使用 UNIX 域套接字</p>
+
+<p>只能当 MySQL 客户端 与数据库实例处在同一台服务器下才能使用</p>
+
+<p>使用命令：</p>
+
+<blockquote>
+<p>mysql -u user_name -S path_to_socket</p>
+</blockquote>
+
+<p>可以通过如下命令查询 socket 文件的位置</p>
+
+<blockquote>
+<p>SHOW VARIABLES LIKE &lsquo;socket&rsquo;;</p>
+</blockquote>
+
   </main>
+  <div id="disqus-container">
+  
+    <button id="disqus-button" onclick="showComments()">Show comments</button>
+    <div id="disqus-comments">
+      
+      
+      
+        <div id="disqus_thread">
+        </div>
+        <script type="application/javascript">
+          function showComments() {
+            // Config
+var disqus_config = function () {
+};
+// Build and append comments 
+var d = document;
+var s = d.createElement('script');
+s.async = true;
+s.src = '//' + "xiang" + '.disqus.com/embed.js';
+s.setAttribute('data-timestamp', + new Date());
+(d.head || d.body).appendChild(s);
+            // Remove button
+var disqusButton = document.getElementById('disqus-button');
+disqusButton.parentNode.removeChild(disqusButton); 
+// Un-hide comments
+var disqusComments = document.getElementById('disqus-comments');
+disqusComments.style.display = 'block'; 
+          }
+        </script>
+      
+      <noscript>Enable JavaScript to view Disqus comments.</noscript>
+    </div>
+  
+</div>
+
 
           <footer role="contentinfo">
   <div>

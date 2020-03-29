@@ -6,10 +6,31 @@
     <description>Recent content in MySQL on Zone Of Xiang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 17 Dec 2019 10:03:57 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2020 11:25:11 +0800</lastBuildDate>
     
 	<atom:link href="https://xiangflight.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>《MySQL技术内幕》1～3章笔记</title>
+      <link>https://xiangflight.github.io/inside-mysql-innodb-engine-1/</link>
+      <pubDate>Sun, 29 Mar 2020 11:25:11 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/inside-mysql-innodb-engine-1/</guid>
+      <description>前言 在阅读姜承尧大大《MySQL技术内幕》的同时，我买了台阿里云服务器，并在上面安装了 5.6.44 版本的 MySQL，以便进行书中的实践。
+在看完了本书的前3章后，我觉得有必要停下来从头复习一遍，并思考曾看过的一些内容，故记笔记于此。
+数据库与实例 数据库  物理操作系统文件或其他形式文件类型的集合，是由文件组成
+ 实例  由后台线程以及一个共享内存区组成
+ 架构  MySQL数据库实例在操作系统上的表现是一个进程，架构是单进程多线程
+Oracle 是多进程的架构，但它的 Windows 版本也是单进程多线程
+ 存储引擎 InnoDB存储引擎  支持事务
+ 面向的是 在线事务处理(OLTP) 的应用
+ 行锁设计、支持外键、非锁定读
+ 从5.5.8版本开始，成为默认的存储引擎
+ 使用 MVCC 获得高并发性
+ 使用 next-key locking 避免幻读
+  MyISAM存储引擎  不支持事务 面向的是 在线分析处理(OLAP) 的应用 表锁设计、支持全文索引  NDB存储引擎  是一个集群存储引擎，类似于 Oracle 的 RAC 集群 与 Oracle RAC 不同的是，其集群架构是 share nothing 的，能提供更高的可用性 数据全部放入内存中，主键查找速度非常快 缺点：JOIN 操作是在数据库层完成的，复杂的连接操作网络开销较大  其他 Memory 存储引擎</description>
+    </item>
     
     <item>
       <title>记一次 MySQL Buffer Pool 调优经历</title>
