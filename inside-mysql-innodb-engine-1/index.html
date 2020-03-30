@@ -407,6 +407,119 @@
 <p>SHOW VARIABLES LIKE &lsquo;socket&rsquo;;</p>
 </blockquote>
 
+<h2 id="innodb-存储引擎">InnoDB 存储引擎</h2>
+
+<p>特点：行锁设计、支持 MVCC、支持外键、提供一致性非锁定读</p>
+
+<p>从 MySQL 5.5 版本开始是默认的表存储引擎</p>
+
+<p>是第一个完整支持 ACID 事务的 MySQL 存储引擎</p>
+
+<h2 id="innodb-体系架构">InnoDB 体系架构</h2>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<figure role="group" aria-describedby="caption-7d9d5c20fcea832742fe6ac4fd465503">
+  <a href="https://xiangflight.github.io/inside-mysql-innodb-engine-1/inside-mysql-innodb-engine-2.png" class="img-link">
+    <img src="https://xiangflight.github.io/inside-mysql-innodb-engine-1/inside-mysql-innodb-engine-2_hub53ab4fa6d6aa2f48de66acc996a05f3_21014_700x0_resize_box_2.png">
+  </a>
+  <figcaption id="caption-7d9d5c20fcea832742fe6ac4fd465503">
+    支持的存储引擎
+  </figcaption>
+</figure>
+
+
+<h3 id="后台线程">后台线程</h3>
+
+<p>作用：</p>
+
+<ol>
+<li>负责刷新内存池中的数据，保证缓冲池中的内存  <strong>缓存的是最近的数据</strong></li>
+<li>将已修改的数据文件刷新到磁盘文件</li>
+<li>保证数据库发生异常时，InnoDB 能恢复到正常运行状态</li>
+</ol>
+
+<p>MySQL 是一个单进程多线程模型，有以下线程：</p>
+
+<ul>
+<li>Master Thread</li>
+</ul>
+
+<blockquote>
+<p>核心的后台线程</p>
+
+<p>负责将缓冲池中的数据异步刷新到磁盘，保证数据一致性</p>
+
+<p>包括：刷新脏页、合并插入缓冲、UNDO 页的回收等</p>
+</blockquote>
+
+<ul>
+<li>IO Thread</li>
+</ul>
+
+<blockquote>
+<p>InnoDB 引擎大量使用 AIO(Async IO)来处理写 IO 请求</p>
+
+<p>IO Thread 负责这些 AIO 请求的回调</p>
+
+<p>包括 4 个 read thread 和 4 个 write thread</p>
+
+<p>读线程 ID 总是小于写线程</p>
+
+<p>可以使用 <code>SHOW VARIABLES LIKE 'innodb_%io_threads'\G</code> 查看线程个数</p>
+</blockquote>
+
+<ul>
+<li>Purge Thread</li>
+</ul>
+
+<blockquote>
+<p>事务提交后，其使用的 undolog 可能不再需要</p>
+
+<p>Purge Thread 主要负责回收已经使用并分配的 undo 页</p>
+
+<p>使用 <code>SHOW VARIABLES LIKE 'innodb_purge_threads'\G</code> 查看 Purge 线程个数</p>
+
+<p>可以增加该线程个数：</p>
+
+<ol>
+<li>加快 undo 页的回收</li>
+<li>能进一步利用磁盘的随机读取性能</li>
+</ol>
+</blockquote>
+
+<ul>
+<li>Page Cleaner Thread</li>
+</ul>
+
+<blockquote>
+<p>负责将脏页刷新到磁盘中</p>
+
+<p>原本该功能在 Master Thread 中，这样做减轻了 Master Thread 的工作</p>
+
+<p>以及减少用户查询线程的阻塞，从而进一步提高 InnoDB 存储引擎的性能</p>
+</blockquote>
+
+<h3 id="内存池">内存池</h3>
+
+<p>作用：</p>
+
+<ol>
+<li>维护所有进程/线程需要访问的多个内部数据结构</li>
+<li>缓存磁盘上的数据以便快速读取，同时在修改磁盘文件数据之前在这里缓存</li>
+<li>重做日志缓冲等</li>
+</ol>
+
   </main>
   <div id="disqus-container">
   
