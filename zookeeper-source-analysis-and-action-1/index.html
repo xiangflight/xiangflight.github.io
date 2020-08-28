@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="generator" content="Hugo 0.56.1" />
-  <link rel="canonical" href="https://xiangflight.github.io/design-data-intensive-application-part-2-1/">
+  <link rel="canonical" href="https://xiangflight.github.io/zookeeper-source-analysis-and-action-1/">
 
   
 
@@ -32,7 +32,7 @@
 
   
   
-  <title>DDIA系列 - 分布式部分 - 1 | Zone Of Xiang</title>
+  <title>Zookeeper源码分析与实战 1 | Zone Of Xiang</title>
 </head>
 
   <body>
@@ -227,13 +227,13 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      DDIA系列 - 分布式部分 - 1
+      Zookeeper源码分析与实战 1
     </h1>
 
     <div class="date">
       
       
-      <strong aria-hidden="true">Publish date: </strong>Oct 319, 31039
+      <strong aria-hidden="true">Publish date: </strong>Oct 279, 27089
       
         
           <br>
@@ -252,7 +252,15 @@
                 <use xlink:href="#tag"></use>
               </svg>
               
-              <a href="https://xiangflight.github.io/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a>
+              <a href="https://xiangflight.github.io/tags/zookeeper/">zookeeper</a>
+            </li>
+          
+            <li>
+              <svg class="tag-icon" aria-hidden="true" viewBox="0 0 177.16535 177.16535" focusable="false">
+                <use xlink:href="#tag"></use>
+              </svg>
+              
+              <a href="https://xiangflight.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
             </li>
           
         </ul>
@@ -260,169 +268,174 @@
     
     
     
-      
-
-  <nav class="toc" aria-labelledby="toc-heading">
-    <h2 id="toc-heading">Table of contents</h2>
-    <ol>
-      
-        <li>
-          
-          
-          
-          
-          <a href="#%e4%b8%ba%e4%bd%95%e4%bd%bf%e7%94%a8%e5%88%86%e5%b8%83%e5%bc%8f">
-            为何使用分布式
-          </a>
-        </li>
-      
-        <li>
-          
-          
-          
-          
-          <a href="#%e7%b3%bb%e7%bb%9f%e6%89%a9%e5%b1%95%e8%83%bd%e5%8a%9b">
-            系统扩展能力
-          </a>
-        </li>
-      
-        <li>
-          
-          
-          
-          
-          <a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae">
-            参考文献
-          </a>
-        </li>
-      
-    </ol>
-  </nav>
-
 
     
 
-    
+<h2 id="数据模型">数据模型</h2>
 
-<h2 id="为何使用分布式">为何使用分布式</h2>
+<p>ZooKeeper 中的数据模型是一种树形结构，类似于 Linux 中的文件系统。</p>
 
-<p>主要是出于如下考虑：</p>
+<p>ZK 中的每个绝对路径称为一个znode，znode 有以下三种：</p>
 
-<h3 id="可扩展性">可扩展性</h3>
+<h3 id="持久节点">持久节点</h3>
 
-<p>数据量、读负载 或 写负载 大到单机无法处理，分摊负载</p>
+<p>在ZooKeeper中最为常用。</p>
 
-<h3 id="容错与高可用性">容错与高可用性</h3>
+<p>一旦创建了持久节点，即使创建该节点的客户端与服务器的会话关闭了，该节点依旧存在ZK服务器上。</p>
 
-<p>提供 HA 保证，允许单点故障</p>
+<p>必须使用 <code>delete</code> 命令才可以删除持久节点。</p>
 
-<h3 id="延迟">延迟</h3>
+<h3 id="临时节点">临时节点</h3>
 
-<p>将服务部署到离客户最近的机器上，降低延迟</p>
+<p>最重要的特性是临时性。</p>
 
-<h2 id="系统扩展能力">系统扩展能力</h2>
+<p>当创建该节点的客户端会话因超时或发生异常而关闭时，该节点在ZK服务器上也会被删除。</p>
 
-<h3 id="纵向扩展-垂直扩展">纵向扩展/垂直扩展</h3>
+<p>可以使用 <code>delete</code> 命令删除临时节点。</p>
 
-<h4 id="共享内存架构">共享内存架构</h4>
+<p>应用场景：利用临时节点，做服务器集群内机器运行情况的统计。</p>
 
-<p>堆配置，加 CPU、加内存、加磁盘，提高计算和存储能力</p>
+<h3 id="有序节点">有序节点</h3>
 
-<p>优点：简单，能提供有限的容错能力，因为高端服务器的组件都是热插拔的</p>
+<p>一种性质，可以应用在临时节点和持久节点上。</p>
 
-<p>缺点：</p>
+<p>当我们创建有序节点时，ZK服务器会自动使用一个单调递增的数字作为后缀，追加到节点的后边。</p>
+
+<p>通过生成的序号，可以直观地查看节点的创建顺序。</p>
+
+<h3 id="节点的状态结构">节点的状态结构</h3>
+
+<p>使用命令 <code>stat &lt;path&gt;</code> 的方式，可以查看节点的状态信息。</p>
+
+<p>每个znode都有一个自己的状态属性，记录了节点的一些信息，包括如下：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">状态属性</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">cZxid</td>
+<td align="center">节点被创建时的事务ID</td>
+</tr>
+
+<tr>
+<td align="center">ctime</td>
+<td align="center">节点的创建时间</td>
+</tr>
+
+<tr>
+<td align="center">mZxid</td>
+<td align="center">节点最后一次被更新的事务ID</td>
+</tr>
+
+<tr>
+<td align="center">mtime</td>
+<td align="center">节点最后一次被更新的时间</td>
+</tr>
+
+<tr>
+<td align="center">pZxid</td>
+<td align="center">节点的子节点列表最后一次被修改时的事务ID</td>
+</tr>
+
+<tr>
+<td align="center">cversion</td>
+<td align="center">子节点的版本号</td>
+</tr>
+
+<tr>
+<td align="center">dataVersion</td>
+<td align="center">节点的数据版本号</td>
+</tr>
+
+<tr>
+<td align="center">aclVersion</td>
+<td align="center">节点的ACL版本号</td>
+</tr>
+
+<tr>
+<td align="center">ephemeralOwner</td>
+<td align="center">创建该临时节点的会话 SessionID；如果是持久节点，则值为0</td>
+</tr>
+
+<tr>
+<td align="center">dataLength</td>
+<td align="center">数据内容的长度</td>
+</tr>
+
+<tr>
+<td align="center">numChildren</td>
+<td align="center">节点的子节点个数</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="实战">实战</h2>
+
+<h3 id="使用-zookeeper-实现分布式锁">使用 ZooKeeper 实现分布式锁</h3>
+
+<p>场景：某个商品库存只剩一件，两人同时购买，结果出现一件商品卖出了两件。</p>
+
+<p>解决：可以在一个用户进行操作的时候，对库存进行锁定，从而避免超卖。</p>
+
+<h2 id="锁">锁</h2>
+
+<h3 id="悲观锁">悲观锁</h3>
+
+<p>认为进程对临界区对竞争总会出现，为了保证进程在操作数据时，该条数据不被其他进程修改，该数据一直处于被锁定的状态。</p>
+
+<p>在 ZK 中：</p>
 
 <ol>
-<li>无法提供异地容错能力</li>
-<li>成本增长非线性，两倍配置不能带来两倍的性能提升</li>
+<li>进程 A 首先创建一个节点 <code>/locks</code> 来获取锁</li>
+<li>进程 B 也尝试创建 <code>/locks</code> 节点来获取锁，因为已经有了，所以会创建节点失败无法获得锁</li>
+<li>这样就实现了一个简单的悲观锁</li>
+<li>存在问题：当进程 A 因为异常中断导致 <code>/locks</code> 节点始终存在，其他进程就始终无法获取锁，产生死锁</li>
+<li>可以通过将节点设置为临时节点的方式避免，在服务器端添加监听事件来通知其他进程重新获取锁</li>
 </ol>
 
-<h4 id="共享磁盘架构">共享磁盘架构</h4>
+<h3 id="乐观锁">乐观锁</h3>
 
-<p>计算节点与存储节点分离：</p>
+<p>认为进程对临界区资源的竞争不会总出现，所以加锁方式没有那么激烈，不会全程的锁定资源，而是在数据进行提交更新的时候，对数据的冲突与否进行检测，如果发现冲突了，则拒绝操作。</p>
 
-<ul>
-<li>计算节点具备强大的 CPU 和 内存</li>
-<li>存储节点具备强大的 I/O 能力，比如用磁盘阵列或SSD等</li>
-<li>计算节点与存储节点之间用高速网络，比如 IB 网络或 NAS</li>
-<li>适用于 数据仓库 等负载</li>
-</ul>
-
-<p>缺点：</p>
-
-<ul>
-<li>资源竞争以及锁的开销等限制了其进一步的扩展能力</li>
-</ul>
-
-<h3 id="横向扩展-水平扩展">横向扩展/水平扩展</h3>
-
-<h4 id="无共享架构-完全分布式">无共享架构，完全分布式</h4>
-
-<p>这种架构下，每台机器都称为一个节点，具有独立的 CPU、内存和磁盘</p>
-
-<p>节点之间的通信使用传统的以太网上，使用软件来协调运作</p>
-
-<p>优点：</p>
+<p>乐观锁分为三个步骤：</p>
 
 <ol>
-<li>不需要专门的硬件，具有较高的性价比</li>
-<li>跨多个地理区域，可以就近减少访问延迟</li>
-<li>能在数据中心挂了的情况下继续工作，较高的容错能力</li>
+<li>读取</li>
+<li>校验</li>
+<li>写入</li>
 </ol>
 
-<p>缺点：给应用带来了更高的复杂性</p>
+<p>即 CAS（Compare-And-Swap），过程如下：</p>
 
-<h3 id="复制与分区">复制与分区</h3>
+<p>当且仅当 预期值A 和 内存值V 相同时，将内存值V 修改为 B，否则什么都不做。</p>
 
-<p>数据分布在多个节点上有两种常见的方式：<strong>复制</strong> 与 <strong>分区</strong></p>
+<p>在 ZK 中：</p>
 
-<h4 id="复制">复制</h4>
+<ol>
+<li>可以使用 dataVersion 判断该节点是否被改动过</li>
+</ol>
 
-<p>英文：<strong>Replication</strong></p>
+<hr />
 
-<p>多个节点上保存相同数据的副本，提供冗余，并且提高系统性能</p>
+<h2 id="总结">总结</h2>
 
-<h4 id="分区">分区</h4>
+<p>为什么 Zookeeper 不采用相对路径查找节点呢？</p>
 
-<p>英文：<strong>Partition</strong>，有时也称为分片，即 <strong>Sharding</strong></p>
+<p>因为 ZK 大多应用场景是定位数据模型上的节点，并在节点上操作</p>
 
-<p>将大块头的数据库拆分成更小的子集，不同的子集分配给不同的节点存储</p>
+<p>这种频繁查找的操作，适合用 Map 解决</p>
 
-<h4 id="总结">总结</h4>
+<p>ZK 中使用 <code>ConcurrentHashMap&lt;String, String&gt; nodes</code> 结构，节点的完整路径作为 key，</p>
 
-<p>复制 与 分区 是配合使用的，如下图：</p>
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<figure role="group" aria-describedby="caption-4208e0d5abcd02583a52b476e579e6a1">
-  <a href="https://xiangflight.github.io/design-data-intensive-application-part-2-1/ddia-part2-1.png" class="img-link">
-    <img src="https://xiangflight.github.io/design-data-intensive-application-part-2-1/ddia-part2-1_hu3634be89c00f4bc7d022dcb50d82d15f_203158_700x0_resize_box_2.png">
-  </a>
-  <figcaption id="caption-4208e0d5abcd02583a52b476e579e6a1">
-    复制与分区配合使用
-  </figcaption>
-</figure>
-
-
-<h2 id="参考文献">参考文献</h2>
-
-<p><a href="https://akkadia.org/drepper/cpumemory.pdf">What Every Programmer Should Know About Memory</a></p>
-
-<p><a href="http://www.benstopford.com/2009/11/24/understanding-the-shared-nothing-architecture/">Shared Nothing vs. Shared Disk Architectures: An Indenpendent View</a></p>
-
-<p><a href="https://dsf.berkeley.edu/papers/hpts85-nothing.pdf">The Case for Shared Nothing</a></p>
-
-<p><a href="http://www.frankmcsherry.org/assets/COST.pdf">Scalability! But at What COST?</a></p>
+<p>这样可以通过绝对路径快速定位到数据节点，从而在数据节点上进行操作，大大提升ZK性能。</p>
 
   </main>
   <div id="disqus-container">

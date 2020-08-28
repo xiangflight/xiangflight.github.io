@@ -12,6 +12,29 @@
     
     
     <item>
+      <title>Zookeeper源码分析与实战 1</title>
+      <link>https://xiangflight.github.io/zookeeper-source-analysis-and-action-1/</link>
+      <pubDate>Thu, 27 Aug 2020 21:58:21 +0800</pubDate>
+      
+      <guid>https://xiangflight.github.io/zookeeper-source-analysis-and-action-1/</guid>
+      <description>数据模型 ZooKeeper 中的数据模型是一种树形结构，类似于 Linux 中的文件系统。
+ZK 中的每个绝对路径称为一个znode，znode 有以下三种：
+持久节点 在ZooKeeper中最为常用。
+一旦创建了持久节点，即使创建该节点的客户端与服务器的会话关闭了，该节点依旧存在ZK服务器上。
+必须使用 delete 命令才可以删除持久节点。
+临时节点 最重要的特性是临时性。
+当创建该节点的客户端会话因超时或发生异常而关闭时，该节点在ZK服务器上也会被删除。
+可以使用 delete 命令删除临时节点。
+应用场景：利用临时节点，做服务器集群内机器运行情况的统计。
+有序节点 一种性质，可以应用在临时节点和持久节点上。
+当我们创建有序节点时，ZK服务器会自动使用一个单调递增的数字作为后缀，追加到节点的后边。
+通过生成的序号，可以直观地查看节点的创建顺序。
+节点的状态结构 使用命令 stat &amp;lt;path&amp;gt; 的方式，可以查看节点的状态信息。
+每个znode都有一个自己的状态属性，记录了节点的一些信息，包括如下：
+   状态属性 说明     cZxid 节点被创建时的事务ID   ctime 节点的创建时间   mZxid 节点最后一次被更新的事务ID   mtime 节点最后一次被更新的时间   pZxid 节点的子节点列表最后一次被修改时的事务ID   cversion 子节点的版本号   dataVersion 节点的数据版本号   aclVersion 节点的ACL版本号   ephemeralOwner 创建该临时节点的会话 SessionID；如果是持久节点，则值为0   dataLength 数据内容的长度   numChildren 节点的子节点个数    实战 使用 ZooKeeper 实现分布式锁 场景：某个商品库存只剩一件，两人同时购买，结果出现一件商品卖出了两件。</description>
+    </item>
+    
+    <item>
       <title>DDIA系列 - 分布式部分 - 1</title>
       <link>https://xiangflight.github.io/design-data-intensive-application-part-2-1/</link>
       <pubDate>Tue, 31 Mar 2020 18:37:54 +0800</pubDate>
