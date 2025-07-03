@@ -1,32 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo 基础</title>
-    <url>/2025/06/29/hexo-basic/</url>
-    <content><![CDATA[<p>本篇记录一些 Hexo 常用的命令，备忘。</p>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>代码整洁之道 - 函数</title>
+    <url>/2025/06/30/Clean-Code-Function/</url>
+    <content><![CDATA[<h2 id="短小-Small"><a href="#短小-Small" class="headerlink" title="短小 Small"></a>短小 Small</h2><p>函数的第一条规则是要 <strong>短小</strong>，第二条规则是要 <strong>更短小</strong></p>
+<ul>
+<li>20 行封顶最佳</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">renderPageWithSetupsAndTearDowns</span><span class="params">(PageData pageData, <span class="type">boolean</span> isSuite)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (isTestPage(pageData)) &#123;</span><br><span class="line">        includeSetupAndTeardownPages(pageData, isSuite);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pageData.getHtml();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <span id="more"></span>
 
-<h3 id="本地启动服务"><a href="#本地启动服务" class="headerlink" title="本地启动服务"></a>本地启动服务</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="部署到远程"><a href="#部署到远程" class="headerlink" title="部署到远程"></a>部署到远程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="新建文章头模板"><a href="#新建文章头模板" class="headerlink" title="新建文章头模板"></a>新建文章头模板</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: Hexo 常用命令</span><br><span class="line">date: 2025-06-29 14:20:19</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> Tool</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">-</span> Hexo</span><br></pre></td></tr></table></figure>
-
-<h3 id="See-more"><a href="#See-more" class="headerlink" title="See more"></a>See more</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="代码块与缩进-Blocks-and-Indenting"><a href="#代码块与缩进-Blocks-and-Indenting" class="headerlink" title="代码块与缩进 Blocks and Indenting"></a>代码块与缩进 Blocks and Indenting</h2><p>if 、else 和 while 语句等，其中的代码块应该只占一行（should be one line long），通常该行是一个函数调用</p>
+<ul>
+<li><p>函数的缩进层级不该多于一层或两层</p>
+</li>
+<li><p>这样的函数易于阅读和理解</p>
+</li>
+</ul>
+<h2 id="只做一件事-Do-One-Thing"><a href="#只做一件事-Do-One-Thing" class="headerlink" title="只做一件事 Do One Thing"></a>只做一件事 Do One Thing</h2><ul>
+<li><p>函数应该做一件事。做好这件事，只做这一件事。</p>
+</li>
+<li><p>函数的目的 &#x3D;&gt; 把较大的概念 拆分为 另一抽象层上的 一系列步骤</p>
+</li>
+<li><p>如果步骤在同一抽象层上，我们就可以认为是同一件事</p>
+</li>
+<li><p>判断函数可否做了一件事 -&gt; 看其是否可再被拆分出一个函数</p>
+</li>
+<li><p>只做一件事的函数，无法被合理切分为多个区段</p>
+</li>
+</ul>
+<h2 id="每个函数一个抽象层级-One-Level-of-Abstraction-per-Function"><a href="#每个函数一个抽象层级-One-Level-of-Abstraction-per-Function" class="headerlink" title="每个函数一个抽象层级 One Level of Abstraction per Function"></a>每个函数一个抽象层级 One Level of Abstraction per Function</h2><ul>
+<li><p>要确保函数只做一件事，函数中语句必须在同一抽象层级</p>
+</li>
+<li><p>The Stepdown Rule 向下规则：让代码读起来像是一系列 自顶向下的 TO 开头的段落是保持抽象层级协调一致的有效技巧</p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Tool</category>
+        <category>Engineering</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
+        <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式 - 创建型 - 单例模式</title>
+    <url>/2025/07/02/Design-Pattern-Singleton/</url>
+    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
+<li>创建型   Creational</li>
+</ul>
+<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.</p>
+<span id="more"></span>
+
+<h2 id="例子-Real-Example"><a href="#例子-Real-Example" class="headerlink" title="例子 Real Example"></a>例子 Real Example</h2><p>Logger，通常来说应用中只会有一个，以避免意想不到的结果。</p>
+<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Lazy&lt;Logger&gt; lazyLogger = <span class="keyword">new</span> Lazy&lt;Logger&gt;(() =&gt; <span class="keyword">new</span> Logger());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Logger Instance =&gt; lazyLogger.Value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Logger</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;summary&gt;</span></span><br><span class="line">    <span class="comment">// SingletonOperation</span></span><br><span class="line">    <span class="comment">// &lt;/summary&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Log</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Log: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
+<li><p>When there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point</p>
+</li>
+<li><p>When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code</p>
+</li>
+</ul>
+<h2 id="用例-User-Case"><a href="#用例-User-Case" class="headerlink" title="用例 User Case"></a>用例 User Case</h2><ul>
+<li><p>管理数据库连接池 connection pool</p>
+</li>
+<li><p>缓存 cache</p>
+</li>
+<li><p>管理应用配置 manage application configuration</p>
+</li>
+<li><p>通用资源管理 general resource management</p>
+</li>
+</ul>
+<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
+<li><p>违反了单一职责 Violates the SRP</p>
+<ul>
+<li><p>负责对象的创建 Control Creation</p>
+</li>
+<li><p>负责对象的生命周期管理 manage own lifecycle</p>
+</li>
+</ul>
+</li>
+<li><p>严格的控制客户对其的访问 Strict Control over how and when clients access it</p>
+</li>
+<li><p>Avoids polluting the namespace with global variables</p>
+</li>
+<li><p>Subclassing allows configuring the application with an instance of the class you need at runtime</p>
+</li>
+<li><p>Multipe instances can be allowed without having to alter the client</p>
+</li>
+<li><p>很多时候我们不用自己实现，让 IoC 容器管理吧</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+        <tag>Design Pattern</tag>
       </tags>
   </entry>
   <entry>
@@ -123,6 +196,35 @@
       </categories>
       <tags>
         <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 基础</title>
+    <url>/2025/06/29/Hexo-Basic/</url>
+    <content><![CDATA[<p>本篇记录一些 Hexo 常用的命令，备忘。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<span id="more"></span>
+
+<h3 id="本地启动服务"><a href="#本地启动服务" class="headerlink" title="本地启动服务"></a>本地启动服务</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="部署到远程"><a href="#部署到远程" class="headerlink" title="部署到远程"></a>部署到远程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="新建文章头模板"><a href="#新建文章头模板" class="headerlink" title="新建文章头模板"></a>新建文章头模板</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: Hexo 常用命令</span><br><span class="line">date: 2025-06-29 14:20:19</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> Tool</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">-</span> Hexo</span><br></pre></td></tr></table></figure>
+
+<h3 id="See-more"><a href="#See-more" class="headerlink" title="See more"></a>See more</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Tool</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
