@@ -28,7 +28,7 @@
 <meta property="og:description" content="短小 Small函数的第一条规则是要 短小，第二条规则是要 更短小  20 行封顶最佳  例子： 1234567public static String renderPageWithSetupsAndTearDowns(PageData pageData, boolean isSuite) throws Exception&#123;    if (isTestPage(pageData)) &amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-30T14:53:23.000Z">
-<meta property="article:modified_time" content="2025-07-02T15:06:13.266Z">
+<meta property="article:modified_time" content="2025-07-08T15:28:29.935Z">
 <meta property="article:author" content="xiangflight">
 <meta property="article:tag" content="Coding">
 <meta name="twitter:card" content="summary">
@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-02 23:06:13" itemprop="dateModified" datetime="2025-07-02T23:06:13+08:00">2025-07-02</time>
+                <time title="修改时间：2025-07-08 23:28:29" itemprop="dateModified" datetime="2025-07-08T23:28:29+08:00">2025-07-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,14 +240,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>653</span>
+              <span>4.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -291,6 +291,137 @@
 <li><p>要确保函数只做一件事，函数中语句必须在同一抽象层级</p>
 </li>
 <li><p>The Stepdown Rule 向下规则：让代码读起来像是一系列 自顶向下的 TO 开头的段落是保持抽象层级协调一致的有效技巧</p>
+</li>
+</ul>
+<h2 id="Switch-语句-Switch-Statements"><a href="#Switch-语句-Switch-Statements" class="headerlink" title="Switch 语句 Switch Statements"></a>Switch 语句 Switch Statements</h2><p>switch 不可能只做一件事，但我们可以把它埋藏在 <strong>较低</strong> 的抽象层级</p>
+<p>解决方案：将 switch 埋藏到 <strong>抽象工厂</strong> 底下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Money <span class="title function_">calculatePay</span><span class="params">(Employee e)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (e.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> COMMISSIONED:</span><br><span class="line">            <span class="keyword">return</span> calculateCommissionedPay(e);</span><br><span class="line">        <span class="keyword">case</span> HOURLY:</span><br><span class="line">            <span class="keyword">return</span> calculateHourlyPay(e);</span><br><span class="line">        <span class="keyword">case</span> SALARIED:</span><br><span class="line">            <span class="keyword">return</span> calculateSalariedPay(e);</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InvalidOperation</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该函数有几个问题：</p>
+<ol>
+<li><p>太长，出现新的雇员类型时会更长</p>
+</li>
+<li><p>明显做了不止一件事</p>
+</li>
+<li><p>违反了单一职责原则，因为有好几个可以修改它的理由</p>
+</li>
+<li><p>违反了开闭原则，每当添加新类型时，必须修改该函数</p>
+</li>
+</ol>
+<p>更好的写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Employee</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">boolean</span> <span class="title function_">isPayDay</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> Money <span class="title function_">calculatePay</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">deliverPay</span><span class="params">(Money pay)</span>;</span><br><span class="line">&#125;</span><br><span class="line">-------------------</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IEmployeeFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Employee <span class="title function_">makeEmployee</span><span class="params">(EmployeeRecord r)</span>;</span><br><span class="line">&#125;</span><br><span class="line">-------------------</span><br><span class="line"><span class="keyword">public</span> EmployeeFactory : IEmployeeFactory &#123;</span><br><span class="line">    <span class="keyword">public</span> Employee <span class="title function_">makeEmployee</span><span class="params">(EmployeeRecord r)</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> (r.type) &#123;</span><br><span class="line">            <span class="keyword">case</span> COMMISSIONED:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CommissionedEmployee</span>(r);</span><br><span class="line">            <span class="keyword">case</span> HOURLY:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">HourlyEmployee</span>(r);</span><br><span class="line">            <span class="keyword">case</span> SALARIED:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SalariedEmployee</span>(r);</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InvalidOperation</span>();            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用具有描述性的名称-Use-Descriptive-Names"><a href="#使用具有描述性的名称-Use-Descriptive-Names" class="headerlink" title="使用具有描述性的名称 Use Descriptive Names"></a>使用具有描述性的名称 Use Descriptive Names</h2><ul>
+<li><p>函数越短小，功能越集中，越便于起个好名字</p>
+</li>
+<li><p>长而具有描述性的名称 比 短而令人费解的名称 好</p>
+</li>
+<li><p>长而具有描述性的名称 比 描述性的长注释 好</p>
+</li>
+<li><p>描述性的名称 能理清 你关于模块 的设计思路</p>
+</li>
+<li><p>命名方式要保持一致</p>
+</li>
+</ul>
+<h2 id="函数参数-Function-Arguments"><a href="#函数参数-Function-Arguments" class="headerlink" title="函数参数 Function Arguments"></a>函数参数 Function Arguments</h2><ul>
+<li><p>最理想的参数个数是 0，其次是 1，再次是 2</p>
+</li>
+<li><p>尽量避免3，有足够的理由才能用3个以上的参数</p>
+</li>
+<li><p>参数与函数处于不同的抽象层级，要求你了解目前并不重要的细节</p>
+</li>
+<li><p>尽量不要用输出参数，一般情况下难以理解</p>
+</li>
+</ul>
+<h3 id="单参数函数的普遍形式-Common-Monadic-Forms"><a href="#单参数函数的普遍形式-Common-Monadic-Forms" class="headerlink" title="单参数函数的普遍形式 Common Monadic Forms"></a>单参数函数的普遍形式 Common Monadic Forms</h3><ul>
+<li><p>问关于参数的问题 <code>bool fileExists(&quot;MyFile&quot;)</code></p>
+</li>
+<li><p>操作参数，转换为其他的东西 <code>InputStream fileOpen(&quot;MyFile&quot;)</code></p>
+</li>
+<li><p>事件 Event，程序将函数看成一个事件，使用该参数修改系统状态</p>
+</li>
+<li><p>尽量避免编写不遵循这些形式的单参数函数</p>
+</li>
+</ul>
+<h3 id="标识参数-Flag-Arguments"><a href="#标识参数-Flag-Arguments" class="headerlink" title="标识参数 Flag Arguments"></a>标识参数 Flag Arguments</h3><p>标识参数是丑陋的，一旦用了标识参数，意味着一定违反了SRP，此时应该拆分函数</p>
+<h3 id="双参数函数-Dyadic-Functions"><a href="#双参数函数-Dyadic-Functions" class="headerlink" title="双参数函数 Dyadic Functions"></a>双参数函数 Dyadic Functions</h3><p>尽量利用一些机制将其转换成单参数函数</p>
+<h3 id="三参数函数-Triads"><a href="#三参数函数-Triads" class="headerlink" title="三参数函数 Triads"></a>三参数函数 Triads</h3><p>在写三参数函数前一定要想清楚</p>
+<h3 id="参数对象-Argument-Objects"><a href="#参数对象-Argument-Objects" class="headerlink" title="参数对象 Argument Objects"></a>参数对象 Argument Objects</h3><p>如果函数看起来需要超过2个以上参数，此时就意味着其中一些参数应该被封装成类了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Circle <span class="title function_">makeCircle</span><span class="params">(<span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> radius)</span>;</span><br><span class="line">Circle <span class="title function_">makeCircle</span><span class="params">(Point center, <span class="type">double</span> radius)</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数列表-Argument-Lists"><a href="#参数列表-Argument-Lists" class="headerlink" title="参数列表 Argument Lists"></a>参数列表 Argument Lists</h3><p>略</p>
+<h3 id="动词与关键字-Verbs-and-Keywords"><a href="#动词与关键字-Verbs-and-Keywords" class="headerlink" title="动词与关键字 Verbs and Keywords"></a>动词与关键字 Verbs and Keywords</h3><p>对于单参数函数，函数和参数应当形成一种非常良好的动词&#x2F;名词对形式，例如 <code>write(name)</code>. 更好的名称也可以是 <code>writeField(name)</code> ，这告诉我们 name 是一个 field</p>
+<h2 id="无副作用-Have-No-Side-Effects"><a href="#无副作用-Have-No-Side-Effects" class="headerlink" title="无副作用 Have No Side Effects"></a>无副作用 Have No Side Effects</h2><p>副作用是一种谎言，函数承诺做一件事，却悄悄地做了另一件事。这会造成意料之外的影响如：</p>
+<ol>
+<li><p>古怪的时序性耦合</p>
+</li>
+<li><p>顺序依赖</p>
+</li>
+</ol>
+<p>函数名一定要能体现其要做的事</p>
+<h3 id="输出参数-Output-Arguments"><a href="#输出参数-Output-Arguments" class="headerlink" title="输出参数 Output Arguments"></a>输出参数 Output Arguments</h3><ul>
+<li><p>如果你被迫检查函数签名，就得花时间做一些重构，应该避免这种中断思路的事</p>
+</li>
+<li><p>应避免使用输出参数，因为 this 也有输出的意味</p>
+</li>
+<li><p>如果函数必须要修改某种状态，就修改所属对象的状态</p>
+</li>
+</ul>
+<h2 id="分隔指令与询问-Command-Query-Separation"><a href="#分隔指令与询问-Command-Query-Separation" class="headerlink" title="分隔指令与询问 Command Query Separation"></a>分隔指令与询问 Command Query Separation</h2><ul>
+<li>函数要么做什么事，要么回答什么事，二者不可兼得</li>
+</ul>
+<h2 id="使用异常替代返回错误码-Prefer-Exception-to-Returning-Error-Codes"><a href="#使用异常替代返回错误码-Prefer-Exception-to-Returning-Error-Codes" class="headerlink" title="使用异常替代返回错误码 Prefer Exception to Returning Error Codes"></a>使用异常替代返回错误码 Prefer Exception to Returning Error Codes</h2><ul>
+<li><p>从指令式函数返回错误码略微违反了指令与询问分隔的原则</p>
+</li>
+<li><p>如果使用异常替代返回错误码，错误处理代码就能从主路径代码中分离出来，如：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    deletePage(page);</span><br><span class="line">    registry.deleteReference(page.name);</span><br><span class="line">    configKeyd.deleteKey(page.name.makeKey());</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    logger.log(e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="抽离-try-catch-代码块-Extract-Try-Catch-Blocks"><a href="#抽离-try-catch-代码块-Extract-Try-Catch-Blocks" class="headerlink" title="抽离 try&#x2F;catch 代码块 Extract Try&#x2F;Catch Blocks"></a>抽离 try&#x2F;catch 代码块 Extract Try&#x2F;Catch Blocks</h3><p>try&#x2F;catch 代码块，把错误处理与正常流程混为一谈， 最好把 try 和 catch 代码块的主体部分抽离出来，另外形成函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(Page page)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        deletePageAndAllReferences(page);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        logError(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">deletePageAndAllReferences</span><span class="params">(Page page)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    deletePage(page);</span><br><span class="line">    registry.deleteReference(page.name);</span><br><span class="line">    configKeys.deleteKey(page.name.makeKey());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">logError</span><span class="params">(Exception e)</span> &#123;</span><br><span class="line">    logger.log(e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该例中：</p>
+<ul>
+<li><p><code>delete</code> 函数只与错误处理有关</p>
+</li>
+<li><p><code>deletePageAndAllReferences</code> 只与完全删除一个page有关，不用管错误处理</p>
+</li>
+</ul>
+<h3 id="错误处理就是一件事-Error-Handling-Is-One-Thing"><a href="#错误处理就是一件事-Error-Handling-Is-One-Thing" class="headerlink" title="错误处理就是一件事 Error Handling Is One Thing"></a>错误处理就是一件事 Error Handling Is One Thing</h3><p>函数应该只做一件事，错误处理就是一件事，这意味着：</p>
+<p>如果在某个函数中存在 <code>try</code>，它就应该是这个函数的第一个单词，且在 <code>catch/finally</code> 代码块后面也不该有其他内容。</p>
+<h3 id="Error-java-依赖磁铁-The-Error-java-Dependency-Magnet"><a href="#Error-java-依赖磁铁-The-Error-java-Dependency-Magnet" class="headerlink" title="Error.java 依赖磁铁 The Error.java Dependency Magnet"></a>Error.java 依赖磁铁 The Error.java Dependency Magnet</h3><p>返回错误通常定义成一个类或枚举，很多其他类都会导入和使用它，意味着：</p>
+<p>当修改 Error.java 时，所有其他类都需要重新编译和部署 - 这是不好的一面</p>
+<h2 id="别重复自己-Do-not-Repeat-Yourself"><a href="#别重复自己-Do-not-Repeat-Yourself" class="headerlink" title="别重复自己 Do not Repeat Yourself"></a>别重复自己 Do not Repeat Yourself</h2><p>重复可能是软件中一些邪恶的根源，许多原则和实践规则都是为了控制与消除重复而创建的</p>
+<p>例如：</p>
+<ul>
+<li><p>Codd 数据库范式就是为了消除数据重复而服务的</p>
+</li>
+<li><p>面向对象编程把代码集中到基类，从而避免冗余</p>
+</li>
+<li><p>面向切面编程、面向组件编程，多少也是为了消除重复的一种策略</p>
+</li>
+</ul>
+<h2 id="结构化编程-Structured-Programming"><a href="#结构化编程-Structured-Programming" class="headerlink" title="结构化编程 Structured Programming"></a>结构化编程 Structured Programming</h2><p>这是 Edsger Dijkstra 提出的编程规则：每个函数、函数中的每个代码块都应该有一个入口，一个出口，遵循该原则，意味着：</p>
+<ul>
+<li><p>每个函数只该有一个 <code>return</code> 语句</p>
+</li>
+<li><p>循环中不能有 <code>break</code> 或 <code>continue</code> 语句</p>
+</li>
+<li><p>永远不能有任何 <code>goto</code> 语句</p>
+</li>
+</ul>
+<p>但是，对于小函数，这些规则助益不大，所以尽量保持函数短小，偶尔出现的 <code>return</code> <code>break</code> 和 <code>continue</code> 语句没有坏处</p>
+<h2 id="小结-Conclusion"><a href="#小结-Conclusion" class="headerlink" title="小结 Conclusion"></a>小结 Conclusion</h2><ul>
+<li><p>不要指望一开始就按规则写函数</p>
+</li>
+<li><p>先写出来，用尽量完备的测试覆盖每行代码</p>
+</li>
+<li><p>打磨代码，分解函数，修改名称，消除重复</p>
+</li>
+<li><p>编程艺术是且一直是语言设计的艺术</p>
+</li>
+<li><p>大师级程序员把系统当作故事来讲，而不是当作程序来写</p>
 </li>
 </ul>
 
@@ -376,7 +507,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E5%B0%8F-Small"><span class="nav-text">短小 Small</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%8E%E7%BC%A9%E8%BF%9B-Blocks-and-Indenting"><span class="nav-text">代码块与缩进 Blocks and Indenting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AA%E5%81%9A%E4%B8%80%E4%BB%B6%E4%BA%8B-Do-One-Thing"><span class="nav-text">只做一件事 Do One Thing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%8F%E4%B8%AA%E5%87%BD%E6%95%B0%E4%B8%80%E4%B8%AA%E6%8A%BD%E8%B1%A1%E5%B1%82%E7%BA%A7-One-Level-of-Abstraction-per-Function"><span class="nav-text">每个函数一个抽象层级 One Level of Abstraction per Function</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E5%B0%8F-Small"><span class="nav-text">短小 Small</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%8E%E7%BC%A9%E8%BF%9B-Blocks-and-Indenting"><span class="nav-text">代码块与缩进 Blocks and Indenting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AA%E5%81%9A%E4%B8%80%E4%BB%B6%E4%BA%8B-Do-One-Thing"><span class="nav-text">只做一件事 Do One Thing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%8F%E4%B8%AA%E5%87%BD%E6%95%B0%E4%B8%80%E4%B8%AA%E6%8A%BD%E8%B1%A1%E5%B1%82%E7%BA%A7-One-Level-of-Abstraction-per-Function"><span class="nav-text">每个函数一个抽象层级 One Level of Abstraction per Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-%E8%AF%AD%E5%8F%A5-Switch-Statements"><span class="nav-text">Switch 语句 Switch Statements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%85%B7%E6%9C%89%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%9A%84%E5%90%8D%E7%A7%B0-Use-Descriptive-Names"><span class="nav-text">使用具有描述性的名称 Use Descriptive Names</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0-Function-Arguments"><span class="nav-text">函数参数 Function Arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%8F%82%E6%95%B0%E5%87%BD%E6%95%B0%E7%9A%84%E6%99%AE%E9%81%8D%E5%BD%A2%E5%BC%8F-Common-Monadic-Forms"><span class="nav-text">单参数函数的普遍形式 Common Monadic Forms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AF%86%E5%8F%82%E6%95%B0-Flag-Arguments"><span class="nav-text">标识参数 Flag Arguments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E5%8F%82%E6%95%B0%E5%87%BD%E6%95%B0-Dyadic-Functions"><span class="nav-text">双参数函数 Dyadic Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8F%82%E6%95%B0%E5%87%BD%E6%95%B0-Triads"><span class="nav-text">三参数函数 Triads</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%AF%B9%E8%B1%A1-Argument-Objects"><span class="nav-text">参数对象 Argument Objects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8-Argument-Lists"><span class="nav-text">参数列表 Argument Lists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E8%AF%8D%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97-Verbs-and-Keywords"><span class="nav-text">动词与关键字 Verbs and Keywords</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E5%89%AF%E4%BD%9C%E7%94%A8-Have-No-Side-Effects"><span class="nav-text">无副作用 Have No Side Effects</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E5%8F%82%E6%95%B0-Output-Arguments"><span class="nav-text">输出参数 Output Arguments</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E9%9A%94%E6%8C%87%E4%BB%A4%E4%B8%8E%E8%AF%A2%E9%97%AE-Command-Query-Separation"><span class="nav-text">分隔指令与询问 Command Query Separation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%BC%82%E5%B8%B8%E6%9B%BF%E4%BB%A3%E8%BF%94%E5%9B%9E%E9%94%99%E8%AF%AF%E7%A0%81-Prefer-Exception-to-Returning-Error-Codes"><span class="nav-text">使用异常替代返回错误码 Prefer Exception to Returning Error Codes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E7%A6%BB-try-catch-%E4%BB%A3%E7%A0%81%E5%9D%97-Extract-Try-Catch-Blocks"><span class="nav-text">抽离 try&#x2F;catch 代码块 Extract Try&#x2F;Catch Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BB%B6%E4%BA%8B-Error-Handling-Is-One-Thing"><span class="nav-text">错误处理就是一件事 Error Handling Is One Thing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-java-%E4%BE%9D%E8%B5%96%E7%A3%81%E9%93%81-The-Error-java-Dependency-Magnet"><span class="nav-text">Error.java 依赖磁铁 The Error.java Dependency Magnet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%AB%E9%87%8D%E5%A4%8D%E8%87%AA%E5%B7%B1-Do-not-Repeat-Yourself"><span class="nav-text">别重复自己 Do not Repeat Yourself</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E7%BC%96%E7%A8%8B-Structured-Programming"><span class="nav-text">结构化编程 Structured Programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-Conclusion"><span class="nav-text">小结 Conclusion</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -392,7 +523,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -446,12 +577,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">4k</span>
+    <span title="站点总字数">10k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4 分钟</span>
+    <span title="站点阅读时长">9 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

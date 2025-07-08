@@ -37,60 +37,135 @@
 <li><p>The Stepdown Rule 向下规则：让代码读起来像是一系列 自顶向下的 TO 开头的段落是保持抽象层级协调一致的有效技巧</p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>Engineering</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>设计模式 - 创建型 - 单例模式</title>
-    <url>/2025/07/02/Design-Pattern-Singleton/</url>
-    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
-<li>创建型   Creational</li>
-</ul>
-<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.</p>
-<span id="more"></span>
+<h2 id="Switch-语句-Switch-Statements"><a href="#Switch-语句-Switch-Statements" class="headerlink" title="Switch 语句 Switch Statements"></a>Switch 语句 Switch Statements</h2><p>switch 不可能只做一件事，但我们可以把它埋藏在 <strong>较低</strong> 的抽象层级</p>
+<p>解决方案：将 switch 埋藏到 <strong>抽象工厂</strong> 底下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Money <span class="title function_">calculatePay</span><span class="params">(Employee e)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (e.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> COMMISSIONED:</span><br><span class="line">            <span class="keyword">return</span> calculateCommissionedPay(e);</span><br><span class="line">        <span class="keyword">case</span> HOURLY:</span><br><span class="line">            <span class="keyword">return</span> calculateHourlyPay(e);</span><br><span class="line">        <span class="keyword">case</span> SALARIED:</span><br><span class="line">            <span class="keyword">return</span> calculateSalariedPay(e);</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InvalidOperation</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="例子-Real-Example"><a href="#例子-Real-Example" class="headerlink" title="例子 Real Example"></a>例子 Real Example</h2><p>Logger，通常来说应用中只会有一个，以避免意想不到的结果。</p>
-<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Lazy&lt;Logger&gt; lazyLogger = <span class="keyword">new</span> Lazy&lt;Logger&gt;(() =&gt; <span class="keyword">new</span> Logger());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Logger Instance =&gt; lazyLogger.Value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Logger</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;summary&gt;</span></span><br><span class="line">    <span class="comment">// SingletonOperation</span></span><br><span class="line">    <span class="comment">// &lt;/summary&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Log</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Log: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数有几个问题：</p>
+<ol>
+<li><p>太长，出现新的雇员类型时会更长</p>
+</li>
+<li><p>明显做了不止一件事</p>
+</li>
+<li><p>违反了单一职责原则，因为有好几个可以修改它的理由</p>
+</li>
+<li><p>违反了开闭原则，每当添加新类型时，必须修改该函数</p>
+</li>
+</ol>
+<p>更好的写法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Employee</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">boolean</span> <span class="title function_">isPayDay</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> Money <span class="title function_">calculatePay</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">deliverPay</span><span class="params">(Money pay)</span>;</span><br><span class="line">&#125;</span><br><span class="line">-------------------</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IEmployeeFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Employee <span class="title function_">makeEmployee</span><span class="params">(EmployeeRecord r)</span>;</span><br><span class="line">&#125;</span><br><span class="line">-------------------</span><br><span class="line"><span class="keyword">public</span> EmployeeFactory : IEmployeeFactory &#123;</span><br><span class="line">    <span class="keyword">public</span> Employee <span class="title function_">makeEmployee</span><span class="params">(EmployeeRecord r)</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> (r.type) &#123;</span><br><span class="line">            <span class="keyword">case</span> COMMISSIONED:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CommissionedEmployee</span>(r);</span><br><span class="line">            <span class="keyword">case</span> HOURLY:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">HourlyEmployee</span>(r);</span><br><span class="line">            <span class="keyword">case</span> SALARIED:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SalariedEmployee</span>(r);</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InvalidOperation</span>();            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
-<li><p>When there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point</p>
+<h2 id="使用具有描述性的名称-Use-Descriptive-Names"><a href="#使用具有描述性的名称-Use-Descriptive-Names" class="headerlink" title="使用具有描述性的名称 Use Descriptive Names"></a>使用具有描述性的名称 Use Descriptive Names</h2><ul>
+<li><p>函数越短小，功能越集中，越便于起个好名字</p>
 </li>
-<li><p>When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code</p>
+<li><p>长而具有描述性的名称 比 短而令人费解的名称 好</p>
 </li>
-</ul>
-<h2 id="用例-User-Case"><a href="#用例-User-Case" class="headerlink" title="用例 User Case"></a>用例 User Case</h2><ul>
-<li><p>管理数据库连接池 connection pool</p>
+<li><p>长而具有描述性的名称 比 描述性的长注释 好</p>
 </li>
-<li><p>缓存 cache</p>
+<li><p>描述性的名称 能理清 你关于模块 的设计思路</p>
 </li>
-<li><p>管理应用配置 manage application configuration</p>
-</li>
-<li><p>通用资源管理 general resource management</p>
+<li><p>命名方式要保持一致</p>
 </li>
 </ul>
-<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
-<li><p>违反了单一职责 Violates the SRP</p>
+<h2 id="函数参数-Function-Arguments"><a href="#函数参数-Function-Arguments" class="headerlink" title="函数参数 Function Arguments"></a>函数参数 Function Arguments</h2><ul>
+<li><p>最理想的参数个数是 0，其次是 1，再次是 2</p>
+</li>
+<li><p>尽量避免3，有足够的理由才能用3个以上的参数</p>
+</li>
+<li><p>参数与函数处于不同的抽象层级，要求你了解目前并不重要的细节</p>
+</li>
+<li><p>尽量不要用输出参数，一般情况下难以理解</p>
+</li>
+</ul>
+<h3 id="单参数函数的普遍形式-Common-Monadic-Forms"><a href="#单参数函数的普遍形式-Common-Monadic-Forms" class="headerlink" title="单参数函数的普遍形式 Common Monadic Forms"></a>单参数函数的普遍形式 Common Monadic Forms</h3><ul>
+<li><p>问关于参数的问题 <code>bool fileExists(&quot;MyFile&quot;)</code></p>
+</li>
+<li><p>操作参数，转换为其他的东西 <code>InputStream fileOpen(&quot;MyFile&quot;)</code></p>
+</li>
+<li><p>事件 Event，程序将函数看成一个事件，使用该参数修改系统状态</p>
+</li>
+<li><p>尽量避免编写不遵循这些形式的单参数函数</p>
+</li>
+</ul>
+<h3 id="标识参数-Flag-Arguments"><a href="#标识参数-Flag-Arguments" class="headerlink" title="标识参数 Flag Arguments"></a>标识参数 Flag Arguments</h3><p>标识参数是丑陋的，一旦用了标识参数，意味着一定违反了SRP，此时应该拆分函数</p>
+<h3 id="双参数函数-Dyadic-Functions"><a href="#双参数函数-Dyadic-Functions" class="headerlink" title="双参数函数 Dyadic Functions"></a>双参数函数 Dyadic Functions</h3><p>尽量利用一些机制将其转换成单参数函数</p>
+<h3 id="三参数函数-Triads"><a href="#三参数函数-Triads" class="headerlink" title="三参数函数 Triads"></a>三参数函数 Triads</h3><p>在写三参数函数前一定要想清楚</p>
+<h3 id="参数对象-Argument-Objects"><a href="#参数对象-Argument-Objects" class="headerlink" title="参数对象 Argument Objects"></a>参数对象 Argument Objects</h3><p>如果函数看起来需要超过2个以上参数，此时就意味着其中一些参数应该被封装成类了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Circle <span class="title function_">makeCircle</span><span class="params">(<span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> radius)</span>;</span><br><span class="line">Circle <span class="title function_">makeCircle</span><span class="params">(Point center, <span class="type">double</span> radius)</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数列表-Argument-Lists"><a href="#参数列表-Argument-Lists" class="headerlink" title="参数列表 Argument Lists"></a>参数列表 Argument Lists</h3><p>略</p>
+<h3 id="动词与关键字-Verbs-and-Keywords"><a href="#动词与关键字-Verbs-and-Keywords" class="headerlink" title="动词与关键字 Verbs and Keywords"></a>动词与关键字 Verbs and Keywords</h3><p>对于单参数函数，函数和参数应当形成一种非常良好的动词&#x2F;名词对形式，例如 <code>write(name)</code>. 更好的名称也可以是 <code>writeField(name)</code> ，这告诉我们 name 是一个 field</p>
+<h2 id="无副作用-Have-No-Side-Effects"><a href="#无副作用-Have-No-Side-Effects" class="headerlink" title="无副作用 Have No Side Effects"></a>无副作用 Have No Side Effects</h2><p>副作用是一种谎言，函数承诺做一件事，却悄悄地做了另一件事。这会造成意料之外的影响如：</p>
+<ol>
+<li><p>古怪的时序性耦合</p>
+</li>
+<li><p>顺序依赖</p>
+</li>
+</ol>
+<p>函数名一定要能体现其要做的事</p>
+<h3 id="输出参数-Output-Arguments"><a href="#输出参数-Output-Arguments" class="headerlink" title="输出参数 Output Arguments"></a>输出参数 Output Arguments</h3><ul>
+<li><p>如果你被迫检查函数签名，就得花时间做一些重构，应该避免这种中断思路的事</p>
+</li>
+<li><p>应避免使用输出参数，因为 this 也有输出的意味</p>
+</li>
+<li><p>如果函数必须要修改某种状态，就修改所属对象的状态</p>
+</li>
+</ul>
+<h2 id="分隔指令与询问-Command-Query-Separation"><a href="#分隔指令与询问-Command-Query-Separation" class="headerlink" title="分隔指令与询问 Command Query Separation"></a>分隔指令与询问 Command Query Separation</h2><ul>
+<li>函数要么做什么事，要么回答什么事，二者不可兼得</li>
+</ul>
+<h2 id="使用异常替代返回错误码-Prefer-Exception-to-Returning-Error-Codes"><a href="#使用异常替代返回错误码-Prefer-Exception-to-Returning-Error-Codes" class="headerlink" title="使用异常替代返回错误码 Prefer Exception to Returning Error Codes"></a>使用异常替代返回错误码 Prefer Exception to Returning Error Codes</h2><ul>
+<li><p>从指令式函数返回错误码略微违反了指令与询问分隔的原则</p>
+</li>
+<li><p>如果使用异常替代返回错误码，错误处理代码就能从主路径代码中分离出来，如：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    deletePage(page);</span><br><span class="line">    registry.deleteReference(page.name);</span><br><span class="line">    configKeyd.deleteKey(page.name.makeKey());</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    logger.log(e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="抽离-try-catch-代码块-Extract-Try-Catch-Blocks"><a href="#抽离-try-catch-代码块-Extract-Try-Catch-Blocks" class="headerlink" title="抽离 try&#x2F;catch 代码块 Extract Try&#x2F;Catch Blocks"></a>抽离 try&#x2F;catch 代码块 Extract Try&#x2F;Catch Blocks</h3><p>try&#x2F;catch 代码块，把错误处理与正常流程混为一谈， 最好把 try 和 catch 代码块的主体部分抽离出来，另外形成函数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(Page page)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        deletePageAndAllReferences(page);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        logError(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">deletePageAndAllReferences</span><span class="params">(Page page)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    deletePage(page);</span><br><span class="line">    registry.deleteReference(page.name);</span><br><span class="line">    configKeys.deleteKey(page.name.makeKey());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">logError</span><span class="params">(Exception e)</span> &#123;</span><br><span class="line">    logger.log(e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该例中：</p>
 <ul>
-<li><p>负责对象的创建 Control Creation</p>
+<li><p><code>delete</code> 函数只与错误处理有关</p>
 </li>
-<li><p>负责对象的生命周期管理 manage own lifecycle</p>
+<li><p><code>deletePageAndAllReferences</code> 只与完全删除一个page有关，不用管错误处理</p>
 </li>
 </ul>
+<h3 id="错误处理就是一件事-Error-Handling-Is-One-Thing"><a href="#错误处理就是一件事-Error-Handling-Is-One-Thing" class="headerlink" title="错误处理就是一件事 Error Handling Is One Thing"></a>错误处理就是一件事 Error Handling Is One Thing</h3><p>函数应该只做一件事，错误处理就是一件事，这意味着：</p>
+<p>如果在某个函数中存在 <code>try</code>，它就应该是这个函数的第一个单词，且在 <code>catch/finally</code> 代码块后面也不该有其他内容。</p>
+<h3 id="Error-java-依赖磁铁-The-Error-java-Dependency-Magnet"><a href="#Error-java-依赖磁铁-The-Error-java-Dependency-Magnet" class="headerlink" title="Error.java 依赖磁铁 The Error.java Dependency Magnet"></a>Error.java 依赖磁铁 The Error.java Dependency Magnet</h3><p>返回错误通常定义成一个类或枚举，很多其他类都会导入和使用它，意味着：</p>
+<p>当修改 Error.java 时，所有其他类都需要重新编译和部署 - 这是不好的一面</p>
+<h2 id="别重复自己-Do-not-Repeat-Yourself"><a href="#别重复自己-Do-not-Repeat-Yourself" class="headerlink" title="别重复自己 Do not Repeat Yourself"></a>别重复自己 Do not Repeat Yourself</h2><p>重复可能是软件中一些邪恶的根源，许多原则和实践规则都是为了控制与消除重复而创建的</p>
+<p>例如：</p>
+<ul>
+<li><p>Codd 数据库范式就是为了消除数据重复而服务的</p>
 </li>
-<li><p>严格的控制客户对其的访问 Strict Control over how and when clients access it</p>
+<li><p>面向对象编程把代码集中到基类，从而避免冗余</p>
 </li>
-<li><p>Avoids polluting the namespace with global variables</p>
+<li><p>面向切面编程、面向组件编程，多少也是为了消除重复的一种策略</p>
 </li>
-<li><p>Subclassing allows configuring the application with an instance of the class you need at runtime</p>
+</ul>
+<h2 id="结构化编程-Structured-Programming"><a href="#结构化编程-Structured-Programming" class="headerlink" title="结构化编程 Structured Programming"></a>结构化编程 Structured Programming</h2><p>这是 Edsger Dijkstra 提出的编程规则：每个函数、函数中的每个代码块都应该有一个入口，一个出口，遵循该原则，意味着：</p>
+<ul>
+<li><p>每个函数只该有一个 <code>return</code> 语句</p>
 </li>
-<li><p>Multipe instances can be allowed without having to alter the client</p>
+<li><p>循环中不能有 <code>break</code> 或 <code>continue</code> 语句</p>
 </li>
-<li><p>很多时候我们不用自己实现，让 IoC 容器管理吧</p>
+<li><p>永远不能有任何 <code>goto</code> 语句</p>
+</li>
+</ul>
+<p>但是，对于小函数，这些规则助益不大，所以尽量保持函数短小，偶尔出现的 <code>return</code> <code>break</code> 和 <code>continue</code> 语句没有坏处</p>
+<h2 id="小结-Conclusion"><a href="#小结-Conclusion" class="headerlink" title="小结 Conclusion"></a>小结 Conclusion</h2><ul>
+<li><p>不要指望一开始就按规则写函数</p>
+</li>
+<li><p>先写出来，用尽量完备的测试覆盖每行代码</p>
+</li>
+<li><p>打磨代码，分解函数，修改名称，消除重复</p>
+</li>
+<li><p>编程艺术是且一直是语言设计的艺术</p>
+</li>
+<li><p>大师级程序员把系统当作故事来讲，而不是当作程序来写</p>
 </li>
 </ul>
 ]]></content>
@@ -99,14 +174,13 @@
       </categories>
       <tags>
         <tag>Coding</tag>
-        <tag>Design Pattern</tag>
       </tags>
   </entry>
   <entry>
     <title>代码整洁之道 - 有意义的命名</title>
     <url>/2025/06/29/Clean-Code-Naming/</url>
     <content><![CDATA[<h2 id="名副其实-Use-Intention-Revealing-Names"><a href="#名副其实-Use-Intention-Revealing-Names" class="headerlink" title="名副其实 Use Intention-Revealing Names"></a>名副其实 Use Intention-Revealing Names</h2><p>如下是较好的例子（既有计量对象，也有计量单位）：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> elapsedTimInDays;</span><br><span class="line"><span class="built_in">int</span> daysSinceCreation;</span><br><span class="line"><span class="built_in">int</span> daysSinceModification;</span><br><span class="line"><span class="built_in">int</span> fileAgeInDays;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> elapsedTimInDays;</span><br><span class="line"><span class="type">int</span> daysSinceCreation;</span><br><span class="line"><span class="type">int</span> daysSinceModification;</span><br><span class="line"><span class="type">int</span> fileAgeInDays;</span><br></pre></td></tr></table></figure>
 
 <span id="more"></span>
 
@@ -196,6 +270,119 @@
       </categories>
       <tags>
         <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式 - 创建型 - 工厂方法模式</title>
+    <url>/2025/07/04/Design-Pattern-Factory/</url>
+    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
+<li>创建型   Creational</li>
+</ul>
+<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the factory method pattern is to define an interface for creating an object, but to let subclasses decide which class to instantiate. Factory method lets a class defer  instantiation to subclasses.</p>
+<span id="more"></span>
+
+<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">public abstract <span class="class"><span class="keyword">class</span> <span class="title">DiscountService</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    public abstract <span class="type">int</span> DiscountPercentage &#123; get; &#125;</span><br><span class="line">    public override <span class="built_in">string</span> <span class="title function_">ToString</span><span class="params">()</span> =&gt; GetType().Name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class <span class="title function_">CountryDiscountService</span><span class="params">(<span class="built_in">string</span> countryId)</span> : DiscountService</span><br><span class="line">&#123;</span><br><span class="line">    public override <span class="type">int</span> DiscountPercentage</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> countryId <span class="keyword">switch</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;BE&quot;</span> =&gt; <span class="number">20</span>,</span><br><span class="line">                _ =&gt; <span class="number">0</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class <span class="title function_">CodeDiscountService</span><span class="params">(Guid code)</span> : DiscountService</span><br><span class="line">&#123;</span><br><span class="line">    public override <span class="type">int</span> DiscountPercentage =&gt; <span class="number">15</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public abstract <span class="class"><span class="keyword">class</span> <span class="title">DiscountFactory</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    public abstract DiscountService <span class="title function_">CreateDiscountService</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class <span class="title function_">CountryDiscountFactory</span><span class="params">(<span class="built_in">string</span> countryId)</span> : DiscountFactory</span><br><span class="line">&#123;</span><br><span class="line">    public override DiscountService <span class="title function_">CreateDiscountService</span><span class="params">()</span> =&gt; new CountryDiscountService(countryId);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class <span class="title function_">CodeDiscountFactory</span><span class="params">(Guid code)</span> : DiscountFactory</span><br><span class="line">&#123;</span><br><span class="line">    public override DiscountService <span class="title function_">CreateDiscountService</span><span class="params">()</span> =&gt; new CodeDiscountService(code);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Client Invoke</span></span><br><span class="line">List&lt;DiscountFactory&gt; factories =</span><br><span class="line">[</span><br><span class="line">    new CountryDiscountFactory(<span class="string">&quot;BE&quot;</span>),</span><br><span class="line">    new CodeDiscountFactory(Guid.NewGuid())</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">foreach (var factory in factories)</span><br><span class="line">&#123;</span><br><span class="line">    var discountService = factory.CreateDiscountService();</span><br><span class="line">    Console.WriteLine(</span><br><span class="line">        $<span class="string">&quot;Discount Service: &#123;discountService&#125;, Discount Percentage: &#123;discountService.DiscountPercentage&#125;%&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
+<li><p>When there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point</p>
+</li>
+<li><p>When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code</p>
+</li>
+</ul>
+<h2 id="用例-User-Case"><a href="#用例-User-Case" class="headerlink" title="用例 User Case"></a>用例 User Case</h2><ul>
+<li><p>管理数据库连接池 connection pool</p>
+</li>
+<li><p>缓存 cache</p>
+</li>
+<li><p>管理应用配置 manage application configuration</p>
+</li>
+<li><p>通用资源管理 general resource management</p>
+</li>
+</ul>
+<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
+<li><p>违反了单一职责 Violates the SRP</p>
+<ul>
+<li><p>负责对象的创建 Control Creation</p>
+</li>
+<li><p>负责对象的生命周期管理 manage own lifecycle</p>
+</li>
+</ul>
+</li>
+<li><p>严格的控制客户对其的访问 Strict Control over how and when clients access it</p>
+</li>
+<li><p>Avoids polluting the namespace with global variables</p>
+</li>
+<li><p>Subclassing allows configuring the application with an instance of the class you need at runtime</p>
+</li>
+<li><p>Multipe instances can be allowed without having to alter the client</p>
+</li>
+<li><p>很多时候我们不用自己实现，让 IoC 容器管理吧</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+        <tag>Design Pattern</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式 - 创建型 - 单例模式</title>
+    <url>/2025/07/02/Design-Pattern-Singleton/</url>
+    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
+<li>创建型   Creational</li>
+</ul>
+<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.</p>
+<span id="more"></span>
+
+<h2 id="例子-Real-Example"><a href="#例子-Real-Example" class="headerlink" title="例子 Real Example"></a>例子 Real Example</h2><p>Logger，通常来说应用中只会有一个，以避免意想不到的结果。</p>
+<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Lazy&lt;Logger&gt; lazyLogger = <span class="keyword">new</span> Lazy&lt;Logger&gt;(() =&gt; <span class="keyword">new</span> Logger());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Logger Instance =&gt; lazyLogger.Value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Logger</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;summary&gt;</span></span><br><span class="line">    <span class="comment">// SingletonOperation</span></span><br><span class="line">    <span class="comment">// &lt;/summary&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Log</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Log: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
+<li><p>When there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point</p>
+</li>
+<li><p>When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code</p>
+</li>
+</ul>
+<h2 id="用例-User-Case"><a href="#用例-User-Case" class="headerlink" title="用例 User Case"></a>用例 User Case</h2><ul>
+<li><p>管理数据库连接池 connection pool</p>
+</li>
+<li><p>缓存 cache</p>
+</li>
+<li><p>管理应用配置 manage application configuration</p>
+</li>
+<li><p>通用资源管理 general resource management</p>
+</li>
+</ul>
+<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
+<li><p>违反了单一职责 Violates the SRP</p>
+<ul>
+<li><p>负责对象的创建 Control Creation</p>
+</li>
+<li><p>负责对象的生命周期管理 manage own lifecycle</p>
+</li>
+</ul>
+</li>
+<li><p>严格的控制客户对其的访问 Strict Control over how and when clients access it</p>
+</li>
+<li><p>Avoids polluting the namespace with global variables</p>
+</li>
+<li><p>Subclassing allows configuring the application with an instance of the class you need at runtime</p>
+</li>
+<li><p>Multipe instances can be allowed without having to alter the client</p>
+</li>
+<li><p>很多时候我们不用自己实现，让 IoC 容器管理吧</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+        <tag>Design Pattern</tag>
       </tags>
   </entry>
   <entry>
