@@ -1,47 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>代码整洁之道 - 格式</title>
-    <url>/2025/08/03/Clean-Code-Formatting/</url>
-    <content><![CDATA[<ul>
-<li><p>代码格式关乎沟通，而沟通是专业开发者的头等大事</p>
-</li>
-<li><p>每个空白行都是一条线索，表示出新的独立概念</p>
-</li>
-<li><p>关系密切的概念应该互相靠近</p>
-</li>
-<li><p><strong>变量声明</strong>：应尽可能靠近其使用位置</p>
-</li>
-<li><p><strong>实体变量</strong>：应在类的顶部声明（Java）或 底部声明（C++, 剪刀原则），团队遵循相同规范即可</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<ul>
-<li><strong>相关函数</strong>：若某个函数调用了另一个，那应该把它们放在一起，而且调用者尽可能在被调用者上面</li>
-<li><strong>概念相关</strong>：概念相关的代码应该放到一起，代码的相关性越强，彼此之间的距离应该越短</li>
-</ul>
-<p>总之，一组开发者认同同一种格式风格，并一以贯之</p>
-]]></content>
-      <categories>
-        <category>Engineering</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Deep Learning from Scratch</title>
-    <url>/2025/07/23/Azure-AI-Fundamentals/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>Deep Learning</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>代码整洁之道 - 注释</title>
     <url>/2025/07/11/Clean-Code-Comment/</url>
     <content><![CDATA[<h2 id="注释不能美化糟糕的代码-Comments-Do-Not-Make-Up-for-Bad-Code"><a href="#注释不能美化糟糕的代码-Comments-Do-Not-Make-Up-for-Bad-Code" class="headerlink" title="注释不能美化糟糕的代码 Comments Do Not Make Up for Bad Code"></a>注释不能美化糟糕的代码 Comments Do Not Make Up for Bad Code</h2><ul>
@@ -122,131 +81,6 @@
       </categories>
       <tags>
         <tag>Coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>设计模式 - 创建型 - 抽象工厂模式</title>
-    <url>/2025/07/11/Design-Pattern-Abstract-Factory/</url>
-    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
-<li>创建型 Creational</li>
-</ul>
-<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the abstract factory pattern is to provide an interface for creating families of related or dependent objects without specifying their concrete classes</p>
-<span id="more"></span>
-
-<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">AbstractFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceShoppingCartPurchaseFactory</span> : <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IDiscountService <span class="title">CreateDiscountService</span>()</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FranceDiscountService();    </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FranceShippingCostsService();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> AbstractFactory</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">IDiscountService <span class="title">CreateDiscountService</span>()</span>;</span><br><span class="line">        <span class="function">IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  AbstractProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> DiscountPercentage &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumDiscountService</span> : <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceDiscountService</span> : <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  AbstractProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">decimal</span> ShippingCosts &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumShippingCostsService</span> : <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">decimal</span> ShippingCosts =&gt; <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceShippingCostsService</span> : <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">decimal</span> ShippingCosts =&gt; <span class="number">25</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumShoppingCartPurchaseFactory</span> : <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IDiscountService <span class="title">CreateDiscountService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BelgiumDiscountService();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BelgiumShippingCostsService();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> Client class </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCart</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IDiscountService _discountService;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IShippingCostsService _shippingCostsService;</span><br><span class="line">        <span class="keyword">private</span> <span class="built_in">int</span> _orderCosts;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Constructor</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ShoppingCart</span>(<span class="params">IShoppingCartPurchaseFactory factory</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            _discountService = factory.CreateDiscountService();</span><br><span class="line">            _shippingCostsService = factory.CreateShippingCostsService();</span><br><span class="line">            <span class="comment">// assume that the total cost of all the items we ordered = 200 euro</span></span><br><span class="line">            _orderCosts = <span class="number">200</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CalculateCosts</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;Total costs = <span class="subst">&#123;_orderCosts - (_orderCosts / <span class="number">100</span> * _discountService.DiscountPercentage) + _shippingCostsService.ShippingCosts &#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="抽象工厂-VS-工厂方法-Comparison"><a href="#抽象工厂-VS-工厂方法-Comparison" class="headerlink" title="抽象工厂 VS 工厂方法 Comparison"></a>抽象工厂 VS 工厂方法 Comparison</h2><h3 id="目的不同"><a href="#目的不同" class="headerlink" title="目的不同"></a>目的不同</h3><ul>
-<li><p>工厂方法：创建单一产品的实例</p>
-</li>
-<li><p>抽象工厂：创建产品族 （多个相关产品）</p>
-</li>
-</ul>
-<h3 id="结构复杂度"><a href="#结构复杂度" class="headerlink" title="结构复杂度"></a>结构复杂度</h3><ul>
-<li><p>工厂方法：1个抽象产品 + N 个具体工厂</p>
-</li>
-<li><p>抽象工厂：M 个抽象产品 + N 个具体工厂 （每个工厂生产 M 个产品）</p>
-</li>
-</ul>
-<h3 id="扩展方向"><a href="#扩展方向" class="headerlink" title="扩展方向"></a>扩展方向</h3><ul>
-<li><p>工厂方法：扩展新产品类型时需要修改工厂接口</p>
-</li>
-<li><p>抽象工厂：扩展新产品族时不用修改接口</p>
-</li>
-</ul>
-<p>简单记忆：</p>
-<ul>
-<li><p>工厂方法：1个工厂 -&gt; 一种产品</p>
-</li>
-<li><p>抽象工厂：1个工厂 -&gt; 一套产品</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Engineering</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
-        <tag>Design Pattern</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IQueryable &amp; IEnumerable</title>
-    <url>/2025/07/09/Clean-Code-Practice-1/</url>
-    <content><![CDATA[<p><code>IQueryable</code> 是继承 <code>IEnumerable</code> 的，所以任何使用 <code>IEnumerable</code> 的地方都可以换成 <code>IQueryable</code>.  —– 里氏替换</p>
-<p><img src="/images/extend-relation.png" alt="extend-relation">
-    </p>
-<p><a href="https://stackoverflow.com/questions/252785/what-is-the-difference-between-iqueryablet-and-ienumerablet">.net - What is the difference between IQueryable<T> and IEnumerable<T>? - Stack Overflow</a></p>
-]]></content>
-      <categories>
-        <category>Engineering</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
-        <tag>C#</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>设计模式 - 创建型 - 工厂方法模式</title>
-    <url>/2025/07/04/Design-Pattern-Factory/</url>
-    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
-<li>创建型   Creational</li>
-</ul>
-<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the factory method pattern is to define an interface for creating an object, but to let subclasses decide which class to instantiate. Factory method lets a class defer  instantiation to subclasses.</p>
-<span id="more"></span>
-
-<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> DiscountPercentage &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">ToString</span>()</span> =&gt; GetType().Name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CountryDiscountService</span>(<span class="params"><span class="built_in">string</span> countryId</span>) : DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> DiscountPercentage</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> countryId <span class="keyword">switch</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;BE&quot;</span> =&gt; <span class="number">20</span>,</span><br><span class="line">                _ =&gt; <span class="number">0</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CodeDiscountService</span>(<span class="params">Guid code</span>) : DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">15</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> DiscountService <span class="title">CreateDiscountService</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CountryDiscountFactory</span>(<span class="params"><span class="built_in">string</span> countryId</span>) : DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> DiscountService <span class="title">CreateDiscountService</span>()</span> =&gt; <span class="keyword">new</span> CountryDiscountService(countryId);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CodeDiscountFactory</span>(<span class="params">Guid code</span>) : DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> DiscountService <span class="title">CreateDiscountService</span>()</span> =&gt; <span class="keyword">new</span> CodeDiscountService(code);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Client Invoke</span></span><br><span class="line">List&lt;DiscountFactory&gt; factories =</span><br><span class="line">[</span><br><span class="line">    <span class="keyword">new</span> CountryDiscountFactory(<span class="string">&quot;BE&quot;</span>),</span><br><span class="line">    <span class="keyword">new</span> CodeDiscountFactory(Guid.NewGuid())</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> factory <span class="keyword">in</span> factories)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> discountService = factory.CreateDiscountService();</span><br><span class="line">    Console.WriteLine(</span><br><span class="line">        <span class="string">$&quot;Discount Service: <span class="subst">&#123;discountService&#125;</span>, Discount Percentage: <span class="subst">&#123;discountService.DiscountPercentage&#125;</span>%&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
-<li>When a class can not anticipate the class of objects it must create</li>
-<li>When a class wants its subclasses to specify the objects it creates</li>
-<li>As a way to enable reusing of existing objects</li>
-</ul>
-<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
-<li><p>Factory methods eliminate the need to bind application-specific classes to your code</p>
-</li>
-<li><p>New types of products can be added without breaking client code: OCP</p>
-</li>
-<li><p>Creating products is moved to one specific place in your code, the creator: SRP</p>
-</li>
-<li><p>drawback: clients might need to create subclasses of the creator class just to create  a particular ConcreteProduct object</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Engineering</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
-        <tag>Design Pattern</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 基础</title>
-    <url>/2025/06/29/Hexo-Basic/</url>
-    <content><![CDATA[<p>本篇记录一些 Hexo 常用的命令，备忘。</p>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<span id="more"></span>
-
-<h3 id="本地启动服务"><a href="#本地启动服务" class="headerlink" title="本地启动服务"></a>本地启动服务</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="部署到远程"><a href="#部署到远程" class="headerlink" title="部署到远程"></a>部署到远程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="新建文章头模板"><a href="#新建文章头模板" class="headerlink" title="新建文章头模板"></a>新建文章头模板</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: Hexo 常用命令</span><br><span class="line">date: 2025-06-29 14:20:19</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> Tool</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">-</span> Hexo</span><br></pre></td></tr></table></figure>
-
-<h3 id="See-more"><a href="#See-more" class="headerlink" title="See more"></a>See more</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Tool</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -426,76 +260,66 @@
       </tags>
   </entry>
   <entry>
-    <title>IEEE 754 Float-Point</title>
-    <url>/2025/07/11/IEEE-754-Float-Point/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>设计模式 - 创建型 - 单例模式</title>
-    <url>/2025/07/02/Design-Pattern-Singleton/</url>
-    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
-<li>创建型   Creational</li>
+    <title>代码整洁之道 - 格式</title>
+    <url>/2025/08/03/Clean-Code-Formatting/</url>
+    <content><![CDATA[<ul>
+<li><p>代码格式关乎沟通，而沟通是专业开发者的头等大事</p>
+</li>
+<li><p>每个空白行都是一条线索，表示出新的独立概念</p>
+</li>
+<li><p>关系密切的概念应该互相靠近</p>
+</li>
+<li><p><strong>变量声明</strong>：应尽可能靠近其使用位置</p>
+</li>
+<li><p><strong>实体变量</strong>：应在类的顶部声明（Java）或 底部声明（C++, 剪刀原则），团队遵循相同规范即可</p>
+</li>
 </ul>
-<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.</p>
 <span id="more"></span>
 
-<h2 id="例子-Real-Example"><a href="#例子-Real-Example" class="headerlink" title="例子 Real Example"></a>例子 Real Example</h2><p>Logger，通常来说应用中只会有一个，以避免意想不到的结果。</p>
-<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Lazy&lt;Logger&gt; lazyLogger = <span class="keyword">new</span> Lazy&lt;Logger&gt;(() =&gt; <span class="keyword">new</span> Logger());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Logger Instance =&gt; lazyLogger.Value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Logger</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;summary&gt;</span></span><br><span class="line">    <span class="comment">// SingletonOperation</span></span><br><span class="line">    <span class="comment">// &lt;/summary&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Log</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Log: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
-<li><p>When there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point</p>
-</li>
-<li><p>When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code</p>
-</li>
-</ul>
-<h2 id="用例-User-Case"><a href="#用例-User-Case" class="headerlink" title="用例 User Case"></a>用例 User Case</h2><ul>
-<li><p>管理数据库连接池 connection pool</p>
-</li>
-<li><p>缓存 cache</p>
-</li>
-<li><p>管理应用配置 manage application configuration</p>
-</li>
-<li><p>通用资源管理 general resource management</p>
-</li>
-</ul>
-<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
-<li><p>违反了单一职责 Violates the SRP</p>
 <ul>
-<li><p>负责对象的创建 Control Creation</p>
-</li>
-<li><p>负责对象的生命周期管理 manage own lifecycle</p>
-</li>
+<li><strong>相关函数</strong>：若某个函数调用了另一个，那应该把它们放在一起，而且调用者尽可能在被调用者上面</li>
+<li><strong>概念相关</strong>：概念相关的代码应该放到一起，代码的相关性越强，彼此之间的距离应该越短</li>
 </ul>
-</li>
-<li><p>严格的控制客户对其的访问 Strict Control over how and when clients access it</p>
-</li>
-<li><p>Avoids polluting the namespace with global variables</p>
-</li>
-<li><p>Subclassing allows configuring the application with an instance of the class you need at runtime</p>
-</li>
-<li><p>Multipe instances can be allowed without having to alter the client</p>
-</li>
-<li><p>很多时候我们不用自己实现，让 IoC 容器管理吧</p>
-</li>
-</ul>
+<p>总之，一组开发者认同同一种格式风格，并一以贯之</p>
 ]]></content>
       <categories>
         <category>Engineering</category>
       </categories>
       <tags>
         <tag>Coding</tag>
-        <tag>Design Pattern</tag>
       </tags>
   </entry>
   <entry>
-    <title>Test Coverage For C# &amp; Jest</title>
-    <url>/2025/07/11/Test-Coverage-For-C-Jest/</url>
+    <title>Clean Code Objects and Data Structures</title>
+    <url>/2025/08/06/Clean-Code-Objects-and-Data-Structures/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>MSBuildBinLog Usage</title>
-    <url>/2025/07/11/MSBuildBinLog-Usage/</url>
+    <title>IQueryable &amp; IEnumerable</title>
+    <url>/2025/07/09/Clean-Code-Practice-1/</url>
+    <content><![CDATA[<p><code>IQueryable</code> 是继承 <code>IEnumerable</code> 的，所以任何使用 <code>IEnumerable</code> 的地方都可以换成 <code>IQueryable</code>.  —– 里氏替换</p>
+<p><img src="/images/extend-relation.png" alt="extend-relation">
+    </p>
+<p><a href="https://stackoverflow.com/questions/252785/what-is-the-difference-between-iqueryablet-and-ienumerablet">.net - What is the difference between IQueryable<T> and IEnumerable<T>? - Stack Overflow</a></p>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+        <tag>C#</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Deep Learning from Scratch</title>
+    <url>/2025/07/23/Azure-AI-Fundamentals/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+      </tags>
   </entry>
   <entry>
     <title>代码整洁之道 - 有意义的命名</title>
@@ -594,6 +418,147 @@
       </tags>
   </entry>
   <entry>
+    <title>设计模式 - 创建型 - 抽象工厂模式</title>
+    <url>/2025/07/11/Design-Pattern-Abstract-Factory/</url>
+    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
+<li>创建型 Creational</li>
+</ul>
+<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the abstract factory pattern is to provide an interface for creating families of related or dependent objects without specifying their concrete classes</p>
+<span id="more"></span>
+
+<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">AbstractFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceShoppingCartPurchaseFactory</span> : <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IDiscountService <span class="title">CreateDiscountService</span>()</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FranceDiscountService();    </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FranceShippingCostsService();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> AbstractFactory</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">IDiscountService <span class="title">CreateDiscountService</span>()</span>;</span><br><span class="line">        <span class="function">IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  AbstractProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> DiscountPercentage &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumDiscountService</span> : <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceDiscountService</span> : <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  AbstractProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">decimal</span> ShippingCosts &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumShippingCostsService</span> : <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">decimal</span> ShippingCosts =&gt; <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceShippingCostsService</span> : <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">decimal</span> ShippingCosts =&gt; <span class="number">25</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumShoppingCartPurchaseFactory</span> : <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IDiscountService <span class="title">CreateDiscountService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BelgiumDiscountService();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BelgiumShippingCostsService();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> Client class </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCart</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IDiscountService _discountService;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IShippingCostsService _shippingCostsService;</span><br><span class="line">        <span class="keyword">private</span> <span class="built_in">int</span> _orderCosts;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Constructor</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ShoppingCart</span>(<span class="params">IShoppingCartPurchaseFactory factory</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            _discountService = factory.CreateDiscountService();</span><br><span class="line">            _shippingCostsService = factory.CreateShippingCostsService();</span><br><span class="line">            <span class="comment">// assume that the total cost of all the items we ordered = 200 euro</span></span><br><span class="line">            _orderCosts = <span class="number">200</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CalculateCosts</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;Total costs = <span class="subst">&#123;_orderCosts - (_orderCosts / <span class="number">100</span> * _discountService.DiscountPercentage) + _shippingCostsService.ShippingCosts &#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="抽象工厂-VS-工厂方法-Comparison"><a href="#抽象工厂-VS-工厂方法-Comparison" class="headerlink" title="抽象工厂 VS 工厂方法 Comparison"></a>抽象工厂 VS 工厂方法 Comparison</h2><h3 id="目的不同"><a href="#目的不同" class="headerlink" title="目的不同"></a>目的不同</h3><ul>
+<li><p>工厂方法：创建单一产品的实例</p>
+</li>
+<li><p>抽象工厂：创建产品族 （多个相关产品）</p>
+</li>
+</ul>
+<h3 id="结构复杂度"><a href="#结构复杂度" class="headerlink" title="结构复杂度"></a>结构复杂度</h3><ul>
+<li><p>工厂方法：1个抽象产品 + N 个具体工厂</p>
+</li>
+<li><p>抽象工厂：M 个抽象产品 + N 个具体工厂 （每个工厂生产 M 个产品）</p>
+</li>
+</ul>
+<h3 id="扩展方向"><a href="#扩展方向" class="headerlink" title="扩展方向"></a>扩展方向</h3><ul>
+<li><p>工厂方法：扩展新产品类型时需要修改工厂接口</p>
+</li>
+<li><p>抽象工厂：扩展新产品族时不用修改接口</p>
+</li>
+</ul>
+<p>简单记忆：</p>
+<ul>
+<li><p>工厂方法：1个工厂 -&gt; 一种产品</p>
+</li>
+<li><p>抽象工厂：1个工厂 -&gt; 一套产品</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+        <tag>Design Pattern</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式 - 创建型 - 单例模式</title>
+    <url>/2025/07/02/Design-Pattern-Singleton/</url>
+    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
+<li>创建型   Creational</li>
+</ul>
+<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.</p>
+<span id="more"></span>
+
+<h2 id="例子-Real-Example"><a href="#例子-Real-Example" class="headerlink" title="例子 Real Example"></a>例子 Real Example</h2><p>Logger，通常来说应用中只会有一个，以避免意想不到的结果。</p>
+<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Lazy&lt;Logger&gt; lazyLogger = <span class="keyword">new</span> Lazy&lt;Logger&gt;(() =&gt; <span class="keyword">new</span> Logger());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Logger Instance =&gt; lazyLogger.Value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Logger</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;summary&gt;</span></span><br><span class="line">    <span class="comment">// SingletonOperation</span></span><br><span class="line">    <span class="comment">// &lt;/summary&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Log</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Log: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
+<li><p>When there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point</p>
+</li>
+<li><p>When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code</p>
+</li>
+</ul>
+<h2 id="用例-User-Case"><a href="#用例-User-Case" class="headerlink" title="用例 User Case"></a>用例 User Case</h2><ul>
+<li><p>管理数据库连接池 connection pool</p>
+</li>
+<li><p>缓存 cache</p>
+</li>
+<li><p>管理应用配置 manage application configuration</p>
+</li>
+<li><p>通用资源管理 general resource management</p>
+</li>
+</ul>
+<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
+<li><p>违反了单一职责 Violates the SRP</p>
+<ul>
+<li><p>负责对象的创建 Control Creation</p>
+</li>
+<li><p>负责对象的生命周期管理 manage own lifecycle</p>
+</li>
+</ul>
+</li>
+<li><p>严格的控制客户对其的访问 Strict Control over how and when clients access it</p>
+</li>
+<li><p>Avoids polluting the namespace with global variables</p>
+</li>
+<li><p>Subclassing allows configuring the application with an instance of the class you need at runtime</p>
+</li>
+<li><p>Multipe instances can be allowed without having to alter the client</p>
+</li>
+<li><p>很多时候我们不用自己实现，让 IoC 容器管理吧</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+        <tag>Design Pattern</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 基础</title>
+    <url>/2025/06/29/Hexo-Basic/</url>
+    <content><![CDATA[<p>本篇记录一些 Hexo 常用的命令，备忘。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<span id="more"></span>
+
+<h3 id="本地启动服务"><a href="#本地启动服务" class="headerlink" title="本地启动服务"></a>本地启动服务</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="部署到远程"><a href="#部署到远程" class="headerlink" title="部署到远程"></a>部署到远程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="新建文章头模板"><a href="#新建文章头模板" class="headerlink" title="新建文章头模板"></a>新建文章头模板</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: Hexo 常用命令</span><br><span class="line">date: 2025-06-29 14:20:19</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> Tool</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">-</span> Hexo</span><br></pre></td></tr></table></figure>
+
+<h3 id="See-more"><a href="#See-more" class="headerlink" title="See more"></a>See more</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Tool</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Test Coverage For C# &amp; Jest</title>
+    <url>/2025/07/11/Test-Coverage-For-C-Jest/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>MSBuildBinLog Usage</title>
+    <url>/2025/07/11/MSBuildBinLog-Usage/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>烟台-威海 5日游</title>
     <url>/2025/08/03/Travel-2025/</url>
     <content><![CDATA[<blockquote>
@@ -633,6 +598,46 @@
       </categories>
       <tags>
         <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IEEE 754 Float-Point</title>
+    <url>/2025/07/11/IEEE-754-Float-Point/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>设计模式 - 创建型 - 工厂方法模式</title>
+    <url>/2025/07/04/Design-Pattern-Factory/</url>
+    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
+<li>创建型   Creational</li>
+</ul>
+<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the factory method pattern is to define an interface for creating an object, but to let subclasses decide which class to instantiate. Factory method lets a class defer  instantiation to subclasses.</p>
+<span id="more"></span>
+
+<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> DiscountPercentage &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">ToString</span>()</span> =&gt; GetType().Name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CountryDiscountService</span>(<span class="params"><span class="built_in">string</span> countryId</span>) : DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> DiscountPercentage</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> countryId <span class="keyword">switch</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;BE&quot;</span> =&gt; <span class="number">20</span>,</span><br><span class="line">                _ =&gt; <span class="number">0</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CodeDiscountService</span>(<span class="params">Guid code</span>) : DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">15</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> DiscountService <span class="title">CreateDiscountService</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CountryDiscountFactory</span>(<span class="params"><span class="built_in">string</span> countryId</span>) : DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> DiscountService <span class="title">CreateDiscountService</span>()</span> =&gt; <span class="keyword">new</span> CountryDiscountService(countryId);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CodeDiscountFactory</span>(<span class="params">Guid code</span>) : DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> DiscountService <span class="title">CreateDiscountService</span>()</span> =&gt; <span class="keyword">new</span> CodeDiscountService(code);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Client Invoke</span></span><br><span class="line">List&lt;DiscountFactory&gt; factories =</span><br><span class="line">[</span><br><span class="line">    <span class="keyword">new</span> CountryDiscountFactory(<span class="string">&quot;BE&quot;</span>),</span><br><span class="line">    <span class="keyword">new</span> CodeDiscountFactory(Guid.NewGuid())</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> factory <span class="keyword">in</span> factories)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> discountService = factory.CreateDiscountService();</span><br><span class="line">    Console.WriteLine(</span><br><span class="line">        <span class="string">$&quot;Discount Service: <span class="subst">&#123;discountService&#125;</span>, Discount Percentage: <span class="subst">&#123;discountService.DiscountPercentage&#125;</span>%&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
+<li>When a class can not anticipate the class of objects it must create</li>
+<li>When a class wants its subclasses to specify the objects it creates</li>
+<li>As a way to enable reusing of existing objects</li>
+</ul>
+<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
+<li><p>Factory methods eliminate the need to bind application-specific classes to your code</p>
+</li>
+<li><p>New types of products can be added without breaking client code: OCP</p>
+</li>
+<li><p>Creating products is moved to one specific place in your code, the creator: SRP</p>
+</li>
+<li><p>drawback: clients might need to create subclasses of the creator class just to create  a particular ConcreteProduct object</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+        <tag>Design Pattern</tag>
       </tags>
   </entry>
 </search>
