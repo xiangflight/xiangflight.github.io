@@ -12,36 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title>代码整洁之道 - 格式</title>
-    <url>/2025/08/03/Clean-Code-Formatting/</url>
-    <content><![CDATA[<ul>
-<li><p>代码格式关乎沟通，而沟通是专业开发者的头等大事</p>
-</li>
-<li><p>每个空白行都是一条线索，表示出新的独立概念</p>
-</li>
-<li><p>关系密切的概念应该互相靠近</p>
-</li>
-<li><p><strong>变量声明</strong>：应尽可能靠近其使用位置</p>
-</li>
-<li><p><strong>实体变量</strong>：应在类的顶部声明（Java）或 底部声明（C++, 剪刀原则），团队遵循相同规范即可</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<ul>
-<li><strong>相关函数</strong>：若某个函数调用了另一个，那应该把它们放在一起，而且调用者尽可能在被调用者上面</li>
-<li><strong>概念相关</strong>：概念相关的代码应该放到一起，代码的相关性越强，彼此之间的距离应该越短</li>
-</ul>
-<p>总之，一组开发者认同同一种格式风格，并一以贯之</p>
-]]></content>
-      <categories>
-        <category>Engineering</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>代码整洁之道 - 注释</title>
     <url>/2025/07/11/Clean-Code-Comment/</url>
     <content><![CDATA[<h2 id="注释不能美化糟糕的代码-Comments-Do-Not-Make-Up-for-Bad-Code"><a href="#注释不能美化糟糕的代码-Comments-Do-Not-Make-Up-for-Bad-Code" class="headerlink" title="注释不能美化糟糕的代码 Comments Do Not Make Up for Bad Code"></a>注释不能美化糟糕的代码 Comments Do Not Make Up for Bad Code</h2><ul>
@@ -116,6 +86,36 @@
 <li><p>非公共代码中的 Javadoc Javadocs in Nonpublic Code</p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码整洁之道 - 格式</title>
+    <url>/2025/08/03/Clean-Code-Formatting/</url>
+    <content><![CDATA[<ul>
+<li><p>代码格式关乎沟通，而沟通是专业开发者的头等大事</p>
+</li>
+<li><p>每个空白行都是一条线索，表示出新的独立概念</p>
+</li>
+<li><p>关系密切的概念应该互相靠近</p>
+</li>
+<li><p><strong>变量声明</strong>：应尽可能靠近其使用位置</p>
+</li>
+<li><p><strong>实体变量</strong>：应在类的顶部声明（Java）或 底部声明（C++, 剪刀原则），团队遵循相同规范即可</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><strong>相关函数</strong>：若某个函数调用了另一个，那应该把它们放在一起，而且调用者尽可能在被调用者上面</li>
+<li><strong>概念相关</strong>：概念相关的代码应该放到一起，代码的相关性越强，彼此之间的距离应该越短</li>
+</ul>
+<p>总之，一组开发者认同同一种格式风格，并一以贯之</p>
 ]]></content>
       <categories>
         <category>Engineering</category>
@@ -397,11 +397,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Clean Code Objects and Data Structures</title>
-    <url>/2025/08/06/Clean-Code-Objects-and-Data-Structures/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>IQueryable &amp; IEnumerable</title>
     <url>/2025/07/09/Clean-Code-Practice-1/</url>
     <content><![CDATA[<p><code>IQueryable</code> 是继承 <code>IEnumerable</code> 的，所以任何使用 <code>IEnumerable</code> 的地方都可以换成 <code>IQueryable</code>.  —– 里氏替换</p>
@@ -498,6 +493,68 @@
       </tags>
   </entry>
   <entry>
+    <title>Clean Code Objects and Data Structures</title>
+    <url>/2025/08/06/Clean-Code-Objects-and-Data-Structures/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>IEEE 754 Float-Point</title>
+    <url>/2025/07/11/IEEE-754-Float-Point/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>MSBuildBinLog Usage</title>
+    <url>/2025/07/11/MSBuildBinLog-Usage/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Test Coverage For C# &amp; Jest</title>
+    <url>/2025/07/11/Test-Coverage-For-C-Jest/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>烟台-威海 5日游</title>
+    <url>/2025/08/03/Travel-2025/</url>
+    <content><![CDATA[<blockquote>
+<p>生活不止眼前的苟且，还有诗和远方</p>
+</blockquote>
+<p>转眼，为期一周的旅游就结束了，此时那一幕幕还在眼前浮现，何不记录一番</p>
+<p>与 2023 年（桐庐）不同，这次我和老婆一下去了两个海滨城市：烟台 和 威海</p>
+<span id="more"></span>
+
+<h2 id="烟台"><a href="#烟台" class="headerlink" title="烟台"></a>烟台</h2><p>我们是 7 月 26 号出发去的 烟台，晚上 11 点才到 烟台站</p>
+<h3 id="第-1-天-7-27"><a href="#第-1-天-7-27" class="headerlink" title="第 1 天 (7.27)"></a>第 1 天 (7.27)</h3><p>一大早我们就去了最出名的景点：烟台山，顺路看了美国领事馆旧址，摸了龙脉，排队上了灯塔，瞭望了大海</p>
+<p>出了烟台山，就是朝阳街了。在 烟台饮料厂 和 广兴果园 之间，我们选择了后者，烟台的苹果汁是真不错</p>
+<p>听了网上的推荐，我们去 乡府肉丁水饺 这家店去吃 鲅鱼饺子。说实话这家店一般，首先饺子不让点半份，其次老板态度需改善啊，一份饺子分量也太多了，我和老婆现在听到鲅鱼饺子都怕怕的</p>
+<p>吃完午饭后，我们去了 烟台博物馆（离得很近）。馆里有一些展览（昆虫），还有一些烟台历史人文的介绍（胶东半岛的历史）看到了 秦始皇赵高李斯等一些塑像，仿佛历史就在我们身边重演</p>
+<p>在博物馆歇息会后，我们去了附近的 所城里。话说天气还是太热了，我们搜了附近的咖啡店，终于找到一家隐藏在小巷中的咖啡馆 - 所图咖啡。我们在这狠狠地歇息了下</p>
+<p>随后我们又走到了 虹口 1920，走的快腿断了（下次再也不走了），看到了海边苹果屋，路过了旺角小渔村（人太多了放弃了在这吃海肠捞饭）</p>
+<p>第一天走的太累了</p>
+<h3 id="第-2-天-7-28"><a href="#第-2-天-7-28" class="headerlink" title="第 2 天 (7.28)"></a>第 2 天 (7.28)</h3><p>我们住在 烟台站对面，这里正好有 17 路旅游专线，于是我们直接坐着公交，沿着海岸线，一直在烟台大学附近才下车</p>
+<p>还是太热了，我们先解决了午饭 （部队火锅），看了场电影（戏台），避过了最热的中午，然后来到了烟台大学海水浴场</p>
+<p>说实话，这里的水 青苔比较多，看来开发的完全不够，简单玩了会后，我们就坐公交去了渔人码头，看了千与千寻铁轨，绕着 渔人码头外围转了一大圈</p>
+<p>由于要赶高铁，我们就此止住，直接回去拿了行李就去烟台南站</p>
+<p>跳过了 东炮台 月亮湾 海豹湾 等景点，等以后有机会再去吧</p>
+<p>我们于晚上 9 点 40 到了 威海，住到了 葡萄滩 附近</p>
+<h2 id="威海"><a href="#威海" class="headerlink" title="威海"></a>威海</h2><h3 id="第-1-天-7-29"><a href="#第-1-天-7-29" class="headerlink" title="第 1 天 (7.29)"></a>第 1 天 (7.29)</h3><p>中午我们去了火炬八街附近的北方饺子王（重点：附近）吃了 酸奶跳跳虾（跳跳糖），海肠捞饭<br>下午去了威海国际海水浴场，我的想法是去看日落 （起不来看不了日出）</p>
+<p>先说一句，威海的海水 比 烟台 清澈多了（仅限这里和 烟大海水浴场 比），玩的项目也多，给我的感觉很棒，除了项目收费贵之外</p>
+<p>另外遇到了 15 年没见的 高中同学（命运太神奇），晚上我们一块约了饭，畅聊了读书期间和后来各种趣事</p>
+<p>第一次用了 滴滴租车 和 滴滴代驾</p>
+<h3 id="第-2-天-7-30"><a href="#第-2-天-7-30" class="headerlink" title="第 2 天 (7.30)"></a>第 2 天 (7.30)</h3><p>上午去刘公岛了，参观了 中国甲午战争博物馆 陈列馆，牢记历史，勿忘国耻，增强忧患意识，做到居安思危</p>
+<p>下午去海钓，四个人 + 1个船长 3个小时，钓到了1.7斤的海鱼（还有一条火麒流，长得太丑了），第一次体验了钓鱼 和 喂海鸥（火腿），吹着海风，又是一段难忘的经历</p>
+<h3 id="第-3-天-7-31"><a href="#第-3-天-7-31" class="headerlink" title="第 3 天 (7.31)"></a>第 3 天 (7.31)</h3><p>我们去了最远的那香海，买了个 68 元的游泳圈，泡了一会海水（原来应该这么玩，可惜此时旅游已到尾声）</p>
+<p>由于台风临近，我们在玩了一会后就回到了住处，追着杨洋的凡人修仙传，吃着外卖，别有一番滋味。。。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>时间过得真快，期待下一次的旅行，在那之前，好好干活，好好生活</p>
+<p><img src="/images/travel_2025.jpg" alt="extend-relation"></p>
+]]></content>
+      <categories>
+        <category>Travel</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>设计模式 - 创建型 - 单例模式</title>
     <url>/2025/07/02/Design-Pattern-Singleton/</url>
     <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
@@ -553,74 +610,5 @@
         <tag>Coding</tag>
         <tag>Design Pattern</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>IEEE 754 Float-Point</title>
-    <url>/2025/07/11/IEEE-754-Float-Point/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hexo 基础</title>
-    <url>/2025/06/29/Hexo-Basic/</url>
-    <content><![CDATA[<h3 id="See-more"><a href="#See-more" class="headerlink" title="See more"></a>See more</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Tool</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MSBuildBinLog Usage</title>
-    <url>/2025/07/11/MSBuildBinLog-Usage/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>烟台-威海 5日游</title>
-    <url>/2025/08/03/Travel-2025/</url>
-    <content><![CDATA[<blockquote>
-<p>生活不止眼前的苟且，还有诗和远方</p>
-</blockquote>
-<p>转眼，为期一周的旅游就结束了，此时那一幕幕还在眼前浮现，何不记录一番</p>
-<p>与 2023 年（桐庐）不同，这次我和老婆一下去了两个海滨城市：烟台 和 威海</p>
-<span id="more"></span>
-
-<h2 id="烟台"><a href="#烟台" class="headerlink" title="烟台"></a>烟台</h2><p>我们是 7 月 26 号出发去的 烟台，晚上 11 点才到 烟台站</p>
-<h3 id="第-1-天-7-27"><a href="#第-1-天-7-27" class="headerlink" title="第 1 天 (7.27)"></a>第 1 天 (7.27)</h3><p>一大早我们就去了最出名的景点：烟台山，顺路看了美国领事馆旧址，摸了龙脉，排队上了灯塔，瞭望了大海</p>
-<p>出了烟台山，就是朝阳街了。在 烟台饮料厂 和 广兴果园 之间，我们选择了后者，烟台的苹果汁是真不错</p>
-<p>听了网上的推荐，我们去 乡府肉丁水饺 这家店去吃 鲅鱼饺子。说实话这家店一般，首先饺子不让点半份，其次老板态度需改善啊，一份饺子分量也太多了，我和老婆现在听到鲅鱼饺子都怕怕的</p>
-<p>吃完午饭后，我们去了 烟台博物馆（离得很近）。馆里有一些展览（昆虫），还有一些烟台历史人文的介绍（胶东半岛的历史）看到了 秦始皇赵高李斯等一些塑像，仿佛历史就在我们身边重演</p>
-<p>在博物馆歇息会后，我们去了附近的 所城里。话说天气还是太热了，我们搜了附近的咖啡店，终于找到一家隐藏在小巷中的咖啡馆 - 所图咖啡。我们在这狠狠地歇息了下</p>
-<p>随后我们又走到了 虹口 1920，走的快腿断了（下次再也不走了），看到了海边苹果屋，路过了旺角小渔村（人太多了放弃了在这吃海肠捞饭）</p>
-<p>第一天走的太累了</p>
-<h3 id="第-2-天-7-28"><a href="#第-2-天-7-28" class="headerlink" title="第 2 天 (7.28)"></a>第 2 天 (7.28)</h3><p>我们住在 烟台站对面，这里正好有 17 路旅游专线，于是我们直接坐着公交，沿着海岸线，一直在烟台大学附近才下车</p>
-<p>还是太热了，我们先解决了午饭 （部队火锅），看了场电影（戏台），避过了最热的中午，然后来到了烟台大学海水浴场</p>
-<p>说实话，这里的水 青苔比较多，看来开发的完全不够，简单玩了会后，我们就坐公交去了渔人码头，看了千与千寻铁轨，绕着 渔人码头外围转了一大圈</p>
-<p>由于要赶高铁，我们就此止住，直接回去拿了行李就去烟台南站</p>
-<p>跳过了 东炮台 月亮湾 海豹湾 等景点，等以后有机会再去吧</p>
-<p>我们于晚上 9 点 40 到了 威海，住到了 葡萄滩 附近</p>
-<h2 id="威海"><a href="#威海" class="headerlink" title="威海"></a>威海</h2><h3 id="第-1-天-7-29"><a href="#第-1-天-7-29" class="headerlink" title="第 1 天 (7.29)"></a>第 1 天 (7.29)</h3><p>中午我们去了火炬八街附近的北方饺子王（重点：附近）吃了 酸奶跳跳虾（跳跳糖），海肠捞饭<br>下午去了威海国际海水浴场，我的想法是去看日落 （起不来看不了日出）</p>
-<p>先说一句，威海的海水 比 烟台 清澈多了（仅限这里和 烟大海水浴场 比），玩的项目也多，给我的感觉很棒，除了项目收费贵之外</p>
-<p>另外遇到了 15 年没见的 高中同学（命运太神奇），晚上我们一块约了饭，畅聊了读书期间和后来各种趣事</p>
-<p>第一次用了 滴滴租车 和 滴滴代驾</p>
-<h3 id="第-2-天-7-30"><a href="#第-2-天-7-30" class="headerlink" title="第 2 天 (7.30)"></a>第 2 天 (7.30)</h3><p>上午去刘公岛了，参观了 中国甲午战争博物馆 陈列馆，牢记历史，勿忘国耻，增强忧患意识，做到居安思危</p>
-<p>下午去海钓，四个人 + 1个船长 3个小时，钓到了1.7斤的海鱼（还有一条火麒流，长得太丑了），第一次体验了钓鱼 和 喂海鸥（火腿），吹着海风，又是一段难忘的经历</p>
-<h3 id="第-3-天-7-31"><a href="#第-3-天-7-31" class="headerlink" title="第 3 天 (7.31)"></a>第 3 天 (7.31)</h3><p>我们去了最远的那香海，买了个 68 元的游泳圈，泡了一会海水（原来应该这么玩，可惜此时旅游已到尾声）</p>
-<p>由于台风临近，我们在玩了一会后就回到了住处，追着杨洋的凡人修仙传，吃着外卖，别有一番滋味。。。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>时间过得真快，期待下一次的旅行，在那之前，好好干活，好好生活</p>
-<p><img src="/images/travel_2025.jpg" alt="extend-relation"></p>
-]]></content>
-      <categories>
-        <category>Travel</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Test Coverage For C# &amp; Jest</title>
-    <url>/2025/07/11/Test-Coverage-For-C-Jest/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
