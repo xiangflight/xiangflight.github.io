@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Deep Learning from Scratch</title>
-    <url>/2025/07/23/Azure-AI-Fundamentals/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>Deep Learning</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>代码整洁之道 - 注释</title>
     <url>/2025/07/11/Clean-Code-Comment/</url>
     <content><![CDATA[<h2 id="注释不能美化糟糕的代码-Comments-Do-Not-Make-Up-for-Bad-Code"><a href="#注释不能美化糟糕的代码-Comments-Do-Not-Make-Up-for-Bad-Code" class="headerlink" title="注释不能美化糟糕的代码 Comments Do Not Make Up for Bad Code"></a>注释不能美化糟糕的代码 Comments Do Not Make Up for Bad Code</h2><ul>
@@ -91,7 +80,7 @@
         <category>Engineering</category>
       </categories>
       <tags>
-        <tag>Coding</tag>
+        <tag>代码整洁之道</tag>
       </tags>
   </entry>
   <entry>
@@ -121,103 +110,7 @@
         <category>Engineering</category>
       </categories>
       <tags>
-        <tag>Coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>代码整洁之道 - 有意义的命名</title>
-    <url>/2025/06/29/Clean-Code-Naming/</url>
-    <content><![CDATA[<h2 id="名副其实-Use-Intention-Revealing-Names"><a href="#名副其实-Use-Intention-Revealing-Names" class="headerlink" title="名副其实 Use Intention-Revealing Names"></a>名副其实 Use Intention-Revealing Names</h2><p>如下是较好的例子（既有计量对象，也有计量单位）：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> elapsedTimInDays;</span><br><span class="line"><span class="type">int</span> daysSinceCreation;</span><br><span class="line"><span class="type">int</span> daysSinceModification;</span><br><span class="line"><span class="type">int</span> fileAgeInDays;</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h2 id="避免误导-Avoid-Disinformation"><a href="#避免误导-Avoid-Disinformation" class="headerlink" title="避免误导 Avoid Disinformation"></a>避免误导 Avoid Disinformation</h2><ul>
-<li><p>不要滥用 List、Array，它们有特定的含义，当形容一群&#x2F;组东西时，要仔细思考是否要提及数据结构。</p>
-</li>
-<li><p>提防使用外形相似度高的名称，当两个命名长度很长且相似时，区分它们要花时间</p>
-</li>
-<li><p>在代码中，对同一概念或实体必须使用完全一致的命名和表达方式，才能传递清晰、无歧义的信息</p>
-<ul>
-<li><p>如混用 <code>start/begin</code>  <code>get/fetch</code>  <code>controller/manager</code> 等相似术语</p>
-</li>
-<li><p>统一使用 <code>start</code> 表示启动，<code>get</code> 表示获取</p>
-</li>
-</ul>
-</li>
-<li><p>不要用 <strong>小写字母 l</strong> 和 <strong>大写字母 O</strong> 作变量名</p>
-</li>
-</ul>
-<h2 id="做有意义的区分-Make-Meaningful-Distinctions"><a href="#做有意义的区分-Make-Meaningful-Distinctions" class="headerlink" title="做有意义的区分 Make Meaningful Distinctions"></a>做有意义的区分 Make Meaningful Distinctions</h2><ul>
-<li>不要用数字系列命名 Number-series naming (a1, a2, .. aN) is the opposite of intentional naming</li>
-<li>不要说废话<ul>
-<li>如类名叫 Product，又出现一个 ProductInfo 或 ProductData 的类，虽然它们名称不同，含义却无区别。类似的还有 Customer 和 CustomerObject</li>
-<li>variable不要出现在变量名中，table不要出现在表名中</li>
-</ul>
-</li>
-</ul>
-<h2 id="使用能读出来的名称-Use-Pronounceable-Names"><a href="#使用能读出来的名称-Use-Pronounceable-Names" class="headerlink" title="使用能读出来的名称 Use Pronounceable Names"></a>使用能读出来的名称 Use Pronounceable Names</h2><ul>
-<li><p>编程是一种社交活动，如果读不出来如何讨论？</p>
-<ul>
-<li>反例：变量名 genymdhms (generation date, year, month, day, hour, minute,<br>and second)，how to pronounce?</li>
-</ul>
-</li>
-</ul>
-<h2 id="使用可搜索的名称-Use-Searchable-Names"><a href="#使用可搜索的名称-Use-Searchable-Names" class="headerlink" title="使用可搜索的名称 Use Searchable Names"></a>使用可搜索的名称 Use Searchable Names</h2><p>对于单字母名称和数字常量，很难搜到，比如 搜索 数字7 很麻烦，但搜 MAX_CLASSES_PER_STUDENT 很容易。</p>
-<ul>
-<li>名称长度应与其作用域大小相对应</li>
-</ul>
-<h2 id="避免使用编码-Avoid-Encodings"><a href="#避免使用编码-Avoid-Encodings" class="headerlink" title="避免使用编码 Avoid Encodings"></a>避免使用编码 Avoid Encodings</h2><h3 id="匈牙利语标记法-Hungarian-Notation-HN"><a href="#匈牙利语标记法-Hungarian-Notation-HN" class="headerlink" title="匈牙利语标记法 Hungarian Notation, HN"></a>匈牙利语标记法 Hungarian Notation, HN</h3><p>这种命名法要求明确写出类型，类型置于实际名称前，如 bBuzy 代表类型为 boolean、名称为 Busy 的变量</p>
-<p>现在这种编码形式纯属多余</p>
-<h3 id="成员前缀-Member-Prefixes"><a href="#成员前缀-Member-Prefixes" class="headerlink" title="成员前缀 Member Prefixes"></a>成员前缀 Member Prefixes</h3><p>不必用 m_ 前缀标明成员变量</p>
-<h3 id="接口与实现-Interfaces-and-Implementations"><a href="#接口与实现-Interfaces-and-Implementations" class="headerlink" title="接口与实现 Interfaces and Implementations"></a>接口与实现 Interfaces and Implementations</h3><ul>
-<li><p>ShapeFactory n ShapeFactoryImp 推荐</p>
-</li>
-<li><p>IShapeFactory n ShapeFactory 不推荐，I 被滥用，但是还是看团队吧</p>
-</li>
-</ul>
-<h2 id="避免思维映射-Avoid-Mental-Mapping"><a href="#避免思维映射-Avoid-Mental-Mapping" class="headerlink" title="避免思维映射 Avoid Mental Mapping"></a>避免思维映射 Avoid Mental Mapping</h2><p>经常出现在使用 问题领域术语(problem domain terms) 还是 解决方案领域术语 (solution domain terms)</p>
-<p>明确是王道，编写的代码要易于理解</p>
-<h2 id="类名-Class-Names"><a href="#类名-Class-Names" class="headerlink" title="类名 Class Names"></a>类名 Class Names</h2><ul>
-<li><p>应该是 名词 或 名词短语，如 Customer、WikiPage、Account and AddressParser</p>
-</li>
-<li><p>反例：Manager、Processor、Data、Info</p>
-</li>
-<li><p>类名不应是动词</p>
-</li>
-</ul>
-<h2 id="方法名-Method-Names"><a href="#方法名-Method-Names" class="headerlink" title="方法名 Method Names"></a>方法名 Method Names</h2><ul>
-<li><p>应当是 动词 或 动词短语，如 postPayment、deletePage 或 save</p>
-</li>
-<li><p>使用描述了参数的静态工厂方法名重载构造器，把构造器设置为 private</p>
-</li>
-</ul>
-<h2 id="别抖机灵-Do-not-Be-Cute"><a href="#别抖机灵-Do-not-Be-Cute" class="headerlink" title="别抖机灵 Do not Be Cute"></a>别抖机灵 Do not Be Cute</h2><ul>
-<li><p>别用 HolyHandGrenade，使用 DeleteItems。明确含义</p>
-</li>
-<li><p>别用 whack() 表示 kill(), Say what you mean. Mean what you say</p>
-</li>
-</ul>
-<h2 id="每个概念对应一个词-Pick-One-Word-per-Concept"><a href="#每个概念对应一个词-Pick-One-Word-per-Concept" class="headerlink" title="每个概念对应一个词 Pick One Word per Concept"></a>每个概念对应一个词 Pick One Word per Concept</h2><p>跟避免误导里某一项比较类似，就是说给 <strong>每个抽象概念</strong> 选 <strong>一个词</strong>，并一以贯之</p>
-<p>例如，同时使用 fetch、retrieve 和 get 在多个类中的同种方法命名，会令人困惑</p>
-<p>一以贯之的命名法是天降福音</p>
-<h2 id="别用双关语-Do-not-Pun"><a href="#别用双关语-Do-not-Pun" class="headerlink" title="别用双关语 Do not Pun"></a>别用双关语 Do not Pun</h2><p>避免将同一单词用于不同目的，同一个术语用于多个不同概念，就是双关语</p>
-<h2 id="使用解决方案领域名称-Use-Solution-Domain-Names"><a href="#使用解决方案领域名称-Use-Solution-Domain-Names" class="headerlink" title="使用解决方案领域名称 Use Solution Domain Names"></a>使用解决方案领域名称 Use Solution Domain Names</h2><p>优先使用 解决方案领域名称。你的读者是程序员，所以尽可能用计算机科学&#x2F;工程相关术语，多用技术性的名称，如：</p>
-<ul>
-<li><p>AccountVisitor 对于熟悉 访问者(Visitor)模式的程序员就很友好</p>
-</li>
-<li><p>JobQueue，我们知道这是个任务队列</p>
-</li>
-</ul>
-<h2 id="使用问题领域名称-Use-problem-Domain-Names"><a href="#使用问题领域名称-Use-problem-Domain-Names" class="headerlink" title="使用问题领域名称 Use problem Domain Names"></a>使用问题领域名称 Use problem Domain Names</h2><p>如果不好用 解决方案领域名称，就从所涉问题领域寻找名称。至少这个名称你可以从领域专家那知道其含义</p>
-<h2 id="添加有意义的语境-Add-Meaningful-Context"><a href="#添加有意义的语境-Add-Meaningful-Context" class="headerlink" title="添加有意义的语境 Add Meaningful Context"></a>添加有意义的语境 Add Meaningful Context</h2><h2 id="不要添加没用的语境-Do-not-Add-Gratuitous-Context"><a href="#不要添加没用的语境-Do-not-Add-Gratuitous-Context" class="headerlink" title="不要添加没用的语境 Do not Add Gratuitous Context"></a>不要添加没用的语境 Do not Add Gratuitous Context</h2><p>只要短名称足够清楚，就比长名称好，别给名称添加没用的语境</p>
-<h2 id="总结-Conclusion"><a href="#总结-Conclusion" class="headerlink" title="总结 Conclusion"></a>总结 Conclusion</h2><p>明确 &amp; 简洁 &amp; 一以贯之 &amp; 优先解决方案领域</p>
-]]></content>
-      <categories>
-        <category>Engineering</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
+        <tag>代码整洁之道</tag>
       </tags>
   </entry>
   <entry>
@@ -393,7 +286,169 @@
         <category>Engineering</category>
       </categories>
       <tags>
-        <tag>Coding</tag>
+        <tag>代码整洁之道</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码整洁之道 - 有意义的命名</title>
+    <url>/2025/06/29/Clean-Code-Naming/</url>
+    <content><![CDATA[<h2 id="名副其实-Use-Intention-Revealing-Names"><a href="#名副其实-Use-Intention-Revealing-Names" class="headerlink" title="名副其实 Use Intention-Revealing Names"></a>名副其实 Use Intention-Revealing Names</h2><p>如下是较好的例子（既有计量对象，也有计量单位）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> elapsedTimInDays;</span><br><span class="line"><span class="type">int</span> daysSinceCreation;</span><br><span class="line"><span class="type">int</span> daysSinceModification;</span><br><span class="line"><span class="type">int</span> fileAgeInDays;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="避免误导-Avoid-Disinformation"><a href="#避免误导-Avoid-Disinformation" class="headerlink" title="避免误导 Avoid Disinformation"></a>避免误导 Avoid Disinformation</h2><ul>
+<li><p>不要滥用 List、Array，它们有特定的含义，当形容一群&#x2F;组东西时，要仔细思考是否要提及数据结构。</p>
+</li>
+<li><p>提防使用外形相似度高的名称，当两个命名长度很长且相似时，区分它们要花时间</p>
+</li>
+<li><p>在代码中，对同一概念或实体必须使用完全一致的命名和表达方式，才能传递清晰、无歧义的信息</p>
+<ul>
+<li><p>如混用 <code>start/begin</code>  <code>get/fetch</code>  <code>controller/manager</code> 等相似术语</p>
+</li>
+<li><p>统一使用 <code>start</code> 表示启动，<code>get</code> 表示获取</p>
+</li>
+</ul>
+</li>
+<li><p>不要用 <strong>小写字母 l</strong> 和 <strong>大写字母 O</strong> 作变量名</p>
+</li>
+</ul>
+<h2 id="做有意义的区分-Make-Meaningful-Distinctions"><a href="#做有意义的区分-Make-Meaningful-Distinctions" class="headerlink" title="做有意义的区分 Make Meaningful Distinctions"></a>做有意义的区分 Make Meaningful Distinctions</h2><ul>
+<li>不要用数字系列命名 Number-series naming (a1, a2, .. aN) is the opposite of intentional naming</li>
+<li>不要说废话<ul>
+<li>如类名叫 Product，又出现一个 ProductInfo 或 ProductData 的类，虽然它们名称不同，含义却无区别。类似的还有 Customer 和 CustomerObject</li>
+<li>variable不要出现在变量名中，table不要出现在表名中</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用能读出来的名称-Use-Pronounceable-Names"><a href="#使用能读出来的名称-Use-Pronounceable-Names" class="headerlink" title="使用能读出来的名称 Use Pronounceable Names"></a>使用能读出来的名称 Use Pronounceable Names</h2><ul>
+<li><p>编程是一种社交活动，如果读不出来如何讨论？</p>
+<ul>
+<li>反例：变量名 genymdhms (generation date, year, month, day, hour, minute,<br>and second)，how to pronounce?</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用可搜索的名称-Use-Searchable-Names"><a href="#使用可搜索的名称-Use-Searchable-Names" class="headerlink" title="使用可搜索的名称 Use Searchable Names"></a>使用可搜索的名称 Use Searchable Names</h2><p>对于单字母名称和数字常量，很难搜到，比如 搜索 数字7 很麻烦，但搜 MAX_CLASSES_PER_STUDENT 很容易。</p>
+<ul>
+<li>名称长度应与其作用域大小相对应</li>
+</ul>
+<h2 id="避免使用编码-Avoid-Encodings"><a href="#避免使用编码-Avoid-Encodings" class="headerlink" title="避免使用编码 Avoid Encodings"></a>避免使用编码 Avoid Encodings</h2><h3 id="匈牙利语标记法-Hungarian-Notation-HN"><a href="#匈牙利语标记法-Hungarian-Notation-HN" class="headerlink" title="匈牙利语标记法 Hungarian Notation, HN"></a>匈牙利语标记法 Hungarian Notation, HN</h3><p>这种命名法要求明确写出类型，类型置于实际名称前，如 bBuzy 代表类型为 boolean、名称为 Busy 的变量</p>
+<p>现在这种编码形式纯属多余</p>
+<h3 id="成员前缀-Member-Prefixes"><a href="#成员前缀-Member-Prefixes" class="headerlink" title="成员前缀 Member Prefixes"></a>成员前缀 Member Prefixes</h3><p>不必用 m_ 前缀标明成员变量</p>
+<h3 id="接口与实现-Interfaces-and-Implementations"><a href="#接口与实现-Interfaces-and-Implementations" class="headerlink" title="接口与实现 Interfaces and Implementations"></a>接口与实现 Interfaces and Implementations</h3><ul>
+<li><p>ShapeFactory n ShapeFactoryImp 推荐</p>
+</li>
+<li><p>IShapeFactory n ShapeFactory 不推荐，I 被滥用，但是还是看团队吧</p>
+</li>
+</ul>
+<h2 id="避免思维映射-Avoid-Mental-Mapping"><a href="#避免思维映射-Avoid-Mental-Mapping" class="headerlink" title="避免思维映射 Avoid Mental Mapping"></a>避免思维映射 Avoid Mental Mapping</h2><p>经常出现在使用 问题领域术语(problem domain terms) 还是 解决方案领域术语 (solution domain terms)</p>
+<p>明确是王道，编写的代码要易于理解</p>
+<h2 id="类名-Class-Names"><a href="#类名-Class-Names" class="headerlink" title="类名 Class Names"></a>类名 Class Names</h2><ul>
+<li><p>应该是 名词 或 名词短语，如 Customer、WikiPage、Account and AddressParser</p>
+</li>
+<li><p>反例：Manager、Processor、Data、Info</p>
+</li>
+<li><p>类名不应是动词</p>
+</li>
+</ul>
+<h2 id="方法名-Method-Names"><a href="#方法名-Method-Names" class="headerlink" title="方法名 Method Names"></a>方法名 Method Names</h2><ul>
+<li><p>应当是 动词 或 动词短语，如 postPayment、deletePage 或 save</p>
+</li>
+<li><p>使用描述了参数的静态工厂方法名重载构造器，把构造器设置为 private</p>
+</li>
+</ul>
+<h2 id="别抖机灵-Do-not-Be-Cute"><a href="#别抖机灵-Do-not-Be-Cute" class="headerlink" title="别抖机灵 Do not Be Cute"></a>别抖机灵 Do not Be Cute</h2><ul>
+<li><p>别用 HolyHandGrenade，使用 DeleteItems。明确含义</p>
+</li>
+<li><p>别用 whack() 表示 kill(), Say what you mean. Mean what you say</p>
+</li>
+</ul>
+<h2 id="每个概念对应一个词-Pick-One-Word-per-Concept"><a href="#每个概念对应一个词-Pick-One-Word-per-Concept" class="headerlink" title="每个概念对应一个词 Pick One Word per Concept"></a>每个概念对应一个词 Pick One Word per Concept</h2><p>跟避免误导里某一项比较类似，就是说给 <strong>每个抽象概念</strong> 选 <strong>一个词</strong>，并一以贯之</p>
+<p>例如，同时使用 fetch、retrieve 和 get 在多个类中的同种方法命名，会令人困惑</p>
+<p>一以贯之的命名法是天降福音</p>
+<h2 id="别用双关语-Do-not-Pun"><a href="#别用双关语-Do-not-Pun" class="headerlink" title="别用双关语 Do not Pun"></a>别用双关语 Do not Pun</h2><p>避免将同一单词用于不同目的，同一个术语用于多个不同概念，就是双关语</p>
+<h2 id="使用解决方案领域名称-Use-Solution-Domain-Names"><a href="#使用解决方案领域名称-Use-Solution-Domain-Names" class="headerlink" title="使用解决方案领域名称 Use Solution Domain Names"></a>使用解决方案领域名称 Use Solution Domain Names</h2><p>优先使用 解决方案领域名称。你的读者是程序员，所以尽可能用计算机科学&#x2F;工程相关术语，多用技术性的名称，如：</p>
+<ul>
+<li><p>AccountVisitor 对于熟悉 访问者(Visitor)模式的程序员就很友好</p>
+</li>
+<li><p>JobQueue，我们知道这是个任务队列</p>
+</li>
+</ul>
+<h2 id="使用问题领域名称-Use-problem-Domain-Names"><a href="#使用问题领域名称-Use-problem-Domain-Names" class="headerlink" title="使用问题领域名称 Use problem Domain Names"></a>使用问题领域名称 Use problem Domain Names</h2><p>如果不好用 解决方案领域名称，就从所涉问题领域寻找名称。至少这个名称你可以从领域专家那知道其含义</p>
+<h2 id="添加有意义的语境-Add-Meaningful-Context"><a href="#添加有意义的语境-Add-Meaningful-Context" class="headerlink" title="添加有意义的语境 Add Meaningful Context"></a>添加有意义的语境 Add Meaningful Context</h2><h2 id="不要添加没用的语境-Do-not-Add-Gratuitous-Context"><a href="#不要添加没用的语境-Do-not-Add-Gratuitous-Context" class="headerlink" title="不要添加没用的语境 Do not Add Gratuitous Context"></a>不要添加没用的语境 Do not Add Gratuitous Context</h2><p>只要短名称足够清楚，就比长名称好，别给名称添加没用的语境</p>
+<h2 id="总结-Conclusion"><a href="#总结-Conclusion" class="headerlink" title="总结 Conclusion"></a>总结 Conclusion</h2><p>明确 &amp; 简洁 &amp; 一以贯之 &amp; 优先解决方案领域</p>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>代码整洁之道</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码整洁之道 - 对象和数据结构</title>
+    <url>/2025/08/06/Clean-Code-Objects-and-Data-Structures/</url>
+    <content><![CDATA[<h2 id="数据抽象-Data-Abstraction"><a href="#数据抽象-Data-Abstraction" class="headerlink" title="数据抽象 Data Abstraction"></a>数据抽象 Data Abstraction</h2><p>隐藏实现 并非 只是在变量之间放上一个函数层那么简单，隐藏实现 关乎 <strong>抽象</strong></p>
+<p>类不能简单地通过 Setter 和 Getter 把变量暴露出去，而应该暴露抽象接口，以便用户无需了解数据的的实现就能操作数据本体</p>
+<blockquote>
+<p>如果把变量设为 private，然后通过 Setter 和 Getter 暴露，这跟设为 public 有什么区别</p>
+</blockquote>
+<p>举两个例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> x;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">getX</span><span class="params">()</span>;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">getY</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">setCartesian</span><span class="params">(<span class="type">double</span> x, <span class="type">double</span> y)</span>;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">getR</span><span class="params">()</span>;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">getTheta</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">setPolar</span><span class="params">(<span class="type">double</span> r, <span class="type">double</span> theta)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">getFuelTankCapabilityInGallons</span><span class="params">()</span>;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">getGallonsOfGasoline</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Vehicle</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">getPercentFuelRemaining</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>即使用了接口，也不一定就隐藏实现，比如第一种实现</p>
+<p>以上两段代码以后者为佳，不要暴露数据细节，要以抽象形态表述数据</p>
+<p>在定义接口时，要严肃思考，不可随意乱加 setter 和 getter</p>
+<h2 id="数据、对象的反对称性-Data-Object-Anti-Symmetry"><a href="#数据、对象的反对称性-Data-Object-Anti-Symmetry" class="headerlink" title="数据、对象的反对称性 Data&#x2F;Object Anti-Symmetry"></a>数据、对象的反对称性 Data&#x2F;Object Anti-Symmetry</h2><p>对象和数据结构是不同的</p>
+<p>对象：把数据隐藏于抽象之后，暴露操作数据的函数</p>
+<p>数据结构：暴露其数据，没有提供有意义的函数</p>
+<p>对象和数据结构之间的二分原理：</p>
+<ul>
+<li><p>过程式代码（使用数据结构的代码）便于在不改动既有数据结构的前提下添加新函数</p>
+</li>
+<li><p>面向对象代码便于在不改动既有函数的前提下添加新类</p>
+</li>
+</ul>
+<p>换句话说：</p>
+<ul>
+<li><p>过程式代码难以添加新的数据结构，因为必须修改所有函数</p>
+</li>
+<li><p>面向对象代码难以添加新函数，因为必须修改所有类</p>
+</li>
+</ul>
+<p>过程式代码难做的事，面向对象代码反而好做，反之亦然</p>
+<p>所以，<strong>我们应该随机应变，不能武断地说一切都是对象，有时数据结构会更加合适</strong></p>
+<h2 id="混杂-Hybrids"><a href="#混杂-Hybrids" class="headerlink" title="混杂 Hybrids"></a>混杂 Hybrids</h2><p>不要让一个类既扮演对象，又扮演数据结构，这种类中拥有执行操作的函数，也有公共变量或 setter&#x2F;getter</p>
+<p>这种混杂增加了添加新函数的难度，也增加了添加新数据结构的难度，两头不讨好，应避免创造这种结构</p>
+<p>它们的出现，展示了一种乱七八糟的设计</p>
+<h2 id="数据传送对象"><a href="#数据传送对象" class="headerlink" title="数据传送对象"></a>数据传送对象</h2><p>最为精炼的数据结构，是一个只有公共变量，没有函数的类</p>
+<p>这种数据结构被称为 <strong>数据传送对象（DTO）</strong>，常用在消息传递中</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>对象暴露行为，隐藏数据，便于添加新对象类型而无须修改既有行为，但是难以在既有对象中添加新行为</p>
+</li>
+<li><p>数据结构暴露数据，没有明显的行为，便于向既有数据结构中添加新行为，但是难以向既有函数中添加新的数据结构</p>
+</li>
+<li><p>所以在设计时，我们要看场景是什么，从而使用数据结构或对象</p>
+<ul>
+<li><p>希望灵活地添加新的数据类型：使用对象</p>
+</li>
+<li><p>希望灵活地添加新的行为：使用数据结构</p>
+</li>
+<li><p>优秀的软件开发者应了解这些情形，选择合适的手段</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>代码整洁之道</tag>
       </tags>
   </entry>
   <entry>
@@ -421,7 +476,7 @@
 <h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the abstract factory pattern is to provide an interface for creating families of related or dependent objects without specifying their concrete classes</p>
 <span id="more"></span>
 
-<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">AbstractFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceShoppingCartPurchaseFactory</span> : <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IDiscountService <span class="title">CreateDiscountService</span>()</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FranceDiscountService();    </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FranceShippingCostsService();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> AbstractFactory</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">IDiscountService <span class="title">CreateDiscountService</span>()</span>;</span><br><span class="line">        <span class="function">IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  AbstractProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> DiscountPercentage &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumDiscountService</span> : <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceDiscountService</span> : <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  AbstractProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">decimal</span> ShippingCosts &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumShippingCostsService</span> : <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">decimal</span> ShippingCosts =&gt; <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceShippingCostsService</span> : <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">decimal</span> ShippingCosts =&gt; <span class="number">25</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumShoppingCartPurchaseFactory</span> : <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IDiscountService <span class="title">CreateDiscountService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BelgiumDiscountService();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BelgiumShippingCostsService();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> Client class </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCart</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IDiscountService _discountService;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IShippingCostsService _shippingCostsService;</span><br><span class="line">        <span class="keyword">private</span> <span class="built_in">int</span> _orderCosts;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Constructor</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ShoppingCart</span>(<span class="params">IShoppingCartPurchaseFactory factory</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            _discountService = factory.CreateDiscountService();</span><br><span class="line">            _shippingCostsService = factory.CreateShippingCostsService();</span><br><span class="line">            <span class="comment">// assume that the total cost of all the items we ordered = 200 euro</span></span><br><span class="line">            _orderCosts = <span class="number">200</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CalculateCosts</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;Total costs = <span class="subst">&#123;_orderCosts - (_orderCosts / <span class="number">100</span> * _discountService.DiscountPercentage) + _shippingCostsService.ShippingCosts &#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">AbstractFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceShoppingCartPurchaseFactory</span> : <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IDiscountService <span class="title">CreateDiscountService</span>()</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FranceDiscountService();    </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FranceShippingCostsService();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> AbstractFactory</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">IDiscountService <span class="title">CreateDiscountService</span>()</span>;</span><br><span class="line">        <span class="function">IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  AbstractProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> DiscountPercentage &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumDiscountService</span> : <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceDiscountService</span> : <span class="title">IDiscountService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  AbstractProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">decimal</span> ShippingCosts &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumShippingCostsService</span> : <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">decimal</span> ShippingCosts =&gt; <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> ConcreteProduct</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FranceShippingCostsService</span> : <span class="title">IShippingCostsService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">decimal</span> ShippingCosts =&gt; <span class="number">25</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BelgiumShoppingCartPurchaseFactory</span> : <span class="title">IShoppingCartPurchaseFactory</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IDiscountService <span class="title">CreateDiscountService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BelgiumDiscountService();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShippingCostsService <span class="title">CreateShippingCostsService</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BelgiumShippingCostsService();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> Client class </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShoppingCart</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IDiscountService _discountService;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IShippingCostsService _shippingCostsService;</span><br><span class="line">        <span class="keyword">private</span> <span class="built_in">int</span> _orderCosts;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Constructor</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ShoppingCart</span>(<span class="params">IShoppingCartPurchaseFactory factory</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            _discountService = factory.CreateDiscountService();</span><br><span class="line">            _shippingCostsService = factory.CreateShippingCostsService();</span><br><span class="line">            <span class="comment">// assume that the total cost of all the items we ordered = 200 euro</span></span><br><span class="line">            _orderCosts = <span class="number">200</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CalculateCosts</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;Total costs = <span class="subst">&#123;_orderCosts - (_orderCosts / <span class="number">100</span> * _discountService.DiscountPercentage) + _shippingCostsService.ShippingCosts &#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="抽象工厂-VS-工厂方法-Comparison"><a href="#抽象工厂-VS-工厂方法-Comparison" class="headerlink" title="抽象工厂 VS 工厂方法 Comparison"></a>抽象工厂 VS 工厂方法 Comparison</h2><h3 id="目的不同"><a href="#目的不同" class="headerlink" title="目的不同"></a>目的不同</h3><ul>
 <li><p>工厂方法：创建单一产品的实例</p>
@@ -493,68 +548,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Clean Code Objects and Data Structures</title>
-    <url>/2025/08/06/Clean-Code-Objects-and-Data-Structures/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>IEEE 754 Float-Point</title>
-    <url>/2025/07/11/IEEE-754-Float-Point/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>MSBuildBinLog Usage</title>
-    <url>/2025/07/11/MSBuildBinLog-Usage/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Test Coverage For C# &amp; Jest</title>
-    <url>/2025/07/11/Test-Coverage-For-C-Jest/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>烟台-威海 5日游</title>
-    <url>/2025/08/03/Travel-2025/</url>
-    <content><![CDATA[<blockquote>
-<p>生活不止眼前的苟且，还有诗和远方</p>
-</blockquote>
-<p>转眼，为期一周的旅游就结束了，此时那一幕幕还在眼前浮现，何不记录一番</p>
-<p>与 2023 年（桐庐）不同，这次我和老婆一下去了两个海滨城市：烟台 和 威海</p>
-<span id="more"></span>
-
-<h2 id="烟台"><a href="#烟台" class="headerlink" title="烟台"></a>烟台</h2><p>我们是 7 月 26 号出发去的 烟台，晚上 11 点才到 烟台站</p>
-<h3 id="第-1-天-7-27"><a href="#第-1-天-7-27" class="headerlink" title="第 1 天 (7.27)"></a>第 1 天 (7.27)</h3><p>一大早我们就去了最出名的景点：烟台山，顺路看了美国领事馆旧址，摸了龙脉，排队上了灯塔，瞭望了大海</p>
-<p>出了烟台山，就是朝阳街了。在 烟台饮料厂 和 广兴果园 之间，我们选择了后者，烟台的苹果汁是真不错</p>
-<p>听了网上的推荐，我们去 乡府肉丁水饺 这家店去吃 鲅鱼饺子。说实话这家店一般，首先饺子不让点半份，其次老板态度需改善啊，一份饺子分量也太多了，我和老婆现在听到鲅鱼饺子都怕怕的</p>
-<p>吃完午饭后，我们去了 烟台博物馆（离得很近）。馆里有一些展览（昆虫），还有一些烟台历史人文的介绍（胶东半岛的历史）看到了 秦始皇赵高李斯等一些塑像，仿佛历史就在我们身边重演</p>
-<p>在博物馆歇息会后，我们去了附近的 所城里。话说天气还是太热了，我们搜了附近的咖啡店，终于找到一家隐藏在小巷中的咖啡馆 - 所图咖啡。我们在这狠狠地歇息了下</p>
-<p>随后我们又走到了 虹口 1920，走的快腿断了（下次再也不走了），看到了海边苹果屋，路过了旺角小渔村（人太多了放弃了在这吃海肠捞饭）</p>
-<p>第一天走的太累了</p>
-<h3 id="第-2-天-7-28"><a href="#第-2-天-7-28" class="headerlink" title="第 2 天 (7.28)"></a>第 2 天 (7.28)</h3><p>我们住在 烟台站对面，这里正好有 17 路旅游专线，于是我们直接坐着公交，沿着海岸线，一直在烟台大学附近才下车</p>
-<p>还是太热了，我们先解决了午饭 （部队火锅），看了场电影（戏台），避过了最热的中午，然后来到了烟台大学海水浴场</p>
-<p>说实话，这里的水 青苔比较多，看来开发的完全不够，简单玩了会后，我们就坐公交去了渔人码头，看了千与千寻铁轨，绕着 渔人码头外围转了一大圈</p>
-<p>由于要赶高铁，我们就此止住，直接回去拿了行李就去烟台南站</p>
-<p>跳过了 东炮台 月亮湾 海豹湾 等景点，等以后有机会再去吧</p>
-<p>我们于晚上 9 点 40 到了 威海，住到了 葡萄滩 附近</p>
-<h2 id="威海"><a href="#威海" class="headerlink" title="威海"></a>威海</h2><h3 id="第-1-天-7-29"><a href="#第-1-天-7-29" class="headerlink" title="第 1 天 (7.29)"></a>第 1 天 (7.29)</h3><p>中午我们去了火炬八街附近的北方饺子王（重点：附近）吃了 酸奶跳跳虾（跳跳糖），海肠捞饭<br>下午去了威海国际海水浴场，我的想法是去看日落 （起不来看不了日出）</p>
-<p>先说一句，威海的海水 比 烟台 清澈多了（仅限这里和 烟大海水浴场 比），玩的项目也多，给我的感觉很棒，除了项目收费贵之外</p>
-<p>另外遇到了 15 年没见的 高中同学（命运太神奇），晚上我们一块约了饭，畅聊了读书期间和后来各种趣事</p>
-<p>第一次用了 滴滴租车 和 滴滴代驾</p>
-<h3 id="第-2-天-7-30"><a href="#第-2-天-7-30" class="headerlink" title="第 2 天 (7.30)"></a>第 2 天 (7.30)</h3><p>上午去刘公岛了，参观了 中国甲午战争博物馆 陈列馆，牢记历史，勿忘国耻，增强忧患意识，做到居安思危</p>
-<p>下午去海钓，四个人 + 1个船长 3个小时，钓到了1.7斤的海鱼（还有一条火麒流，长得太丑了），第一次体验了钓鱼 和 喂海鸥（火腿），吹着海风，又是一段难忘的经历</p>
-<h3 id="第-3-天-7-31"><a href="#第-3-天-7-31" class="headerlink" title="第 3 天 (7.31)"></a>第 3 天 (7.31)</h3><p>我们去了最远的那香海，买了个 68 元的游泳圈，泡了一会海水（原来应该这么玩，可惜此时旅游已到尾声）</p>
-<p>由于台风临近，我们在玩了一会后就回到了住处，追着杨洋的凡人修仙传，吃着外卖，别有一番滋味。。。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>时间过得真快，期待下一次的旅行，在那之前，好好干活，好好生活</p>
-<p><img src="/images/travel_2025.jpg" alt="extend-relation"></p>
-]]></content>
-      <categories>
-        <category>Travel</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>设计模式 - 创建型 - 单例模式</title>
     <url>/2025/07/02/Design-Pattern-Singleton/</url>
     <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
@@ -610,5 +603,62 @@
         <tag>Coding</tag>
         <tag>Design Pattern</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>IEEE 754 Float-Point</title>
+    <url>/2025/07/11/IEEE-754-Float-Point/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>MSBuildBinLog Usage</title>
+    <url>/2025/07/11/MSBuildBinLog-Usage/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>烟台-威海 5日游</title>
+    <url>/2025/08/03/Travel-2025/</url>
+    <content><![CDATA[<blockquote>
+<p>生活不止眼前的苟且，还有诗和远方</p>
+</blockquote>
+<p>转眼，为期一周的旅游就结束了，此时那一幕幕还在眼前浮现，何不记录一番</p>
+<p>与 2023 年（桐庐）不同，这次我和老婆一下去了两个海滨城市：烟台 和 威海</p>
+<span id="more"></span>
+
+<h2 id="烟台"><a href="#烟台" class="headerlink" title="烟台"></a>烟台</h2><p>我们是 7 月 26 号出发去的 烟台，晚上 11 点才到 烟台站</p>
+<h3 id="第-1-天-7-27"><a href="#第-1-天-7-27" class="headerlink" title="第 1 天 (7.27)"></a>第 1 天 (7.27)</h3><p>一大早我们就去了最出名的景点：烟台山，顺路看了美国领事馆旧址，摸了龙脉，排队上了灯塔，瞭望了大海</p>
+<p>出了烟台山，就是朝阳街了。在 烟台饮料厂 和 广兴果园 之间，我们选择了后者，烟台的苹果汁是真不错</p>
+<p>听了网上的推荐，我们去 乡府肉丁水饺 这家店去吃 鲅鱼饺子。说实话这家店一般，首先饺子不让点半份，其次老板态度需改善啊，一份饺子分量也太多了，我和老婆现在听到鲅鱼饺子都怕怕的</p>
+<p>吃完午饭后，我们去了 烟台博物馆（离得很近）。馆里有一些展览（昆虫），还有一些烟台历史人文的介绍（胶东半岛的历史）看到了 秦始皇赵高李斯等一些塑像，仿佛历史就在我们身边重演</p>
+<p>在博物馆歇息会后，我们去了附近的 所城里。话说天气还是太热了，我们搜了附近的咖啡店，终于找到一家隐藏在小巷中的咖啡馆 - 所图咖啡。我们在这狠狠地歇息了下</p>
+<p>随后我们又走到了 虹口 1920，走的快腿断了（下次再也不走了），看到了海边苹果屋，路过了旺角小渔村（人太多了放弃了在这吃海肠捞饭）</p>
+<p>第一天走的太累了</p>
+<h3 id="第-2-天-7-28"><a href="#第-2-天-7-28" class="headerlink" title="第 2 天 (7.28)"></a>第 2 天 (7.28)</h3><p>我们住在 烟台站对面，这里正好有 17 路旅游专线，于是我们直接坐着公交，沿着海岸线，一直在烟台大学附近才下车</p>
+<p>还是太热了，我们先解决了午饭 （部队火锅），看了场电影（戏台），避过了最热的中午，然后来到了烟台大学海水浴场</p>
+<p>说实话，这里的水 青苔比较多，看来开发的完全不够，简单玩了会后，我们就坐公交去了渔人码头，看了千与千寻铁轨，绕着 渔人码头外围转了一大圈</p>
+<p>由于要赶高铁，我们就此止住，直接回去拿了行李就去烟台南站</p>
+<p>跳过了 东炮台 月亮湾 海豹湾 等景点，等以后有机会再去吧</p>
+<p>我们于晚上 9 点 40 到了 威海，住到了 葡萄滩 附近</p>
+<h2 id="威海"><a href="#威海" class="headerlink" title="威海"></a>威海</h2><h3 id="第-1-天-7-29"><a href="#第-1-天-7-29" class="headerlink" title="第 1 天 (7.29)"></a>第 1 天 (7.29)</h3><p>中午我们去了火炬八街附近的北方饺子王（重点：附近）吃了 酸奶跳跳虾（跳跳糖），海肠捞饭<br>下午去了威海国际海水浴场，我的想法是去看日落 （起不来看不了日出）</p>
+<p>先说一句，威海的海水 比 烟台 清澈多了（仅限这里和 烟大海水浴场 比），玩的项目也多，给我的感觉很棒，除了项目收费贵之外</p>
+<p>另外遇到了 15 年没见的 高中同学（命运太神奇），晚上我们一块约了饭，畅聊了读书期间和后来各种趣事</p>
+<p>第一次用了 滴滴租车 和 滴滴代驾</p>
+<h3 id="第-2-天-7-30"><a href="#第-2-天-7-30" class="headerlink" title="第 2 天 (7.30)"></a>第 2 天 (7.30)</h3><p>上午去刘公岛了，参观了 中国甲午战争博物馆 陈列馆，牢记历史，勿忘国耻，增强忧患意识，做到居安思危</p>
+<p>下午去海钓，四个人 + 1个船长 3个小时，钓到了1.7斤的海鱼（还有一条火麒流，长得太丑了），第一次体验了钓鱼 和 喂海鸥（火腿），吹着海风，又是一段难忘的经历</p>
+<h3 id="第-3-天-7-31"><a href="#第-3-天-7-31" class="headerlink" title="第 3 天 (7.31)"></a>第 3 天 (7.31)</h3><p>我们去了最远的那香海，买了个 68 元的游泳圈，泡了一会海水（原来应该这么玩，可惜此时旅游已到尾声）</p>
+<p>由于台风临近，我们在玩了一会后就回到了住处，追着杨洋的凡人修仙传，吃着外卖，别有一番滋味。。。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>时间过得真快，期待下一次的旅行，在那之前，好好干活，好好生活</p>
+<p><img src="/images/travel_2025.jpg" alt="extend-relation"></p>
+]]></content>
+      <categories>
+        <category>Travel</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Test Coverage For C# &amp; Jest</title>
+    <url>/2025/07/11/Test-Coverage-For-C-Jest/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
