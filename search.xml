@@ -84,6 +84,73 @@
       </tags>
   </entry>
   <entry>
+    <title>代码整洁之道 - 错误处理</title>
+    <url>/2025/08/11/Clean-Code-Error-Handling/</url>
+    <content><![CDATA[<blockquote>
+<p>错误处理很重要，但是如果它搞乱了代码逻辑，就是错误的做法</p>
+</blockquote>
+<h2 id="使用异常而非返回码-Use-Exceptions-Rather-Than-Return-Codes"><a href="#使用异常而非返回码-Use-Exceptions-Rather-Than-Return-Codes" class="headerlink" title="使用异常而非返回码 Use Exceptions Rather Than Return Codes"></a>使用异常而非返回码 Use Exceptions Rather Than Return Codes</h2><ul>
+<li>将逻辑和错误处理隔离</li>
+</ul>
+<h2 id="先写-try-catch-finally-语句-Write-Your-Try-Catch-Finally-Statement-First"><a href="#先写-try-catch-finally-语句-Write-Your-Try-Catch-Finally-Statement-First" class="headerlink" title="先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First"></a>先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First</h2><p>异常的妙处在于：它们在程序中定义了范围，执行 try-catch-finally 语句中 try 部分的代码时，你是在表明可随时取消执行，并在 catch 语句中接续</p>
+<p>在某种意义上，try 代码块就像是 <strong>事务</strong></p>
+<ul>
+<li>最好先写出 try-catch-finally 代码块，能帮你定义该代码的用户 <strong>应该期待什么</strong></li>
+</ul>
+<p>尝试编写强行抛出异常的测试，再往处理器中添加行为，使之满足测试要求</p>
+<span id="more"></span>
+
+<h2 id="使用未检异常-Use-Unchecked-Exceptions"><a href="#使用未检异常-Use-Unchecked-Exceptions" class="headerlink" title="使用未检异常 Use Unchecked Exceptions"></a>使用未检异常 Use Unchecked Exceptions</h2><ul>
+<li><p>Java 中存在已检异常和未检异常，优先使用未检异常</p>
+</li>
+<li><p>已检异常有个问题是会得到：一个从软件最底端贯穿到最顶端的修改链</p>
+</li>
+</ul>
+<h2 id="给出异常发生的环境说明-Provide-Context-with-Exceptions"><a href="#给出异常发生的环境说明-Provide-Context-with-Exceptions" class="headerlink" title="给出异常发生的环境说明 Provide Context with Exceptions"></a>给出异常发生的环境说明 Provide Context with Exceptions</h2><ul>
+<li><p>应创建信息充分的错误消息，并和异常一起传递出去</p>
+</li>
+<li><p>在消息中，应包括失败的操作和失败类型</p>
+</li>
+</ul>
+<h2 id="依调用者需要定义异常类-Define-Exception-Classes-in-Terms-of-a-Caller’s-Needs"><a href="#依调用者需要定义异常类-Define-Exception-Classes-in-Terms-of-a-Caller’s-Needs" class="headerlink" title="依调用者需要定义异常类 Define Exception Classes in Terms of a Caller’s Needs"></a>依调用者需要定义异常类 Define Exception Classes in Terms of a Caller’s Needs</h2><ul>
+<li><p>将第三方打包是个良好的实践手段</p>
+<ul>
+<li><p>可以降低对它的依赖，未来可以不太痛苦地改用其他代码库</p>
+</li>
+<li><p>在测试时，有助于模拟第三方调用，使用 Moq</p>
+</li>
+<li><p>不必绑死在某个特定厂商的 API 设计上，可以定义自己感觉舒服的 API</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="定义常规流程-Define-the-Normal-Flow"><a href="#定义常规流程-Define-the-Normal-Flow" class="headerlink" title="定义常规流程 Define the Normal Flow"></a>定义常规流程 Define the Normal Flow</h2><p>有时可以用特例模式（Special Case Pattern）处理特例，创建一个类或配置一个对象，把异常行为封装到这个特例对象中</p>
+<h2 id="别返回-null-值-Do-not-Return-Null"><a href="#别返回-null-值-Do-not-Return-Null" class="headerlink" title="别返回 null 值 Do not Return Null"></a>别返回 null 值 Do not Return Null</h2><h2 id="别传递-null-值-Do-not-Pass-Null"><a href="#别传递-null-值-Do-not-Pass-Null" class="headerlink" title="别传递 null 值 Do not Pass Null"></a>别传递 null 值 Do not Pass Null</h2><p>在大多数语言中，没有良好的办法应对由调用者意外传入的 null 值，恰当的做法是 禁止传入 null 值</p>
+<ol>
+<li><p>可以用断言 Assertion</p>
+</li>
+<li><p>可以检查传入参数是否为 null 并抛出自定义异常</p>
+</li>
+</ol>
+<h2 id="小结-Conclusion"><a href="#小结-Conclusion" class="headerlink" title="小结 Conclusion"></a>小结 Conclusion</h2><ul>
+<li><p>整洁代码既要可读，也要强固</p>
+</li>
+<li><p>可读与强固并不冲突</p>
+</li>
+<li><p>将错误处理隔离看待，独立于主要逻辑之外，就能写出强固而可读的代码</p>
+</li>
+<li><p>这样可以极大地提升代码的可维护性</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>代码整洁之道</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>代码整洁之道 - 格式</title>
     <url>/2025/08/03/Clean-Code-Formatting/</url>
     <content><![CDATA[<ul>
@@ -386,6 +453,22 @@
       </tags>
   </entry>
   <entry>
+    <title>IQueryable &amp; IEnumerable</title>
+    <url>/2025/07/09/Clean-Code-Practice-1/</url>
+    <content><![CDATA[<p><code>IQueryable</code> 是继承 <code>IEnumerable</code> 的，所以任何使用 <code>IEnumerable</code> 的地方都可以换成 <code>IQueryable</code>.  —– 里氏替换</p>
+<p><img src="/images/extend-relation.png" alt="extend-relation">
+    </p>
+<p><a href="https://stackoverflow.com/questions/252785/what-is-the-difference-between-iqueryablet-and-ienumerablet">.net - What is the difference between IQueryable<T> and IEnumerable<T>? - Stack Overflow</a></p>
+]]></content>
+      <categories>
+        <category>Engineering</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+        <tag>C#</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>代码整洁之道 - 对象和数据结构</title>
     <url>/2025/08/06/Clean-Code-Objects-and-Data-Structures/</url>
     <content><![CDATA[<h2 id="数据抽象-Data-Abstraction"><a href="#数据抽象-Data-Abstraction" class="headerlink" title="数据抽象 Data Abstraction"></a>数据抽象 Data Abstraction</h2><p>隐藏实现 并非 只是在变量之间放上一个函数层那么简单，隐藏实现 关乎 <strong>抽象</strong></p>
@@ -452,19 +535,38 @@
       </tags>
   </entry>
   <entry>
-    <title>IQueryable &amp; IEnumerable</title>
-    <url>/2025/07/09/Clean-Code-Practice-1/</url>
-    <content><![CDATA[<p><code>IQueryable</code> 是继承 <code>IEnumerable</code> 的，所以任何使用 <code>IEnumerable</code> 的地方都可以换成 <code>IQueryable</code>.  —– 里氏替换</p>
-<p><img src="/images/extend-relation.png" alt="extend-relation">
-    </p>
-<p><a href="https://stackoverflow.com/questions/252785/what-is-the-difference-between-iqueryablet-and-ienumerablet">.net - What is the difference between IQueryable<T> and IEnumerable<T>? - Stack Overflow</a></p>
+    <title>设计模式 - 创建型 - 工厂方法模式</title>
+    <url>/2025/07/04/Design-Pattern-Factory/</url>
+    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
+<li>创建型   Creational</li>
+</ul>
+<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the factory method pattern is to define an interface for creating an object, but to let subclasses decide which class to instantiate. Factory method lets a class defer  instantiation to subclasses.</p>
+<span id="more"></span>
+
+<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> DiscountPercentage &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">ToString</span>()</span> =&gt; GetType().Name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CountryDiscountService</span>(<span class="params"><span class="built_in">string</span> countryId</span>) : DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> DiscountPercentage</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> countryId <span class="keyword">switch</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;BE&quot;</span> =&gt; <span class="number">20</span>,</span><br><span class="line">                _ =&gt; <span class="number">0</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CodeDiscountService</span>(<span class="params">Guid code</span>) : DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">15</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> DiscountService <span class="title">CreateDiscountService</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CountryDiscountFactory</span>(<span class="params"><span class="built_in">string</span> countryId</span>) : DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> DiscountService <span class="title">CreateDiscountService</span>()</span> =&gt; <span class="keyword">new</span> CountryDiscountService(countryId);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CodeDiscountFactory</span>(<span class="params">Guid code</span>) : DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> DiscountService <span class="title">CreateDiscountService</span>()</span> =&gt; <span class="keyword">new</span> CodeDiscountService(code);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Client Invoke</span></span><br><span class="line">List&lt;DiscountFactory&gt; factories =</span><br><span class="line">[</span><br><span class="line">    <span class="keyword">new</span> CountryDiscountFactory(<span class="string">&quot;BE&quot;</span>),</span><br><span class="line">    <span class="keyword">new</span> CodeDiscountFactory(Guid.NewGuid())</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> factory <span class="keyword">in</span> factories)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> discountService = factory.CreateDiscountService();</span><br><span class="line">    Console.WriteLine(</span><br><span class="line">        <span class="string">$&quot;Discount Service: <span class="subst">&#123;discountService&#125;</span>, Discount Percentage: <span class="subst">&#123;discountService.DiscountPercentage&#125;</span>%&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
+<li>When a class can not anticipate the class of objects it must create</li>
+<li>When a class wants its subclasses to specify the objects it creates</li>
+<li>As a way to enable reusing of existing objects</li>
+</ul>
+<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
+<li><p>Factory methods eliminate the need to bind application-specific classes to your code</p>
+</li>
+<li><p>New types of products can be added without breaking client code: OCP</p>
+</li>
+<li><p>Creating products is moved to one specific place in your code, the creator: SRP</p>
+</li>
+<li><p>drawback: clients might need to create subclasses of the creator class just to create  a particular ConcreteProduct object</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>Engineering</category>
       </categories>
       <tags>
         <tag>Coding</tag>
-        <tag>C#</tag>
+        <tag>Design Pattern</tag>
       </tags>
   </entry>
   <entry>
@@ -501,41 +603,6 @@
 <li><p>工厂方法：1个工厂 -&gt; 一种产品</p>
 </li>
 <li><p>抽象工厂：1个工厂 -&gt; 一套产品</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Engineering</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
-        <tag>Design Pattern</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>设计模式 - 创建型 - 工厂方法模式</title>
-    <url>/2025/07/04/Design-Pattern-Factory/</url>
-    <content><![CDATA[<h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
-<li>创建型   Creational</li>
-</ul>
-<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the factory method pattern is to define an interface for creating an object, but to let subclasses decide which class to instantiate. Factory method lets a class defer  instantiation to subclasses.</p>
-<span id="more"></span>
-
-<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">int</span> DiscountPercentage &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">ToString</span>()</span> =&gt; GetType().Name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CountryDiscountService</span>(<span class="params"><span class="built_in">string</span> countryId</span>) : DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> DiscountPercentage</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> countryId <span class="keyword">switch</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;BE&quot;</span> =&gt; <span class="number">20</span>,</span><br><span class="line">                _ =&gt; <span class="number">0</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CodeDiscountService</span>(<span class="params">Guid code</span>) : DiscountService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">int</span> DiscountPercentage =&gt; <span class="number">15</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> DiscountService <span class="title">CreateDiscountService</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CountryDiscountFactory</span>(<span class="params"><span class="built_in">string</span> countryId</span>) : DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> DiscountService <span class="title">CreateDiscountService</span>()</span> =&gt; <span class="keyword">new</span> CountryDiscountService(countryId);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CodeDiscountFactory</span>(<span class="params">Guid code</span>) : DiscountFactory</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> DiscountService <span class="title">CreateDiscountService</span>()</span> =&gt; <span class="keyword">new</span> CodeDiscountService(code);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Client Invoke</span></span><br><span class="line">List&lt;DiscountFactory&gt; factories =</span><br><span class="line">[</span><br><span class="line">    <span class="keyword">new</span> CountryDiscountFactory(<span class="string">&quot;BE&quot;</span>),</span><br><span class="line">    <span class="keyword">new</span> CodeDiscountFactory(Guid.NewGuid())</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> factory <span class="keyword">in</span> factories)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> discountService = factory.CreateDiscountService();</span><br><span class="line">    Console.WriteLine(</span><br><span class="line">        <span class="string">$&quot;Discount Service: <span class="subst">&#123;discountService&#125;</span>, Discount Percentage: <span class="subst">&#123;discountService.DiscountPercentage&#125;</span>%&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
-<li>When a class can not anticipate the class of objects it must create</li>
-<li>When a class wants its subclasses to specify the objects it creates</li>
-<li>As a way to enable reusing of existing objects</li>
-</ul>
-<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
-<li><p>Factory methods eliminate the need to bind application-specific classes to your code</p>
-</li>
-<li><p>New types of products can be added without breaking client code: OCP</p>
-</li>
-<li><p>Creating products is moved to one specific place in your code, the creator: SRP</p>
-</li>
-<li><p>drawback: clients might need to create subclasses of the creator class just to create  a particular ConcreteProduct object</p>
 </li>
 </ul>
 ]]></content>
@@ -615,6 +682,11 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
+    <title>Test Coverage For C# &amp; Jest</title>
+    <url>/2025/07/11/Test-Coverage-For-C-Jest/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>烟台-威海 5日游</title>
     <url>/2025/08/03/Travel-2025/</url>
     <content><![CDATA[<blockquote>
@@ -655,10 +727,5 @@
       <tags>
         <tag>Life</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Test Coverage For C# &amp; Jest</title>
-    <url>/2025/07/11/Test-Coverage-For-C-Jest/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>

@@ -20,23 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="IQueryable 是继承 IEnumerable 的，所以任何使用 IEnumerable 的地方都可以换成 IQueryable.  —– 里氏替换       .net - What is the difference between IQueryable and IEnumerable? - Stack Overflow">
+  <meta name="description" content="错误处理很重要，但是如果它搞乱了代码逻辑，就是错误的做法  使用异常而非返回码 Use Exceptions Rather Than Return Codes 将逻辑和错误处理隔离  先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First异常的妙处在于：它们在程序中定义了范围，执行 try-catch-finall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IQueryable &amp; IEnumerable">
-<meta property="og:url" content="http://example.com/2025/07/09/Clean-Code-Practice-1/index.html">
+<meta property="og:title" content="代码整洁之道 - 错误处理">
+<meta property="og:url" content="http://example.com/2025/08/11/Clean-Code-Error-Handling/index.html">
 <meta property="og:site_name" content="异想天开の博客">
-<meta property="og:description" content="IQueryable 是继承 IEnumerable 的，所以任何使用 IEnumerable 的地方都可以换成 IQueryable.  —– 里氏替换       .net - What is the difference between IQueryable and IEnumerable? - Stack Overflow">
+<meta property="og:description" content="错误处理很重要，但是如果它搞乱了代码逻辑，就是错误的做法  使用异常而非返回码 Use Exceptions Rather Than Return Codes 将逻辑和错误处理隔离  先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First异常的妙处在于：它们在程序中定义了范围，执行 try-catch-finall">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/extend-relation.png">
-<meta property="article:published_time" content="2025-07-09T01:56:08.000Z">
-<meta property="article:modified_time" content="2025-08-07T13:55:12.849Z">
+<meta property="article:published_time" content="2025-08-11T04:07:22.000Z">
+<meta property="article:modified_time" content="2025-08-14T15:45:20.914Z">
 <meta property="article:author" content="xiangflight">
-<meta property="article:tag" content="Coding">
-<meta property="article:tag" content="C#">
+<meta property="article:tag" content="代码整洁之道">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/extend-relation.png">
 
-<link rel="canonical" href="http://example.com/2025/07/09/Clean-Code-Practice-1/">
+<link rel="canonical" href="http://example.com/2025/08/11/Clean-Code-Error-Handling/">
 
 
 <script id="page-configurations">
@@ -49,7 +46,7 @@
   };
 </script>
 
-  <title>IQueryable & IEnumerable | 异想天开の博客</title>
+  <title>代码整洁之道 - 错误处理 | 异想天开の博客</title>
   
 
 
@@ -205,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/09/Clean-Code-Practice-1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/11/Clean-Code-Error-Handling/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -218,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IQueryable & IEnumerable
+          代码整洁之道 - 错误处理
         </h1>
 
         <div class="post-meta">
@@ -228,14 +225,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-07-09 09:56:08" itemprop="dateCreated datePublished" datetime="2025-07-09T09:56:08+08:00">2025-07-09</time>
+              <time title="创建时间：2025-08-11 12:07:22" itemprop="dateCreated datePublished" datetime="2025-08-11T12:07:22+08:00">2025-08-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-08-07 21:55:12" itemprop="dateModified" datetime="2025-08-07T21:55:12+08:00">2025-08-07</time>
+                <time title="修改时间：2025-08-14 23:45:20" itemprop="dateModified" datetime="2025-08-14T23:45:20+08:00">2025-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,7 +250,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>138</span>
+              <span>925</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -272,10 +269,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><code>IQueryable</code> 是继承 <code>IEnumerable</code> 的，所以任何使用 <code>IEnumerable</code> 的地方都可以换成 <code>IQueryable</code>.  —– 里氏替换</p>
-<p><img src="/images/extend-relation.png" alt="extend-relation">
-    </p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/252785/what-is-the-difference-between-iqueryablet-and-ienumerablet">.net - What is the difference between IQueryable<T> and IEnumerable<T>? - Stack Overflow</a></p>
+        <blockquote>
+<p>错误处理很重要，但是如果它搞乱了代码逻辑，就是错误的做法</p>
+</blockquote>
+<h2 id="使用异常而非返回码-Use-Exceptions-Rather-Than-Return-Codes"><a href="#使用异常而非返回码-Use-Exceptions-Rather-Than-Return-Codes" class="headerlink" title="使用异常而非返回码 Use Exceptions Rather Than Return Codes"></a>使用异常而非返回码 Use Exceptions Rather Than Return Codes</h2><ul>
+<li>将逻辑和错误处理隔离</li>
+</ul>
+<h2 id="先写-try-catch-finally-语句-Write-Your-Try-Catch-Finally-Statement-First"><a href="#先写-try-catch-finally-语句-Write-Your-Try-Catch-Finally-Statement-First" class="headerlink" title="先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First"></a>先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First</h2><p>异常的妙处在于：它们在程序中定义了范围，执行 try-catch-finally 语句中 try 部分的代码时，你是在表明可随时取消执行，并在 catch 语句中接续</p>
+<p>在某种意义上，try 代码块就像是 <strong>事务</strong></p>
+<ul>
+<li>最好先写出 try-catch-finally 代码块，能帮你定义该代码的用户 <strong>应该期待什么</strong></li>
+</ul>
+<p>尝试编写强行抛出异常的测试，再往处理器中添加行为，使之满足测试要求</p>
+<span id="more"></span>
+
+<h2 id="使用未检异常-Use-Unchecked-Exceptions"><a href="#使用未检异常-Use-Unchecked-Exceptions" class="headerlink" title="使用未检异常 Use Unchecked Exceptions"></a>使用未检异常 Use Unchecked Exceptions</h2><ul>
+<li><p>Java 中存在已检异常和未检异常，优先使用未检异常</p>
+</li>
+<li><p>已检异常有个问题是会得到：一个从软件最底端贯穿到最顶端的修改链</p>
+</li>
+</ul>
+<h2 id="给出异常发生的环境说明-Provide-Context-with-Exceptions"><a href="#给出异常发生的环境说明-Provide-Context-with-Exceptions" class="headerlink" title="给出异常发生的环境说明 Provide Context with Exceptions"></a>给出异常发生的环境说明 Provide Context with Exceptions</h2><ul>
+<li><p>应创建信息充分的错误消息，并和异常一起传递出去</p>
+</li>
+<li><p>在消息中，应包括失败的操作和失败类型</p>
+</li>
+</ul>
+<h2 id="依调用者需要定义异常类-Define-Exception-Classes-in-Terms-of-a-Caller’s-Needs"><a href="#依调用者需要定义异常类-Define-Exception-Classes-in-Terms-of-a-Caller’s-Needs" class="headerlink" title="依调用者需要定义异常类 Define Exception Classes in Terms of a Caller’s Needs"></a>依调用者需要定义异常类 Define Exception Classes in Terms of a Caller’s Needs</h2><ul>
+<li><p>将第三方打包是个良好的实践手段</p>
+<ul>
+<li><p>可以降低对它的依赖，未来可以不太痛苦地改用其他代码库</p>
+</li>
+<li><p>在测试时，有助于模拟第三方调用，使用 Moq</p>
+</li>
+<li><p>不必绑死在某个特定厂商的 API 设计上，可以定义自己感觉舒服的 API</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="定义常规流程-Define-the-Normal-Flow"><a href="#定义常规流程-Define-the-Normal-Flow" class="headerlink" title="定义常规流程 Define the Normal Flow"></a>定义常规流程 Define the Normal Flow</h2><p>有时可以用特例模式（Special Case Pattern）处理特例，创建一个类或配置一个对象，把异常行为封装到这个特例对象中</p>
+<h2 id="别返回-null-值-Do-not-Return-Null"><a href="#别返回-null-值-Do-not-Return-Null" class="headerlink" title="别返回 null 值 Do not Return Null"></a>别返回 null 值 Do not Return Null</h2><h2 id="别传递-null-值-Do-not-Pass-Null"><a href="#别传递-null-值-Do-not-Pass-Null" class="headerlink" title="别传递 null 值 Do not Pass Null"></a>别传递 null 值 Do not Pass Null</h2><p>在大多数语言中，没有良好的办法应对由调用者意外传入的 null 值，恰当的做法是 禁止传入 null 值</p>
+<ol>
+<li><p>可以用断言 Assertion</p>
+</li>
+<li><p>可以检查传入参数是否为 null 并抛出自定义异常</p>
+</li>
+</ol>
+<h2 id="小结-Conclusion"><a href="#小结-Conclusion" class="headerlink" title="小结 Conclusion"></a>小结 Conclusion</h2><ul>
+<li><p>整洁代码既要可读，也要强固</p>
+</li>
+<li><p>可读与强固并不冲突</p>
+</li>
+<li><p>将错误处理隔离看待，独立于主要逻辑之外，就能写出强固而可读的代码</p>
+</li>
+<li><p>这样可以极大地提升代码的可维护性</p>
+</li>
+</ul>
 
     </div>
 
@@ -285,8 +334,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Coding/" rel="tag"># Coding</a>
-              <a href="/tags/C/" rel="tag"># C#</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/" rel="tag"># 代码整洁之道</a>
           </div>
 
         
@@ -295,13 +343,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/07/04/Design-Pattern-Factory/" rel="prev" title="设计模式 - 创建型 - 工厂方法模式">
-      <i class="fa fa-chevron-left"></i> 设计模式 - 创建型 - 工厂方法模式
+    <a href="/2025/08/06/Clean-Code-Objects-and-Data-Structures/" rel="prev" title="代码整洁之道 - 对象和数据结构">
+      <i class="fa fa-chevron-left"></i> 代码整洁之道 - 对象和数据结构
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/07/11/Clean-Code-Comment/" rel="next" title="代码整洁之道 - 注释">
-      代码整洁之道 - 注释 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -360,6 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%BC%82%E5%B8%B8%E8%80%8C%E9%9D%9E%E8%BF%94%E5%9B%9E%E7%A0%81-Use-Exceptions-Rather-Than-Return-Codes"><span class="nav-text">使用异常而非返回码 Use Exceptions Rather Than Return Codes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E5%86%99-try-catch-finally-%E8%AF%AD%E5%8F%A5-Write-Your-Try-Catch-Finally-Statement-First"><span class="nav-text">先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9C%AA%E6%A3%80%E5%BC%82%E5%B8%B8-Use-Unchecked-Exceptions"><span class="nav-text">使用未检异常 Use Unchecked Exceptions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E5%87%BA%E5%BC%82%E5%B8%B8%E5%8F%91%E7%94%9F%E7%9A%84%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E-Provide-Context-with-Exceptions"><span class="nav-text">给出异常发生的环境说明 Provide Context with Exceptions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B0%83%E7%94%A8%E8%80%85%E9%9C%80%E8%A6%81%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%B1%BB-Define-Exception-Classes-in-Terms-of-a-Caller%E2%80%99s-Needs"><span class="nav-text">依调用者需要定义异常类 Define Exception Classes in Terms of a Caller’s Needs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%B8%B8%E8%A7%84%E6%B5%81%E7%A8%8B-Define-the-Normal-Flow"><span class="nav-text">定义常规流程 Define the Normal Flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%AB%E8%BF%94%E5%9B%9E-null-%E5%80%BC-Do-not-Return-Null"><span class="nav-text">别返回 null 值 Do not Return Null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%AB%E4%BC%A0%E9%80%92-null-%E5%80%BC-Do-not-Pass-Null"><span class="nav-text">别传递 null 值 Do not Pass Null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-Conclusion"><span class="nav-text">小结 Conclusion</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

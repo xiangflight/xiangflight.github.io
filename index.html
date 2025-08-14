@@ -198,6 +198,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/11/Clean-Code-Error-Handling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiangflight">
+      <meta itemprop="description" content="C#/Database/Others">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异想天开の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/08/11/Clean-Code-Error-Handling/" class="post-title-link" itemprop="url">代码整洁之道 - 错误处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-08-11 12:07:22" itemprop="dateCreated datePublished" datetime="2025-08-11T12:07:22+08:00">2025-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-14 23:45:20" itemprop="dateModified" datetime="2025-08-14T23:45:20+08:00">2025-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>925</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>错误处理很重要，但是如果它搞乱了代码逻辑，就是错误的做法</p>
+</blockquote>
+<h2 id="使用异常而非返回码-Use-Exceptions-Rather-Than-Return-Codes"><a href="#使用异常而非返回码-Use-Exceptions-Rather-Than-Return-Codes" class="headerlink" title="使用异常而非返回码 Use Exceptions Rather Than Return Codes"></a>使用异常而非返回码 Use Exceptions Rather Than Return Codes</h2><ul>
+<li>将逻辑和错误处理隔离</li>
+</ul>
+<h2 id="先写-try-catch-finally-语句-Write-Your-Try-Catch-Finally-Statement-First"><a href="#先写-try-catch-finally-语句-Write-Your-Try-Catch-Finally-Statement-First" class="headerlink" title="先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First"></a>先写 try-catch-finally 语句 Write Your Try-Catch-Finally Statement First</h2><p>异常的妙处在于：它们在程序中定义了范围，执行 try-catch-finally 语句中 try 部分的代码时，你是在表明可随时取消执行，并在 catch 语句中接续</p>
+<p>在某种意义上，try 代码块就像是 <strong>事务</strong></p>
+<ul>
+<li>最好先写出 try-catch-finally 代码块，能帮你定义该代码的用户 <strong>应该期待什么</strong></li>
+</ul>
+<p>尝试编写强行抛出异常的测试，再往处理器中添加行为，使之满足测试要求</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/08/11/Clean-Code-Error-Handling/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/06/Clean-Code-Objects-and-Data-Structures/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1004,104 +1110,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/04/Design-Pattern-Factory/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="xiangflight">
-      <meta itemprop="description" content="C#/Database/Others">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异想天开の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/07/04/Design-Pattern-Factory/" class="post-title-link" itemprop="url">设计模式 - 创建型 - 工厂方法模式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-07-04 23:03:00" itemprop="dateCreated datePublished" datetime="2025-07-04T23:03:00+08:00">2025-07-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-11 23:17:59" itemprop="dateModified" datetime="2025-07-11T23:17:59+08:00">2025-07-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
-<li>创建型   Creational</li>
-</ul>
-<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the factory method pattern is to define an interface for creating an object, but to let subclasses decide which class to instantiate. Factory method lets a class defer  instantiation to subclasses.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/07/04/Design-Pattern-Factory/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1173,7 +1181,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1227,12 +1235,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">17k</span>
+    <span title="站点总字数">18k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">15 分钟</span>
+    <span title="站点阅读时长">16 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
