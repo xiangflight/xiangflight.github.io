@@ -20,17 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="C#&#x2F;Database&#x2F;Others">
-<meta property="og:type" content="website">
-<meta property="og:title" content="异想天开の博客">
-<meta property="og:url" content="http://example.com/tags/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/index.html">
+  <meta name="description" content="使用第三方代码 Using Third-Party Code在接口提供者和使用者之间存在与生俱来的矛盾  第三方程序包或框架提供者追求普适性，能在多种环境中工作，从而吸引广泛的用户  使用者想要得到集中满足特定需求的接口   因此，应该对第三方代码进行适当的封装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码整洁之道 - 边界">
+<meta property="og:url" content="http://example.com/2025/08/15/Clean-Code-Boundaries/index.html">
 <meta property="og:site_name" content="异想天开の博客">
-<meta property="og:description" content="C#&#x2F;Database&#x2F;Others">
+<meta property="og:description" content="使用第三方代码 Using Third-Party Code在接口提供者和使用者之间存在与生俱来的矛盾  第三方程序包或框架提供者追求普适性，能在多种环境中工作，从而吸引广泛的用户  使用者想要得到集中满足特定需求的接口   因此，应该对第三方代码进行适当的封装">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/predict_transmitter.png">
+<meta property="article:published_time" content="2025-08-15T01:26:55.000Z">
+<meta property="article:modified_time" content="2025-08-19T15:32:31.376Z">
 <meta property="article:author" content="xiangflight">
+<meta property="article:tag" content="代码整洁之道">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/predict_transmitter.png">
 
-<link rel="canonical" href="http://example.com/tags/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/">
+<link rel="canonical" href="http://example.com/2025/08/15/Clean-Code-Boundaries/">
 
 
 <script id="page-configurations">
@@ -38,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: 代码整洁之道 | 异想天开の博客</title>
+  <title>代码整洁之道 - 边界 | 异想天开の博客</title>
   
 
 
@@ -192,171 +197,163 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">代码整洁之道
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/15/Clean-Code-Boundaries/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiangflight">
+      <meta itemprop="description" content="C#/Database/Others">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异想天开の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码整洁之道 - 边界
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-08-15 09:26:55" itemprop="dateCreated datePublished" datetime="2025-08-15T09:26:55+08:00">2025-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-19 23:32:31" itemprop="dateModified" datetime="2025-08-19T23:32:31+08:00">2025-08-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>744</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2025</span>
-    </div>
+        <h2 id="使用第三方代码-Using-Third-Party-Code"><a href="#使用第三方代码-Using-Third-Party-Code" class="headerlink" title="使用第三方代码 Using Third-Party Code"></a>使用第三方代码 Using Third-Party Code</h2><p>在接口提供者和使用者之间存在与生俱来的矛盾</p>
+<ol>
+<li><p>第三方程序包或框架提供者追求普适性，能在多种环境中工作，从而吸引广泛的用户</p>
+</li>
+<li><p>使用者想要得到集中满足特定需求的接口</p>
+</li>
+</ol>
+<p>因此，应该对第三方代码进行适当的封装</p>
+<span id="more"></span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2025-08-15T09:26:55+08:00"
-              content="2025-08-15">
-          08-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/08/15/Clean-Code-Boundaries/" itemprop="url">
-            <span itemprop="name">代码整洁之道 - 边界</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2025-08-11T12:07:22+08:00"
-              content="2025-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/08/11/Clean-Code-Error-Handling/" itemprop="url">
-            <span itemprop="name">代码整洁之道 - 错误处理</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2025-08-06T14:03:55+08:00"
-              content="2025-08-06">
-          08-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/08/06/Clean-Code-Objects-and-Data-Structures/" itemprop="url">
-            <span itemprop="name">代码整洁之道 - 对象和数据结构</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2025-08-03T23:12:35+08:00"
-              content="2025-08-03">
-          08-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/08/03/Clean-Code-Formatting/" itemprop="url">
-            <span itemprop="name">代码整洁之道 - 格式</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2025-07-11T22:32:47+08:00"
-              content="2025-07-11">
-          07-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/07/11/Clean-Code-Comment/" itemprop="url">
-            <span itemprop="name">代码整洁之道 - 注释</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2025-06-30T22:53:23+08:00"
-              content="2025-06-30">
-          06-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/06/30/Clean-Code-Function/" itemprop="url">
-            <span itemprop="name">代码整洁之道 - 函数</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2025-06-29T18:26:19+08:00"
-              content="2025-06-29">
-          06-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/06/29/Clean-Code-Naming/" itemprop="url">
-            <span itemprop="name">代码整洁之道 - 有意义的命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<h2 id="浏览和学习边界-Exploring-and-Learning-Boundaries"><a href="#浏览和学习边界-Exploring-and-Learning-Boundaries" class="headerlink" title="浏览和学习边界 Exploring and Learning Boundaries"></a>浏览和学习边界 Exploring and Learning Boundaries</h2><p>传统学习使用的方法是:</p>
+<ol>
+<li><p>花上 1 到 2 天阅读文档，决定如何使用</p>
+</li>
+<li><p>编写使用第三方代码的代码，看是否如我们所愿</p>
+</li>
+<li><p>陷入长时间的调试</p>
+</li>
+</ol>
+<p>新的做法（学习性测试 learning test）：</p>
+<ul>
+<li><p>不要在生产代码中试验新东西，通过编写测试来遍览和理解第三方代码</p>
+</li>
+<li><p>在学习性测试中，通过核对试验来检测对于API的理解程度，测试聚焦于我们想从 API 得到的东西</p>
+</li>
+</ul>
+<h2 id="学习性测试的好处不只是免费-Learning-Tests-Are-Better-Than-Free"><a href="#学习性测试的好处不只是免费-Learning-Tests-Are-Better-Than-Free" class="headerlink" title="学习性测试的好处不只是免费 Learning Tests Are Better Than Free"></a>学习性测试的好处不只是免费 Learning Tests Are Better Than Free</h2><ul>
+<li><p>学习性测试无成本，不管怎样都得学会如何使用 API，学习性测试是一种精确试验，帮助我们增进对 API 的理解</p>
+</li>
+<li><p>当第三方程序包发布了新版本，可以运行学习性测试，检查程序包的行为是否改变</p>
+</li>
+</ul>
+<h2 id="使用尚不存在的代码-Using-Code-That-Does-Not-Yet-Exist"><a href="#使用尚不存在的代码-Using-Code-That-Does-Not-Yet-Exist" class="headerlink" title="使用尚不存在的代码 Using Code That Does Not Yet Exist"></a>使用尚不存在的代码 Using Code That Does Not Yet Exist</h2><p><img src="/images/predict_transmitter.png" alt="boundary"></p>
+<ul>
+<li><p>编写自己的接口，它在我们的控制下</p>
+</li>
+<li><p>图中，未来的 Transmitter API 完全从 CommunicationsController 类中隔离了出来</p>
+</li>
+<li><p>我们可以通过 Adapter 设计模式让我们的接口和未知的接口兼容</p>
+</li>
+</ul>
+<h2 id="整洁边界-Clean-Boundaries"><a href="#整洁边界-Clean-Boundaries" class="headerlink" title="整洁边界 Clean Boundaries"></a>整洁边界 Clean Boundaries</h2><ul>
+<li><p>依靠你能控制的东西，好过依靠你控制不了的东西，免得日后受它控制</p>
+</li>
+<li><p>边界上的代码需要清晰的分隔和定义期望的测试，应避免我么代码过多了解第三方代码中的特定信息</p>
+</li>
+<li><p>可以通过代码中<strong>少数几处引用</strong>第三方边界接口的位置来管理第三方边界</p>
+<ul>
+<li><p>封装到单独的类中</p>
+</li>
+<li><p>使用 Adapter 模式将我们的接口转换为第三方提供的接口</p>
+</li>
+</ul>
+</li>
+</ul>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/" rel="tag"># 代码整洁之道</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/08/11/Clean-Code-Error-Handling/" rel="prev" title="代码整洁之道 - 错误处理">
+      <i class="fa fa-chevron-left"></i> 代码整洁之道 - 错误处理
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -409,6 +406,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BB%A3%E7%A0%81-Using-Third-Party-Code"><span class="nav-text">使用第三方代码 Using Third-Party Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%92%8C%E5%AD%A6%E4%B9%A0%E8%BE%B9%E7%95%8C-Exploring-and-Learning-Boundaries"><span class="nav-text">浏览和学习边界 Exploring and Learning Boundaries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%80%A7%E6%B5%8B%E8%AF%95%E7%9A%84%E5%A5%BD%E5%A4%84%E4%B8%8D%E5%8F%AA%E6%98%AF%E5%85%8D%E8%B4%B9-Learning-Tests-Are-Better-Than-Free"><span class="nav-text">学习性测试的好处不只是免费 Learning Tests Are Better Than Free</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B0%9A%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E4%BB%A3%E7%A0%81-Using-Code-That-Does-Not-Yet-Exist"><span class="nav-text">使用尚不存在的代码 Using Code That Does Not Yet Exist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%B4%81%E8%BE%B9%E7%95%8C-Clean-Boundaries"><span class="nav-text">整洁边界 Clean Boundaries</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
