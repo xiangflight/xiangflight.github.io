@@ -198,6 +198,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/11/Clean-Code-Comment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiangflight">
+      <meta itemprop="description" content="C#/Database/Others">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异想天开の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/07/11/Clean-Code-Comment/" class="post-title-link" itemprop="url">代码整洁之道 - 注释</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-07-11 22:32:47" itemprop="dateCreated datePublished" datetime="2025-07-11T22:32:47+08:00">2025-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-07 21:54:55" itemprop="dateModified" datetime="2025-08-07T21:54:55+08:00">2025-08-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="注释不能美化糟糕的代码-Comments-Do-Not-Make-Up-for-Bad-Code"><a href="#注释不能美化糟糕的代码-Comments-Do-Not-Make-Up-for-Bad-Code" class="headerlink" title="注释不能美化糟糕的代码 Comments Do Not Make Up for Bad Code"></a>注释不能美化糟糕的代码 Comments Do Not Make Up for Bad Code</h2><ul>
+<li><p>注释是用代码表达意图遭遇的失败</p>
+</li>
+<li><p>写注释的常见动机之一是糟糕的代码的存在</p>
+</li>
+</ul>
+<h2 id="用代码来阐释-Explain-Yourself-in-Code"><a href="#用代码来阐释-Explain-Yourself-in-Code" class="headerlink" title="用代码来阐释 Explain Yourself in Code"></a>用代码来阐释 Explain Yourself in Code</h2><p>清晰的代码本身就能有效表达意图，应避免依赖注释</p>
+<p>确实存在代码难以解释逻辑的情况。不幸的是，许多程序员因此认为代码几乎无法成为好的解释手段，这是错误的观点。如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// check to see if the employee is eligible for full benefits</span></span><br><span class="line"><span class="keyword">if</span> (employee.flags &amp;&amp; HOURLY_FLAG) &amp;&amp; (employee.age &gt; <span class="number">65</span>))</span><br></pre></td></tr></table></figure>
+
+<p>可以重构为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (employee.IsEligibleForFullBenefits())</span><br></pre></td></tr></table></figure>
+
+<p>很多时候，简单到只需要创建一个描述了与注释所言同一事物的函数即可。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/07/11/Clean-Code-Comment/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/09/Clean-Code-Practice-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -748,7 +856,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -802,7 +910,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">19k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
