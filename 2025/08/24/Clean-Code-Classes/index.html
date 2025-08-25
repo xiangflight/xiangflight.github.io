@@ -20,21 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="类型 Type 创建型   Creational  含义 IntentThe intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.">
+  <meta name="description" content="类的组织 Class Organization公共函数调用的私有函数，紧跟公共函数后，这符合自上向下原则，让程序读起来像一篇报纸文章 封装 Encapsulation有时为了测试，会把 private 的变量或函数变成 protected 或 Internal 的 首先想办法隐藏，保有隐私，发送封装总是下策">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 - 创建型 - 单例模式">
-<meta property="og:url" content="http://example.com/2025/07/02/Design-Pattern-Singleton/index.html">
+<meta property="og:title" content="代码整洁之道 - 类">
+<meta property="og:url" content="http://example.com/2025/08/24/Clean-Code-Classes/index.html">
 <meta property="og:site_name" content="异想天开の博客">
-<meta property="og:description" content="类型 Type 创建型   Creational  含义 IntentThe intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.">
+<meta property="og:description" content="类的组织 Class Organization公共函数调用的私有函数，紧跟公共函数后，这符合自上向下原则，让程序读起来像一篇报纸文章 封装 Encapsulation有时为了测试，会把 private 的变量或函数变成 protected 或 Internal 的 首先想办法隐藏，保有隐私，发送封装总是下策">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-07-02T14:36:35.000Z">
-<meta property="article:modified_time" content="2025-07-03T15:26:47.011Z">
+<meta property="article:published_time" content="2025-08-24T14:00:33.000Z">
+<meta property="article:modified_time" content="2025-08-25T13:51:33.878Z">
 <meta property="article:author" content="xiangflight">
-<meta property="article:tag" content="Coding">
-<meta property="article:tag" content="Design Pattern">
+<meta property="article:tag" content="代码整洁之道">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2025/07/02/Design-Pattern-Singleton/">
+<link rel="canonical" href="http://example.com/2025/08/24/Clean-Code-Classes/">
 
 
 <script id="page-configurations">
@@ -47,7 +46,7 @@
   };
 </script>
 
-  <title>设计模式 - 创建型 - 单例模式 | 异想天开の博客</title>
+  <title>代码整洁之道 - 类 | 异想天开の博客</title>
   
 
 
@@ -203,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/02/Design-Pattern-Singleton/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/24/Clean-Code-Classes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -216,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          设计模式 - 创建型 - 单例模式
+          代码整洁之道 - 类
         </h1>
 
         <div class="post-meta">
@@ -226,14 +225,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-07-02 22:36:35" itemprop="dateCreated datePublished" datetime="2025-07-02T22:36:35+08:00">2025-07-02</time>
+              <time title="创建时间：2025-08-24 22:00:33" itemprop="dateCreated datePublished" datetime="2025-08-24T22:00:33+08:00">2025-08-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-03 23:26:47" itemprop="dateModified" datetime="2025-07-03T23:26:47+08:00">2025-07-03</time>
+                <time title="修改时间：2025-08-25 21:51:33" itemprop="dateModified" datetime="2025-08-25T21:51:33+08:00">2025-08-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,51 +269,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
-<li>创建型   Creational</li>
-</ul>
-<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.</p>
+        <h2 id="类的组织-Class-Organization"><a href="#类的组织-Class-Organization" class="headerlink" title="类的组织 Class Organization"></a>类的组织 Class Organization</h2><p>公共函数调用的私有函数，紧跟公共函数后，这符合自上向下原则，让程序读起来像一篇报纸文章</p>
+<h3 id="封装-Encapsulation"><a href="#封装-Encapsulation" class="headerlink" title="封装 Encapsulation"></a>封装 Encapsulation</h3><p>有时为了测试，会把 private 的变量或函数变成 protected 或 Internal 的</p>
+<p>首先想办法隐藏，保有隐私，发送封装总是下策</p>
 <span id="more"></span>
 
-<h2 id="例子-Real-Example"><a href="#例子-Real-Example" class="headerlink" title="例子 Real Example"></a>例子 Real Example</h2><p>Logger，通常来说应用中只会有一个，以避免意想不到的结果。</p>
-<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Lazy&lt;Logger&gt; lazyLogger = <span class="keyword">new</span> Lazy&lt;Logger&gt;(() =&gt; <span class="keyword">new</span> Logger());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Logger Instance =&gt; lazyLogger.Value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Logger</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;summary&gt;</span></span><br><span class="line">    <span class="comment">// SingletonOperation</span></span><br><span class="line">    <span class="comment">// &lt;/summary&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Log</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Log: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
-<li><p>When there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point</p>
+<h2 id="类应该短小-Classes-Should-Be-Small"><a href="#类应该短小-Classes-Should-Be-Small" class="headerlink" title="类应该短小 Classes Should Be Small!"></a>类应该短小 Classes Should Be Small!</h2><ul>
+<li><p>对于函数，我们通过计算代码行衡量其大小</p>
 </li>
-<li><p>When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code</p>
+<li><p>对于类，我们采用不同的衡量方法，即计算其 权责 responsibility</p>
 </li>
-</ul>
-<h2 id="用例-User-Case"><a href="#用例-User-Case" class="headerlink" title="用例 User Case"></a>用例 User Case</h2><ul>
-<li><p>管理数据库连接池 connection pool</p>
-</li>
-<li><p>缓存 cache</p>
-</li>
-<li><p>管理应用配置 manage application configuration</p>
-</li>
-<li><p>通用资源管理 general resource management</p>
-</li>
-</ul>
-<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
-<li><p>违反了单一职责 Violates the SRP</p>
+<li><p>类的名称应当描述其权责，类名越含糊，该类越有可能拥有过多权责</p>
 <ul>
-<li><p>负责对象的创建 Control Creation</p>
-</li>
-<li><p>负责对象的生命周期管理 manage own lifecycle</p>
-</li>
+<li>如类名中包含含义模糊的词，如 processor manager 或 super，那就意味着有不恰当的权责聚集情况存在</li>
 </ul>
 </li>
-<li><p>严格的控制客户对其的访问 Strict Control over how and when clients access it</p>
+</ul>
+<h3 id="单一权责原则-The-Single-Responsibility-Principle"><a href="#单一权责原则-The-Single-Responsibility-Principle" class="headerlink" title="单一权责原则 The Single Responsibility Principle"></a>单一权责原则 The Single Responsibility Principle</h3><p>SRP 认为，类或模块应该有且只有一条加以修改的理由，该原则给出了权责的定义，同时这也是关于类的长度的指导方针，类应该只有一个权责 - 只有一条修改的理由</p>
+<ul>
+<li><p>让软件能工作 和 让软件保持整洁，是两种截然不同的工作</p>
 </li>
-<li><p>Avoids polluting the namespace with global variables</p>
+<li><p>在程序能工作后，不应立即转向下个问题，应该回头将臃肿的类切分为只有单一权责的去耦式单元</p>
 </li>
-<li><p>Subclassing allows configuring the application with an instance of the class you need at runtime</p>
-</li>
-<li><p>Multipe instances can be allowed without having to alter the client</p>
-</li>
-<li><p>很多时候我们不用自己实现，让 IoC 容器管理吧</p>
+<li><p>数量巨大的短小单一目的类也许会导致难以一目了然的抓住全局，但是少量巨大的，拥有多目的的类，会让你去了解一大堆目前并不需要的东西，这会让事情变得更复杂</p>
 </li>
 </ul>
+<p>总之，系统应该由 许多短小的类 而不是 少量巨大的类 组成，每个小类封装一个权责，只有一个修改的原因，并与少数其他类一起协同达成期望的系统行为</p>
+<h3 id="内聚-Cohesion"><a href="#内聚-Cohesion" class="headerlink" title="内聚 Cohesion"></a>内聚 Cohesion</h3><p>类应该只有少数实体变量，且类中的每个方法都应该操作一个或多个这种变量，通常方法操作的变量越多，就越黏聚到这个类上，如果类中的每个变量都被每个方法所使用，就说该类具有最大的内聚性</p>
+<p>保持函数和参数列表短小的策略，有时会导致 一组子集方法所用的实体变量数量增加，此时意味着至少有一个类要从大类中挣扎出来，应当尝试将这些变量和方法分拆到两个或多个类中，让新的类更为内聚</p>
+<h3 id="保持内聚性就会得到许多短小的类-Maintaining-Cohesion-Results-in-Many-Small-Classes"><a href="#保持内聚性就会得到许多短小的类-Maintaining-Cohesion-Results-in-Many-Small-Classes" class="headerlink" title="保持内聚性就会得到许多短小的类 Maintaining Cohesion Results in Many Small Classes"></a>保持内聚性就会得到许多短小的类 Maintaining Cohesion Results in Many Small Classes</h3><p>将大函数拆分为许多小函数时，这些小函数往往共享一些实体变量，此时，可以把这些共享某些实体变量的函数和实体变量拆分到新的小类中，这样程序会更加有组织，会拥有更为透明的结构</p>
+<h2 id="为了修改而组织-Organizing-for-Change"><a href="#为了修改而组织-Organizing-for-Change" class="headerlink" title="为了修改而组织 Organizing for Change"></a>为了修改而组织 Organizing for Change</h2><p>对于多数系统，修改将一直持续。在整洁的系统中，我们对类加以组织，以降低修改的风险</p>
+<ul>
+<li>在理想系统中，通过扩展系统而非修改现有代码来添加新特性</li>
+</ul>
+<h3 id="隔离修改-Isolating-from-Change"><a href="#隔离修改-Isolating-from-Change" class="headerlink" title="隔离修改 Isolating from Change"></a>隔离修改 Isolating from Change</h3><p>在 OO 世界里，具体类包含实现细节，而抽象类只是呈现概念。依赖具体细节的客户类，一旦细节改变，就会有风险。— 通过借助 接口 和 抽象类 来隔离这些细节带来的影响</p>
+<h3 id="依赖倒置原则-Dependency-Inversion-Principle-DIP"><a href="#依赖倒置原则-Dependency-Inversion-Principle-DIP" class="headerlink" title="依赖倒置原则 Dependency Inversion Principle (DIP)"></a>依赖倒置原则 Dependency Inversion Principle (DIP)</h3><p>DIP 认为类应当依赖抽象，而不是依赖具体细节</p>
+<p>依赖抽象概念，这种抽象概念帮我们隔离了 特定的细节</p>
 
     </div>
 
@@ -324,8 +314,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Coding/" rel="tag"># Coding</a>
-              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/" rel="tag"># 代码整洁之道</a>
           </div>
 
         
@@ -334,13 +323,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/06/30/Clean-Code-Function/" rel="prev" title="代码整洁之道 - 函数">
-      <i class="fa fa-chevron-left"></i> 代码整洁之道 - 函数
+    <a href="/2025/08/20/Clean-Code-Unit-Tests/" rel="prev" title="代码整洁之道 - 单元测试">
+      <i class="fa fa-chevron-left"></i> 代码整洁之道 - 单元测试
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/07/04/Design-Pattern-Factory/" rel="next" title="设计模式 - 创建型 - 工厂方法模式">
-      设计模式 - 创建型 - 工厂方法模式 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -399,7 +385,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B-Type"><span class="nav-text">类型 Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AB%E4%B9%89-Intent"><span class="nav-text">含义 Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90-Real-Example"><span class="nav-text">例子 Real Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-Code"><span class="nav-text">代码 Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%97%B6%E6%9C%BA-Time-to-Use"><span class="nav-text">使用时机 Time to Use</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E4%BE%8B-User-Case"><span class="nav-text">用例 User Case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%A5%BD%E5%9D%8F-Pattern-Consequence"><span class="nav-text">模式好坏 Pattern Consequence</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%84%E7%BB%87-Class-Organization"><span class="nav-text">类的组织 Class Organization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85-Encapsulation"><span class="nav-text">封装 Encapsulation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%BA%94%E8%AF%A5%E7%9F%AD%E5%B0%8F-Classes-Should-Be-Small"><span class="nav-text">类应该短小 Classes Should Be Small!</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E6%9D%83%E8%B4%A3%E5%8E%9F%E5%88%99-The-Single-Responsibility-Principle"><span class="nav-text">单一权责原则 The Single Responsibility Principle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E8%81%9A-Cohesion"><span class="nav-text">内聚 Cohesion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E5%86%85%E8%81%9A%E6%80%A7%E5%B0%B1%E4%BC%9A%E5%BE%97%E5%88%B0%E8%AE%B8%E5%A4%9A%E7%9F%AD%E5%B0%8F%E7%9A%84%E7%B1%BB-Maintaining-Cohesion-Results-in-Many-Small-Classes"><span class="nav-text">保持内聚性就会得到许多短小的类 Maintaining Cohesion Results in Many Small Classes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BA%86%E4%BF%AE%E6%94%B9%E8%80%8C%E7%BB%84%E7%BB%87-Organizing-for-Change"><span class="nav-text">为了修改而组织 Organizing for Change</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E4%BF%AE%E6%94%B9-Isolating-from-Change"><span class="nav-text">隔离修改 Isolating from Change</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99-Dependency-Inversion-Principle-DIP"><span class="nav-text">依赖倒置原则 Dependency Inversion Principle (DIP)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
