@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在阅读本章时，不是太明白，遂借助 deepseek 理解本章： 核心思想：构造与使用分离这是本章最根本、最重要的理念。作者认为，系统混乱的主要根源在于：  构造（Construction） 和 使用（Use） 这两件事被混在了一起。   构造：创建对象、定义依赖关系、组装应用程序结构的过程。（如何将零件组装成引擎）  使用：系统运行时，对象之间协作执行业务逻辑的过程。（如何踩油门让汽车跑起来）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码整洁之道 - 系统">
+<meta property="og:url" content="http://example.com/2025/08/25/Clean-Code-Systems/index.html">
+<meta property="og:site_name" content="异想天开の博客">
+<meta property="og:description" content="在阅读本章时，不是太明白，遂借助 deepseek 理解本章： 核心思想：构造与使用分离这是本章最根本、最重要的理念。作者认为，系统混乱的主要根源在于：  构造（Construction） 和 使用（Use） 这两件事被混在了一起。   构造：创建对象、定义依赖关系、组装应用程序结构的过程。（如何将零件组装成引擎）  使用：系统运行时，对象之间协作执行业务逻辑的过程。（如何踩油门让汽车跑起来）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-25T13:56:21.000Z">
+<meta property="article:modified_time" content="2025-08-31T15:07:39.748Z">
+<meta property="article:author" content="xiangflight">
+<meta property="article:tag" content="代码整洁之道">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2025/08/25/Clean-Code-Systems/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>代码整洁之道 - 系统 | 异想天开の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">异想天开の博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录记录，分享分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/xiangflight" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/25/Clean-Code-Systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="xiangflight">
+      <meta itemprop="description" content="C#/Database/Others">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异想天开の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码整洁之道 - 系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-08-25 21:56:21" itemprop="dateCreated datePublished" datetime="2025-08-25T21:56:21+08:00">2025-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-31 23:07:39" itemprop="dateModified" datetime="2025-08-31T23:07:39+08:00">2025-08-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Engineering/" itemprop="url" rel="index"><span itemprop="name">Engineering</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在阅读本章时，不是太明白，遂借助 deepseek 理解本章：</p>
+<h2 id="核心思想：构造与使用分离"><a href="#核心思想：构造与使用分离" class="headerlink" title="核心思想：构造与使用分离"></a>核心思想：构造与使用分离</h2><p>这是本章最根本、最重要的理念。作者认为，系统混乱的主要根源在于：</p>
+<blockquote>
+<p><strong>构造（Construction）</strong> 和 <strong>使用（Use）</strong> 这两件事被混在了一起。</p>
+</blockquote>
+<ul>
+<li><p><strong>构造</strong>：创建对象、定义依赖关系、组装应用程序结构的过程。（<em>如何将零件组装成引擎</em>）</p>
+</li>
+<li><p><strong>使用</strong>：系统运行时，对象之间协作执行业务逻辑的过程。（<em>如何踩油门让汽车跑起来</em>）</p>
+</li>
+</ul>
+<p>将这两者混杂，会导致代码职责不清、难以测试和维护。一个整洁的系统架构应该将这两者清晰地分离开。</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="关键策略与模式"><a href="#关键策略与模式" class="headerlink" title="关键策略与模式"></a>关键策略与模式</h2><h3 id="1-依赖注入（Dependency-Injection-DI）"><a href="#1-依赖注入（Dependency-Injection-DI）" class="headerlink" title="1. 依赖注入（Dependency Injection, DI）"></a>1. 依赖注入（Dependency Injection, DI）</h3><p><strong>是什么</strong>：实现“构造与使用分离”的核心技术。对象不应自己创建其依赖，而应由外部容器将依赖“注入”给它（通常通过构造函数或属性）。</p>
+<p><strong>为什么</strong>：</p>
+<ul>
+<li><p><strong>控制反转（IoC）</strong>：将创建依赖的控制权从类内部反转到了外部容器，<strong>降低耦合度</strong>。</p>
+</li>
+<li><p><strong>极致可测试性</strong>：可以轻松注入“模拟对象（Mock）”进行单元测试。</p>
+</li>
+<li><p><strong>灵活性</strong>：更换依赖实现（如换数据库）只需修改容器配置，而无需修改业务代码。</p>
+</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<p><strong>糟糕的写法（构造与使用混合）：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> &#123;</span><br><span class="line">    <span class="comment">// MyService 自己创建了它所依赖的 Repository，紧密耦合</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">MyRepository</span> <span class="variable">repository</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyRepository</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doBusinessLogic</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 使用依赖</span></span><br><span class="line">        repository.getData(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>问题</em>：无法轻松测试 <code>MyService</code>，因为它强耦合于真实的 <code>MyRepository</code>。</p>
+<p><strong>整洁的写法（依赖注入）：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> &#123;</span><br><span class="line">    <span class="comment">// MyService 只声明它需要什么依赖，而不创建它</span></span><br><span class="line">    <span class="keyword">private</span> MyRepository repository;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 依赖通过构造函数&quot;注入&quot;进来</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyService</span><span class="params">(MyRepository repository)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.repository = repository;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doBusinessLogic</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 使用注入的依赖</span></span><br><span class="line">        repository.getData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>好处</em>：<code>MyService</code> 不再关心 <code>MyRepository</code> 如何被创建。</p>
+<ul>
+<li><p><strong>测试时</strong>：可以注入一个 <code>MockMyRepository</code>。</p>
+</li>
+<li><p><strong>生产时</strong>：由DI容器（如Spring）负责创建 <code>MyRepository</code> 实例并注入。</p>
+</li>
+</ul>
+<hr>
+<h3 id="2-面向接口编程"><a href="#2-面向接口编程" class="headerlink" title="2. 面向接口编程"></a>2. 面向接口编程</h3><p><strong>是什么</strong>：依赖注入应依赖于<strong>接口（Interface）</strong>，而非<strong>具体实现（Concrete Implementation）</strong>。</p>
+<p><strong>为什么</strong>：提供抽象和多态能力，让依赖的具体实现可以像插件一样被轻松替换。</p>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 定义接口（抽象）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Repository</span> &#123;</span><br><span class="line">    Data <span class="title function_">getData</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 提供不同实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SqlRepository</span> <span class="keyword">implements</span> <span class="title class_">Repository</span> &#123; ... &#125; <span class="comment">// 数据库实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InMemoryRepository</span> <span class="keyword">implements</span> <span class="title class_">Repository</span> &#123; ... &#125; <span class="comment">// 内存实现（用于测试）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 依赖接口，而非实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Repository repository; <span class="comment">// 类型是接口！</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyService</span><span class="params">(Repository repository)</span> &#123; <span class="comment">// 参数也是接口</span></span><br><span class="line">        <span class="built_in">this</span>.repository = repository;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>好处</em>：不修改 <code>MyService</code> 的任何代码，即可切换不同的数据源实现。</p>
+<hr>
+<h3 id="3-使用DI框架作为”主组件”"><a href="#3-使用DI框架作为”主组件”" class="headerlink" title="3. 使用DI框架作为”主组件”"></a>3. 使用DI框架作为”主组件”</h3><p><strong>是什么</strong>：使用如Spring之类的框架作为应用程序的”主组件”（Main Component），由其负责整个系统的<strong>构造</strong>过程。</p>
+<p><strong>为什么</strong>：将构造系统的职责完全从业务代码中剥离，让业务代码只关注”使用”（即业务逻辑本身）。</p>
+<p><strong>工作流程</strong>：</p>
+<ol>
+<li><p><strong>声明</strong>：使用注解（如 <code>@Component</code>, <code>@Service</code>）标记你的类。</p>
+</li>
+<li><p><strong>装配</strong>：使用注解（如 <code>@Autowired</code>）声明依赖关系。</p>
+</li>
+<li><p><strong>构造</strong>：DI容器在启动时读取所有元数据，<strong>承担所有”构造”责任</strong>，组装好整个对象图。</p>
+</li>
+<li><p><strong>运行</strong>：你的业务代码直接使用已组装好的对象，纯粹地执行业务逻辑。</p>
+</li>
+</ol>
+<p><strong>示例（简化Spring Boot）：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 定义组件（构造的零件）</span></span><br><span class="line"><span class="meta">@Service</span> <span class="comment">// 告诉Spring：请管理这个服务</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CreditCardProcessor</span> <span class="keyword">implements</span> <span class="title class_">PaymentProcessor</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Payment p)</span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 使用服务的类（使用者）</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShoppingCartService</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> PaymentProcessor processor;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span> <span class="comment">// Spring自动寻找并注入PaymentProcessor的实现</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ShoppingCartService</span><span class="params">(PaymentProcessor processor)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.processor = processor; <span class="comment">// 构造完成！</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">checkout</span><span class="params">(Cart c)</span> &#123; <span class="comment">// 纯粹的业务逻辑（使用）</span></span><br><span class="line">        ...</span><br><span class="line">        processor.process(payment); <span class="comment">// 使用注入的依赖</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 主程序（启动容器）</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Application</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(Application.class, args); <span class="comment">// 启动容器，完成所有构造</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="总结与启示"><a href="#总结与启示" class="headerlink" title="总结与启示"></a>总结与启示</h2><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>启示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>分离构造与使用</strong></td>
+<td>这是设计松散耦合、可维护系统的基石。你的业务代码不应该被 <code>new</code> 关键字污染。</td>
+</tr>
+<tr>
+<td><strong>使用DI和接口</strong></td>
+<td>这是实现上述分离的首要技术手段。它直接带来了<strong>可测试性</strong>，这是衡量设计好坏的重要标准。</td>
+</tr>
+<tr>
+<td><strong>框架是工具</strong></td>
+<td>Spring等DI框架不是目的，而是实现”构造与使用分离”这一目标的强大工具。它们扮演了”系统组装者”的角色。</td>
+</tr>
+<tr>
+<td><strong>架构目标</strong></td>
+<td>本章的最终目的是：<strong>管理复杂性</strong>。通过将构造的复杂性隔离到容器中，使得核心业务逻辑变得简单、清晰、易于变化。</td>
+</tr>
+</tbody></table>
+<p><strong>一句话总结：</strong></p>
+<blockquote>
+<p>不要让你的业务代码（建筑师）去操心依赖如何被创建和组装（搬砖和水泥），而应该由一个专门的DI容器（施工队）根据配置（蓝图）来完成所有组装工作，然后将完整的、可用的依赖交付给业务代码去使用。</p>
+</blockquote>
+<hr>
+<h3 id="使用-Generic-Host-推荐"><a href="#使用-Generic-Host-推荐" class="headerlink" title="使用 Generic Host (推荐)"></a>使用 Generic Host (推荐)</h3><p>对于 C# 的 Console Application，使用依赖注入需要手动设置 DI 容器：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.Extensions.DependencyInjection;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Hosting;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IMessageService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">SendMessage</span>(<span class="params"><span class="built_in">string</span> message</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EmailService</span> : <span class="title">IMessageService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendMessage</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;发送邮件: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NotificationManager</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IMessageService _messageService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NotificationManager</span>(<span class="params">IMessageService messageService</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _messageService = messageService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Notify</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _messageService.SendMessage(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后台服务</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBackgroundService</span> : <span class="title">BackgroundService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> NotificationManager _notificationManager;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyBackgroundService</span>(<span class="params">NotificationManager notificationManager</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _notificationManager = notificationManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">async</span> Task <span class="title">ExecuteAsync</span>(<span class="params">CancellationToken stoppingToken</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (!stoppingToken.IsCancellationRequested)</span><br><span class="line">        &#123;</span><br><span class="line">            _notificationManager.Notify(<span class="string">$&quot;消息时间: <span class="subst">&#123;DateTime.Now&#125;</span>&quot;</span>);</span><br><span class="line">            <span class="keyword">await</span> Task.Delay(<span class="number">1000</span>, stoppingToken);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] <span class="keyword">args</span></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 创建并配置主机</span></span><br><span class="line">        <span class="keyword">var</span> host = Host.CreateDefaultBuilder(<span class="keyword">args</span>)</span><br><span class="line">            .ConfigureServices((context, services) =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 注册服务</span></span><br><span class="line">                services.AddTransient&lt;IMessageService, EmailService&gt;();</span><br><span class="line">                services.AddTransient&lt;NotificationManager&gt;();</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 注册后台服务</span></span><br><span class="line">                services.AddHostedService&lt;MyBackgroundService&gt;();</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 也可以注册其他服务</span></span><br><span class="line">                services.AddSingleton&lt;IConfigService, ConfigService&gt;();</span><br><span class="line">            &#125;)</span><br><span class="line">            .Build();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 运行主机</span></span><br><span class="line">        <span class="keyword">await</span> host.RunAsync();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IConfigService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">GetConfigValue</span>(<span class="params"><span class="built_in">string</span> key</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ConfigService</span> : <span class="title">IConfigService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetConfigValue</span>(<span class="params"><span class="built_in">string</span> key</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">$&quot;Value for <span class="subst">&#123;key&#125;</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然 Generic Host 功能强大，但并非所有控制台应用都需要它。对于<strong>非常简单的、一次性的脚本任务</strong>，直接使用传统的写法可能更直接和轻量。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/" rel="tag"># 代码整洁之道</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/08/24/Clean-Code-Classes/" rel="prev" title="代码整洁之道 - 类">
+      <i class="fa fa-chevron-left"></i> 代码整洁之道 - 类
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%EF%BC%9A%E6%9E%84%E9%80%A0%E4%B8%8E%E4%BD%BF%E7%94%A8%E5%88%86%E7%A6%BB"><span class="nav-text">核心思想：构造与使用分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%AD%96%E7%95%A5%E4%B8%8E%E6%A8%A1%E5%BC%8F"><span class="nav-text">关键策略与模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%EF%BC%88Dependency-Injection-DI%EF%BC%89"><span class="nav-text">1. 依赖注入（Dependency Injection, DI）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3%E7%BC%96%E7%A8%8B"><span class="nav-text">2. 面向接口编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8DI%E6%A1%86%E6%9E%B6%E4%BD%9C%E4%B8%BA%E2%80%9D%E4%B8%BB%E7%BB%84%E4%BB%B6%E2%80%9D"><span class="nav-text">3. 使用DI框架作为”主组件”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%90%AF%E7%A4%BA"><span class="nav-text">总结与启示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Generic-Host-%E6%8E%A8%E8%8D%90"><span class="nav-text">使用 Generic Host (推荐)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xiangflight"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xiangflight</p>
+  <div class="site-description" itemprop="description">C#/Database/Others</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiangflight" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiangflight" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiangflight</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">25k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">23 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
