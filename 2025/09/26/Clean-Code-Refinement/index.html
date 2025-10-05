@@ -20,21 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="类型 Type 创建型   Creational  含义 IntentThe intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.">
+  <meta name="description" content="Robert 认为编程是一种技艺甚于科学的东西，要编写整洁代码，必须先写肮脏代码，然后再清理。 跟写作文先写草稿，再写第二稿，直至最终写出终稿，这是一个逐步改进的过程。 写出能工作的程序远远不够 ，要以整洁代码为目标，只有达到整洁代码后，才可转移到下一个任务上。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 - 创建型 - 单例模式">
-<meta property="og:url" content="http://example.com/2025/07/02/Design-Pattern-Singleton/index.html">
+<meta property="og:title" content="代码整洁之道 - 逐步改进 | JUnit | 重构 SerialDate | 味道与启发">
+<meta property="og:url" content="http://example.com/2025/09/26/Clean-Code-Refinement/index.html">
 <meta property="og:site_name" content="异想天开の博客">
-<meta property="og:description" content="类型 Type 创建型   Creational  含义 IntentThe intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.">
+<meta property="og:description" content="Robert 认为编程是一种技艺甚于科学的东西，要编写整洁代码，必须先写肮脏代码，然后再清理。 跟写作文先写草稿，再写第二稿，直至最终写出终稿，这是一个逐步改进的过程。 写出能工作的程序远远不够 ，要以整洁代码为目标，只有达到整洁代码后，才可转移到下一个任务上。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-07-02T14:36:35.000Z">
-<meta property="article:modified_time" content="2025-07-03T15:26:47.011Z">
+<meta property="article:published_time" content="2025-09-26T01:17:04.000Z">
+<meta property="article:modified_time" content="2025-10-05T14:18:43.037Z">
 <meta property="article:author" content="xiangflight">
-<meta property="article:tag" content="Coding">
-<meta property="article:tag" content="Design Pattern">
+<meta property="article:tag" content="代码整洁之道">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2025/07/02/Design-Pattern-Singleton/">
+<link rel="canonical" href="http://example.com/2025/09/26/Clean-Code-Refinement/">
 
 
 <script id="page-configurations">
@@ -47,7 +46,7 @@
   };
 </script>
 
-  <title>设计模式 - 创建型 - 单例模式 | 异想天开の博客</title>
+  <title>代码整洁之道 - 逐步改进 | JUnit | 重构 SerialDate | 味道与启发 | 异想天开の博客</title>
   
 
 
@@ -203,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/02/Design-Pattern-Singleton/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/26/Clean-Code-Refinement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -216,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          设计模式 - 创建型 - 单例模式
+          代码整洁之道 - 逐步改进 | JUnit | 重构 SerialDate | 味道与启发
         </h1>
 
         <div class="post-meta">
@@ -226,14 +225,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-07-02 22:36:35" itemprop="dateCreated datePublished" datetime="2025-07-02T22:36:35+08:00">2025-07-02</time>
+              <time title="创建时间：2025-09-26 09:17:04" itemprop="dateCreated datePublished" datetime="2025-09-26T09:17:04+08:00">2025-09-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-03 23:26:47" itemprop="dateModified" datetime="2025-07-03T23:26:47+08:00">2025-07-03</time>
+                <time title="修改时间：2025-10-05 22:18:43" itemprop="dateModified" datetime="2025-10-05T22:18:43+08:00">2025-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,7 +250,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -270,49 +269,139 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型 Type"></a>类型 Type</h2><ul>
-<li>创建型   Creational</li>
-</ul>
-<h2 id="含义-Intent"><a href="#含义-Intent" class="headerlink" title="含义 Intent"></a>含义 Intent</h2><p>The intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it.</p>
+        <p>Robert 认为编程是一种技艺甚于科学的东西，要编写整洁代码，必须先写肮脏代码，然后再清理。</p>
+<p>跟写作文先写草稿，再写第二稿，直至最终写出终稿，这是一个逐步改进的过程。</p>
+<p>写出能工作的程序远远不够 ，要以整洁代码为目标，只有达到整洁代码后，才可转移到下一个任务上。</p>
 <span id="more"></span>
 
-<h2 id="例子-Real-Example"><a href="#例子-Real-Example" class="headerlink" title="例子 Real Example"></a>例子 Real Example</h2><p>Logger，通常来说应用中只会有一个，以避免意想不到的结果。</p>
-<h2 id="代码-Code"><a href="#代码-Code" class="headerlink" title="代码 Code"></a>代码 Code</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Lazy&lt;Logger&gt; lazyLogger = <span class="keyword">new</span> Lazy&lt;Logger&gt;(() =&gt; <span class="keyword">new</span> Logger());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Logger Instance =&gt; lazyLogger.Value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Logger</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;summary&gt;</span></span><br><span class="line">    <span class="comment">// SingletonOperation</span></span><br><span class="line">    <span class="comment">// &lt;/summary&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Log</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Log: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用时机-Time-to-Use"><a href="#使用时机-Time-to-Use" class="headerlink" title="使用时机 Time to Use"></a>使用时机 Time to Use</h2><ul>
-<li><p>When there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point</p>
-</li>
-<li><p>When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code</p>
-</li>
-</ul>
-<h2 id="用例-User-Case"><a href="#用例-User-Case" class="headerlink" title="用例 User Case"></a>用例 User Case</h2><ul>
-<li><p>管理数据库连接池 connection pool</p>
-</li>
-<li><p>缓存 cache</p>
-</li>
-<li><p>管理应用配置 manage application configuration</p>
-</li>
-<li><p>通用资源管理 general resource management</p>
-</li>
-</ul>
-<h2 id="模式好坏-Pattern-Consequence"><a href="#模式好坏-Pattern-Consequence" class="headerlink" title="模式好坏 Pattern Consequence"></a>模式好坏 Pattern Consequence</h2><ul>
-<li><p>违反了单一职责 Violates the SRP</p>
 <ul>
-<li><p>负责对象的创建 Control Creation</p>
+<li>优秀的软件设计是，大都关乎分隔：创建合适的空间，放置不同种类的代码，对关注面的分隔让代码更易于理解和维护</li>
+<li>代码能工作不够，能工作的代码经常会严重崩溃</li>
+<li>解决之道：保持代码持续整洁和简单，永不让“腐坏”有机会开始</li>
+</ul>
+<hr>
+<h2 id="童子军军规"><a href="#童子军军规" class="headerlink" title="童子军军规"></a>童子军军规</h2><ul>
+<li><p>让营地比你来时更干净</p>
 </li>
-<li><p>负责对象的生命周期管理 manage own lifecycle</p>
+<li><p>代码离开时比来时更加整洁</p>
+</li>
+</ul>
+<hr>
+<h2 id="味道与启发"><a href="#味道与启发" class="headerlink" title="味道与启发"></a>味道与启发</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ul>
+<li><p>不恰当的信息：注释只应描述有关代码和设计的技术性信息</p>
+</li>
+<li><p>废弃的注释</p>
+</li>
+<li><p>冗余注释</p>
+</li>
+<li><p>糟糕的注释</p>
+</li>
+<li><p>注释掉的代码：如果看到，立马删除它，可以通过 git 追溯</p>
+</li>
+</ul>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
+<li><p>需要多步才能实现的构建：构建系统应该是单步的小操作</p>
+</li>
+<li><p>需要多步才能做到的测试：单个指令就可以运行全部UT</p>
+</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
+<li><p>过多的参数：没有最好，三个以上的参数应坚决避免</p>
+</li>
+<li><p>输出参数：输出参数违反直觉，参数一般用于输入而非输出；如果函数非要修改什么东西的状态，就修改它所在对象的状态好了</p>
+</li>
+<li><p>标识参数：布尔值参数就意味着函数做了不止一件事，令人迷惑，应该删掉</p>
+</li>
+<li><p>死函数：永不被调用的函数应该删除</p>
+</li>
+</ul>
+<h3 id="一般性问题"><a href="#一般性问题" class="headerlink" title="一般性问题"></a>一般性问题</h3><ul>
+<li><p>一个源文件中存在多种语言：理想源文件有且只包括一种语言</p>
+</li>
+<li><p>明显的行为未被实现：在实现时，把自己当做用户，看方法是否如自己所期待</p>
+</li>
+<li><p>不正确的边界行为：别依赖直觉，追索每种边界条件，并编写测试</p>
+</li>
+<li><p>忽视安全</p>
+</li>
+<li><p>重复：尽可能找到并消除重复</p>
+</li>
+<li><p>在错误的抽象层级上的代码：</p>
+<ul>
+<li><p>创建分离较高层级一般性概念与较低层级细节概念的抽象模型很重要</p>
+</li>
+<li><p>只与细节实现有关的常量、变量或工具函数不应该在基类中出现，基类应对这些一无所知</p>
 </li>
 </ul>
 </li>
-<li><p>严格的控制客户对其的访问 Strict Control over how and when clients access it</p>
+<li><p>基类依赖派生类，通常来说，基类应对派生类一无所知</p>
 </li>
-<li><p>Avoids polluting the namespace with global variables</p>
+<li><p>信息过多：设计良好的模块有着非常小的接口</p>
 </li>
-<li><p>Subclassing allows configuring the application with an instance of the class you need at runtime</p>
+<li><p>死代码：就是不执行的代码，看到就删掉吧</p>
 </li>
-<li><p>Multipe instances can be allowed without having to alter the client</p>
+<li><p>垂直分隔：变量应该在首次被使用的位置上声明，函数在首次被使用的位置下面定义</p>
 </li>
-<li><p>很多时候我们不用自己实现，让 IoC 容器管理吧</p>
+<li><p>前后不一致：从一而终，小心选择约定，一旦选中就小心持续遵循</p>
+</li>
+<li><p>混淆视听：包含没实现的默认构造器，从不调用的函数，没有用到的变量，没有信息量的注释</p>
+</li>
+<li><p>人为耦合：不互相依赖的东西不该耦合</p>
+</li>
+<li><p>特性依恋：类的方法只应对其所属类中的变量和函数感兴趣，不该垂直其他类中的变量和函数，当方法通过某个其他对象的访问器和修改器来操作该对象内部数据时，它就依恋该对象所属类的范围</p>
+</li>
+<li><p>选择算子参数：使用多个函数，通常优于向单个函数传递某些代码来选择函数行为</p>
+</li>
+<li><p>晦涩的意图：代码要尽可能具有表达力</p>
+</li>
+<li><p>位置错误的权责：软件开发做出的最重要的决定之一就是在哪里放代码</p>
+</li>
+<li><p>不恰当的静态方法：通常倾向于选用非静态方法，如果的确需要静态函数，确保没机会打算让它有多态行为</p>
+</li>
+<li><p>使用解释性变量：解释性变量多比少好</p>
+</li>
+<li><p>函数名称应该表达其行为</p>
+</li>
+<li><p>理解算法：确认自己理解了算法是如何工作的，通过全部测试还不够好，必须知道解决方案是正确的</p>
+<ul>
+<li>获得这种知识和理解的最好途径往往是重构函数，得到某种整洁而足具表达力、清楚呈示如何工作的东西</li>
+</ul>
+</li>
+<li><p>把逻辑依赖改为物理依赖</p>
+</li>
+<li><p>用多态替代 If&#x2F;Else 或 Switch&#x2F;Case</p>
+</li>
+<li><p>遵循标准约定</p>
+</li>
+<li><p>用命名常量替代魔术数</p>
+</li>
+<li><p>准确：代码中的含糊和不准确，要么是意见不同的结果，要么源于懒惰，无论原因是什么，都要消除</p>
+</li>
+<li><p>结构甚于约定：坚守结构甚于约定的设计原则，命名约定很好，但是次于强制性的结构</p>
+</li>
+<li><p>封装条件：应该把解释了条件意图的函数抽离出来</p>
+</li>
+<li><p>避免否定性条件：否定式要比肯定式难明白一些，尽可能将条件表示为肯定形式</p>
+</li>
+<li><p>函数只该做一件事</p>
+</li>
+<li><p>掩蔽时序耦合：通过创建顺序队列，每个函数产生下个函数所需的结果</p>
+</li>
+<li><p>别随意：不作为类工具的公共类，不应放到其他类里面</p>
+</li>
+<li><p>封装边界条件</p>
+</li>
+<li><p>函数应该只在一个抽象层级上</p>
+</li>
+<li><p>在较高层级放置可配置数据</p>
+</li>
+<li><p>避免传递浏览：Law of Demeter</p>
+</li>
+<li><p>不要继承常量</p>
+</li>
+<li><p>为较大作用范围选用较长名称</p>
+</li>
+<li><p>名称应该说明副作用</p>
 </li>
 </ul>
 
@@ -324,8 +413,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Coding/" rel="tag"># Coding</a>
-              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93/" rel="tag"># 代码整洁之道</a>
           </div>
 
         
@@ -334,13 +422,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/06/30/Clean-Code-Function/" rel="prev" title="代码整洁之道 - 函数">
-      <i class="fa fa-chevron-left"></i> 代码整洁之道 - 函数
+    <a href="/2025/09/04/Clean-Code-Concurrency/" rel="prev" title="代码整洁之道 - 并发编程">
+      <i class="fa fa-chevron-left"></i> 代码整洁之道 - 并发编程
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/07/04/Design-Pattern-Factory/" rel="next" title="设计模式 - 创建型 - 工厂方法模式">
-      设计模式 - 创建型 - 工厂方法模式 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -399,7 +484,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B-Type"><span class="nav-text">类型 Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AB%E4%B9%89-Intent"><span class="nav-text">含义 Intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90-Real-Example"><span class="nav-text">例子 Real Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-Code"><span class="nav-text">代码 Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%97%B6%E6%9C%BA-Time-to-Use"><span class="nav-text">使用时机 Time to Use</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E4%BE%8B-User-Case"><span class="nav-text">用例 User Case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%A5%BD%E5%9D%8F-Pattern-Consequence"><span class="nav-text">模式好坏 Pattern Consequence</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%A5%E5%AD%90%E5%86%9B%E5%86%9B%E8%A7%84"><span class="nav-text">童子军军规</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%B3%E9%81%93%E4%B8%8E%E5%90%AF%E5%8F%91"><span class="nav-text">味道与启发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-text">环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%80%A7%E9%97%AE%E9%A2%98"><span class="nav-text">一般性问题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
